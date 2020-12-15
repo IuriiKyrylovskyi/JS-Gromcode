@@ -1,0 +1,27 @@
+{
+  "name": "js_gromcode",
+  "version": "1.0.0",
+  "description": "3.1 Операторы в JavaScript. Неявное преобразование типов  \r 3.2 Явное привидение типов  \r 3.3 Операторы сравнения   \r 3.4 Логические операторы  \r 3.5 Условные операторы  \r 3.h.1 Операторы в JavaScript",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IuriiKyrylovskyi/JS-Gromcode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IuriiKyrylovskyi/JS-Gromcode/issues"
+  },
+  "homepage": "https://github.com/IuriiKyrylovskyi/JS-Gromcode#readme",
+  "dependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}

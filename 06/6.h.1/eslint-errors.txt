@@ -1,0 +1,5 @@
+Unexpected var, use let or const instead.eslintno-var
+Expected '===' and instead saw '=='.eslinteqeqeq
+'c' is not defined.eslintno-undef
+Unary operator '++' used.eslintno-plusplus
+Return statement should not contain assignment.eslintno-return-assign
