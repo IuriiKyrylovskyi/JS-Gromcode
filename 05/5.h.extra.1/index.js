@@ -1,8 +1,8 @@
 function getPrimes(n) {
-  for (let i = 2; i <= n; i++) {
+  for (i = 2; i <= n; i++) {
     let isPrime = true;
 
-    for (let j = 2; j < i; j++) {
+    for (j = 2; j < i; j++) {
       if (i % j === 0 && i !== j) {
         isPrime = false;
         // continue;//wrong usage
@@ -15,6 +15,5 @@ function getPrimes(n) {
 }
 
 console.log('getPrimes - ', getPrimes(23));
-
 
 
