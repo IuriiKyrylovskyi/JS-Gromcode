@@ -23,4 +23,5 @@
 5.3 Even/Odd function  
 5.4. Стрелочная ф-ция возводящая число в квадрат  
 5.h.1 Cумма четных чисел в заданном промежутке  
-5.h.2 Increaser with condition
+5.h.2 Increaser with condition  
+5.h.3 Сравнение сумм
