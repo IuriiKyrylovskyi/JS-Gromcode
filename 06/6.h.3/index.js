@@ -6,17 +6,18 @@ function squareArray(arr) {
 }
 console.log(squareArray([1, 2, 3, 4, 5, 6, 7]));
 
-
 const squareArrayArrow = arr => (!Array.isArray(arr) ? null : arr.map(n => n * n));
 console.log(squareArrayArrow([1, 2, 3, 4, 5, 6, 7]));
 
-
 function squareArrayMy(arr) {
   if (Array.isArray(arr)) {
-    const newArr = arr;
-    for (let i = 0; i < arr.length; i += 1){
+    const newArr = [...arr];
+    for (let i = 0; i < arr.length; i += 1) {
       newArr[i] *= newArr[i];
+      console.log(newArr[i]);
     }
+    console.log('arr ', arr);
+    console.log('newArr ', newArr);
     return newArr;
   }
   return null;
