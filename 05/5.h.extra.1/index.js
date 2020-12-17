@@ -1,37 +1,22 @@
-function getPrimes(n) {
-  for (i = 2; i <= n; i++) {
-    let isPrime = true;
-
-    for (j = 2; j < i; j++) {
-      if (i % j === 0 && i !== j) {
-        isPrime = false;
-        // continue;//wrong usage
-      }
+function truePrimes(n) {
+  for (let i = 2; i < n; i += 1) { 
+    if (n % i === 0) {
+      // console.log('false i', i);
+      return false;
     }
-    if (isPrime === true) {
+  }
+  // console.log('prime is ', n);
+  return true;
+}
+// truePrimes(15);
+// console.log(truePrimes(4));
+
+function getPrimes(n) {
+  for (let i = 2; i < n; i += 1) {
+    if (truePrimes(i)) {
       console.log(i);
     }
   }
 }
+getPrimes(12);
 
-function getPrimesMy(n) {
-  if (Number.isInteger(n)) {
-    for (i = 2; i <= n; i++) {
-      for (j = 2; j <= n; j++) {
-        if (i % j === 0 && i !== j) {
-          console.log('NOTPrime i - ', i);
-          break;
-        }
-        if (Math.sqrt(i) === j) {
-          console.log('NOTPrime i - ', i);
-          break;
-        }
-        console.log('getPrimesMy i - ', i);
-        break;
-      }
-    }
-  }
-}
-
-console.log('getPrimes - ', getPrimes(2));
-console.log('getPrimesMy - ', getPrimesMy(20));
