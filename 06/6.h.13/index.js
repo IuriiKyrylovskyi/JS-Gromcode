@@ -1,4 +1,7 @@
 function removeDuplicates(array) {
+  if (!Array.isArray(array)) {
+    return null;
+  }
   const newAr = new Set(array);
   const uniqyeSet = [...newAr];
 
@@ -53,7 +56,6 @@ function duplicates(arr) {
   return newArr;
 }
 console.log('duplicates ', duplicates([2, 1, 5, 3, 8, 2, 6, 4, 7, 2, 4, 8, 2]));
-
 
 function uniqueCount(array) {
   let seen = {};
