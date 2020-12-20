@@ -14,7 +14,7 @@ function minMaxSum(arr) {
 }
 console.log('minMaxSum ', minMaxSum(arr));
 
-//========================================================
+// ========================================================
 
 function minElement(arr) {
   let minEl = arr[0];
