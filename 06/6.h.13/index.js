@@ -36,6 +36,9 @@ function removeDuplicatesMap(array) {
 }
 console.log(removeDuplicatesMap([1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 7]));
 
+
+
+
 function duplicates(arr) {
   if (!Array.isArray(arr)) {
     return null;
@@ -57,17 +60,3 @@ function duplicates(arr) {
 }
 console.log('duplicates ', duplicates([2, 1, 5, 3, 8, 2, 6, 4, 7, 2, 4, 8, 2]));
 
-function uniqueCount(array) {
-  let seen = {};
-  const out = [];
-  let j = 0;
-  for (let i = 0; i < array.length; i += 1) {
-    const item = array[i];
-    if (seen[item] !== 1) {
-      seen[item] = 1;
-      out[(j += 1)] = item;
-    }
-  }
-  return out;
-}
-console.log('uniqueCount([1, 4, 1, 8, 3, 4, 8, 8])  ', uniqueCount([1, 4, 1, 8, 3, 4, 8, 8]));
