@@ -28,7 +28,28 @@ removeDuplicates([2, 5, 4, 1, 3, 1, 5, 4]);
 
 // unique in order
 function removeDuplicatesMap(array) {
-  const newArr = [...new Set(array.map(x => x))];
+  const newArr = [...new Set(array)];
   return newArr;
 }
 console.log(removeDuplicatesMap([1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 7]));
+
+function duplicates(arr) {
+  if (!Array.isArray(arr)) {
+    return null;
+  }
+  const newArr = [];
+  let uniqueFlag = true;
+  for (let i = 0; i < arr.length; i += 1) {
+    uniqueFlag = true;
+    for (let j = i + 1; j < arr.length; j += 1) {
+      if (arr[i] === arr[j]) {
+        uniqueFlag = false;
+      }
+    }
+    if (uniqueFlag) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+}
+console.log('duplicates ', duplicates([2, 1, 5, 3, 8, 2, 6, 4, 7, 2, 4, 8, 2]));
