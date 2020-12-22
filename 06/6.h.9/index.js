@@ -1,39 +1,14 @@
-function sortAsc(array) {
-  if (!Array.isArray(array)) {
-    return null;
-  }
-  const newArrayUp = [...array];
-  for (let arrEl = 0; arrEl < newArrayUp.length; arrEl += 1) {
-    for (let newArrEl = 0; newArrEl < newArrayUp.length; newArrEl += 1) {
-      if (newArrayUp[newArrEl] > newArrayUp[newArrEl + 1]) {
-        const shiftElement = newArrayUp[newArrEl];
-        newArrayUp[newArrEl] = newArrayUp[newArrEl + 1];
-        newArrayUp[newArrEl + 1] = shiftElement;
-
-        // console.log(newArrayUp[i]);
-        // console.log(newArrayUp[i + 1]);
-      }
+function withdraw(clients, balances, client, amount) {
+  let balance = 0;
+  for (let clientArrEl = 0; clientArrEl < clients.length; clientArrEl += 1) {
+    if (client === clients[clientArrEl]) {
+      balance = balances[clientArrEl] - amount;
     }
-    // console.log('next loop ', newArrEl);
-  }
-  return newArrayUp;
-}
-console.log('newArrayUp', sortAsc([2, 5, 3, 1, 4, 7, 6]));
-
-function sortDesc(array) {
-  if (!Array.isArray(array)) {
-    return null;
-  }
-  const newArrayDown = [...array];
-  for (let arrEl = 0; arrEl < array.length; arrEl += 1) {
-    for (let newArrEl = 0; newArrEl < array.length; newArrEl += 1) {
-      if (newArrayDown[newArrEl] < newArrayDown[newArrEl + 1]) {
-        const shiftElement = newArrayDown[newArrEl + 1];
-        newArrayDown[newArrEl + 1] = newArrayDown[newArrEl];
-        newArrayDown[newArrEl] = shiftElement;
-      }
+    if (balance < 0) {
+      return -1;
     }
   }
-  return newArrayDown;
+  return balance;
 }
-console.log('newArrayDown', sortDesc([2, 5, 3, 1, 4, 7, 6]));
+console.log('withdraw_1 ', withdraw(['Ann', 'John', 'User'], [1400, 87, -6], 'John', 50));
+console.log('withdraw_2 ', withdraw(['Ann', 'John', 'User'], [1400, 87, -6], 'User', 10));
