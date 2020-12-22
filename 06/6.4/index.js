@@ -13,8 +13,8 @@ function swapMy(arr) {
   if (!Array.isArray(arr)) {
     return false;
   }
-  let newArr = arr;
-  let first = newArr[0];
+  const newArr = arr;
+  const first = newArr[0];
   newArr.shift();
   newArr.push(first);
   return newArr;

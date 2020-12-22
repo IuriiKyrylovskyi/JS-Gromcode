@@ -1,28 +1,19 @@
-function withdraw(clients, balances, client, amount) {
-  let amountOnBalabce = 0;
-  let newAmountOnBalabce = 0;
-  let commonNumber = 0;
-  for (let clientArrEl = 0; clientArrEl < clients.length; clientArrEl += 1) {
-    if (clients[clientArrEl] == client) {
-      commonNumber = clientArrEl;
-    }
+const getSubArray = (arr, numberOfElements) => {
+  const newArr = [];
+  for (let i = 0; i < numberOfElements; i += 1) {
+    newArr.push(arr[i]);
   }
-  console.log('commonNumber', commonNumber);
+  console.log(newArr);
+  return newArr;
+};
+getSubArray([11, 4, 8, 3], 2);
+getSubArray([1, 2, 3, 4, 5], 3);
 
-  for (let clientArrBal = 0; clientArrBal < clients.length; clientArrBal += 1) {
-    amountOnBalabce = balances[commonNumber];
-    newAmountOnBalabce = amountOnBalabce - amount;
-    balances[commonNumber] = newAmountOnBalabce;
+const getSubArray1 = (array, number) => {
+  const newArray = [...array];
+  newArray.length = number;
+  return newArray;
+};
 
-    // console.log(amountOnBalabce);
-    console.log(balances);
-    console.log('newAmountOnBalabce ', newAmountOnBalabce);
-
-    if (newAmountOnBalabce < 0) {
-      return -1;
-    }
-    return newAmountOnBalabce;
-  }
-}
-console.log('withdraw_1 ', withdraw(['Ann', 'John', 'User'], [1400, 87, -6], 'John', 50));
-console.log('withdraw_2 ', withdraw(['Ann', 'John', 'User'], [1400, 87, -6], 'User', 10));
+console.log('getSubArray1 ', getSubArray1([11, 4, 8, 3], 2));
+console.log('getSubArray1 ', getSubArray1([1, 2, 3, 4, 5], 3));

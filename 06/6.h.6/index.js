@@ -1,26 +1,26 @@
-function reverseArray(arr) {
+function cloneArr(arr) {
   if (!Array.isArray(arr)) {
     return null;
   }
-  const revArray = [];
-  for (let i = arr.length - 1; i >= 0; i -= 1) {
-    console.log(arr.length - 1);
-    revArray.push(arr[i]);
-  }
-  return revArray;
+  const cloneArray = [...arr];
+  return cloneArray;
 }
+console.log(cloneArr([1, 2, 3, 4, 5, 6, 7, 8]));
 
-console.log(reverseArray([1, 2, 3, 4, 5, 6, 7, 8]));
-
-function reverseArray2(array) {
-  if (!Array.isArray) {
+function cloneArrSlice(array) {
+  if (!Array.isArray(array)) {
     return null;
   }
-  const revArr = [...array];
-  for (let i = 0; i < array.length; i += 1) {
-    revArr[i] = array[array.length - i - 1];
-  }
-  return revArr;
+  const cloneArray = array.slice();
+  return cloneArray;
 }
+console.log(cloneArrSlice([1, 2, 3, 4, 5, 6, 7, 8]));
 
-console.log(reverseArray2([1, 2, 3, 4, 5, 6, 7, 8]));
+function cloneArrConcat(arrConc) {
+  if (!Array.isArray(arrConc)) {
+    return null;
+  }
+  const cloneArray = arrConc.concat();
+  return cloneArray;
+}
+console.log(cloneArrConcat([1, 2, 3, 4, 5, 6, 7, 8]));

@@ -1,23 +1,26 @@
-const increaseEvenEl = (arr, delta) => {
-  if (Array.isArray(arr)) {
-    for (let i = 0; i < arr.length; i += 1) {
-      if (arr[i] % 2 === 0) {
-        console.log(arr[i]);
-        arr[i] += delta;
-      }
-    }
-    console.log(arr);
-    return arr;
+function reverseArray(arr) {
+  if (!Array.isArray(arr)) {
+    return null;
   }
-  return null;
-};
+  const revArray = [];
+  for (let i = arr.length - 1; i >= 0; i -= 1) {
+    // console.log(arr.length - 1);
+    revArray.push(arr[i]);
+  }
+  return revArray;
+}
 
-// example 1:
+console.log(reverseArray([1, 2, 3, 4, 5, 6, 7, 8]));
 
-// input
-const arr = [2, 5, 6, 8, 11, 9, 4];
-const delta = 20;
-increaseEvenEl(arr, delta);
+function reverseArray2(array) {
+  if (!Array.isArray) {
+    return null;
+  }
+  const revArr = [...array];
+  for (let i = 0; i < array.length; i += 1) {
+    revArr[i] = array[array.length - i - 1];
+  }
+  return revArr;
+}
 
-// output
-// [22, 5, 26, 28, 11, 9, 24]
+console.log(reverseArray2([1, 2, 3, 4, 5, 6, 7, 8]));

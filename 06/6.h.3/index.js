@@ -1,25 +1,20 @@
-function squareArray(arr) {
+let SUMM = 0;
+const checkSum = arr => {
   if (!Array.isArray(arr)) {
     return null;
   }
-  return arr.map(x => x * x);
-}
-console.log(squareArray([1, 2, 3, 4, 5, 6, 7]));
-
-const squareArrayArrow = arr => (!Array.isArray(arr) ? null : arr.map(n => n * n));
-console.log(squareArrayArrow([1, 2, 3, 4, 5, 6, 7]));
-
-function squareArrayMy(arr) {
-  if (Array.isArray(arr)) {
-    const newArr = [...arr];
-    for (let i = 0; i < arr.length; i += 1) {
-      newArr[i] *= newArr[i];
-      console.log(newArr[i]);
-    }
-    console.log('arr ', arr);
-    console.log('newArr ', newArr);
-    return newArr;
+  for (let i = 0; i < arr.length; i += 1) {
+    SUMM += arr[i];
+    console.log(SUMM);
   }
-  return null;
-}
-console.log(squareArrayMy([1, 2, 3, 4, 5, 6, 7]));
+  if (SUMM <= 100) {
+    return false;
+  }
+  return true;
+};
+
+console.log('checkSum', checkSum([1, 2, 3, 100]));
+
+const checkSumArrow = arr =>
+  Array.isArray(arr) ? (arr.reduce((a, b) => a + b, 0) > 100 ? true : false) : null;
+console.log('Arrow ', checkSumArrow([1, 2, 3, 100]));

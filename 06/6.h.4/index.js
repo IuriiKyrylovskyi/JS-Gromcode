@@ -1,19 +1,23 @@
-function checkSum(arr) {
-  if (Array.isArray(arr)) {
-    let sum = 0;
-    for (let i = 0; i < arr.length; i += 1) {
-      sum += arr[i];
-      console.log(sum);
-    }
-    if (sum <= 100) {
-      return false;
-    }
-    return true;
+const increaseEvenEl = (arr, delta) => {
+  if (!Array.isArray(arr)) {
+    return null;
   }
-  return null;
-}
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i] % 2 === 0) {
+      console.log(arr[i]);
+      arr[i] += delta;
+    }
+  }
+  console.log(arr);
+  return arr;
+};
 
-console.log(checkSum([1, 2, 3, 100]));
+// example 1:
 
-const checkSumArrow = arr => Array.isArray(arr) ? (arr.reduce((a, b) => a + b, 0) > 100 ? true : false) : null;
-console.log('Arrow ', checkSumArrow([1, 2, 3, 100]));
+// input
+const arr = [2, 5, 6, 8, 11, 9, 4];
+const delta = 20;
+increaseEvenEl(arr, delta);
+
+// output
+// [22, 5, 26, 28, 11, 9, 24]

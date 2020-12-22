@@ -6,3 +6,4 @@ function withdraw(clients, balances, client, amount) {
   const balance = balances[index] - amount;
   return balance;
 }
+console.log('withdraw_1 ', withdraw(['Ann', 'John', 'User'], [1400, 87, -6], 'John', 50));
