@@ -20,7 +20,7 @@ const uniqueCount = arr => {
   return uniqArr;
 };
 
-console.log(uniqueCount([1, 2, 3, 4, 5, 2, 1, 5, 4, 3, 2, 1]));
+console.log(uniqueCount([1, 2, 3, 4, 5, 2, 1, 3, 5, 4, 3, 2, 1]));
 
 // const uniq = arr => {
 //   const newArr = [];
