@@ -12,7 +12,7 @@ console.log(
 );
 // ===============================
 const findUniq = mass => {
-  let count = 1;
+  let count = 0;
   for (let i = 0; i < mass.length; i += 1) {
     for (let j = 0; j < mass.length; j += 1) {
       if (mass[i] === mass[j]) {
@@ -45,7 +45,7 @@ console.log('arr ', findUn([1, 3, 4, 2, 5, 3, 4, 1, 2]));
 
 // ===============================================
 function uniqueCount(arr) {
-  if (!Array.isArray) {
+  if (!Array.isArray(arr)) {
     return null;
   }
   return unique(arr);
@@ -57,7 +57,7 @@ console.log(
 );
 
 function uniqueCount1(arr) {
-  if (!Array.isArray) {
+  if (!Array.isArray(arr)) {
     return null;
   }
   let uniqueCounter = 0;
