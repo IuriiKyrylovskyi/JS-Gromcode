@@ -10,10 +10,20 @@ const getSpecials = array => {
       newSpecials.push(el);
     }
   }
-  
+
   array.forEach(checkSpec);
 
   return newSpecials;
 };
 
 console.log('getSpecials', getSpecials([3, 5, 8, 6, 9, 1, 2]));
+
+const getSpecialsShort = array => {
+  const newSpecials = [];
+
+  array.forEach(el => (el % 3 === 0 ? newSpecials.push(el) : false));
+
+  return newSpecials;
+};
+
+console.log('getSpecialsShort', getSpecialsShort([3, 5, 8, 6, 9, 1, 2]));
