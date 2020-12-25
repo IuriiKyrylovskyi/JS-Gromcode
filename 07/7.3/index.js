@@ -14,3 +14,4 @@ const flatComplecated = array =>
     }, [])
     .sort((a, b) => a - b);
 console.log(flatComplecated(arr));
+console.log('arr ', arr);
