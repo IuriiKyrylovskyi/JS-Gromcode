@@ -10,7 +10,9 @@ const getSpecials = array => {
       newSpecials.push(el);
     }
   }
+  
   array.forEach(checkSpec);
+
   return newSpecials;
 };
 
