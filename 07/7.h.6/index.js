@@ -1,4 +1,8 @@
-const sum = arr => (!Array.isArray(arr) ? null : arr.reduce((acc, n) => acc + n));
+const MAGICNUMBER = 5;
+const filterNames = (arr, text) =>
+  arr.filter(item => (item.length > MAGICNUMBER && item.includes(text) ? item : false));
 
-const array = [2, 5, 6, 3, 0, 3, -1];
-console.log(sum(array));
+const array = ['John', 'Olivya', 'Oleksandr', 'Emanuel', 'Vanya', 'Nastya'];
+const txt = 'ya';
+console.log(filterNames(array, txt));
+console.log(array[2].length);
