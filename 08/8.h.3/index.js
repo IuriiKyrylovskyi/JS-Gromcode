@@ -8,10 +8,10 @@
 
 function getKeys(obj) {
   // put you code here
-  const arr = [];
+  // const arr = [];
   for (let key in obj) {
-    arr.push(key);
+    // arr.push(key);
+    console.log(key);
   }
-  return console.log(arr);
 }
 getKeys({ name: 'John Doe', age: 17, interest: 'football' });
