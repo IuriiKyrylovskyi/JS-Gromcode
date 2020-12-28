@@ -7,10 +7,7 @@
  * */
 
 function getKeys(obj) {
-  // put you code here
-  // const arr = [];
   for (let key in obj) {
-    // arr.push(key);
     console.log(key);
   }
 }
