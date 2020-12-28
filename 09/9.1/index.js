@@ -1,9 +1,10 @@
-const copyObj = obj => Object.assign({}, obj);
+const ADULT = 18;
 
-const obj = { 'John Doe': 19, Tom: 17, Bob: 18 };
-const copyObjSpred = { ...obj };
+const getAdults = obj =>
+  Object.entries(obj)
+    .filter(item => item[1] >= ADULT)
+    .map(item => item[0]);
 
-console.log(copyObj({ 'John Doe': 19, Tom: 17, Bob: 18 }));
-console.log(copyObjSpred);
-console.log(obj == copyObjSpred);
-console.log(obj == copyObj);
+  
+
+console.log(getAdults({ 'John Doe': 19, 'Tom': 17, 'Bob': 18 }));
