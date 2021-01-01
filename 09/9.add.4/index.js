@@ -17,6 +17,22 @@ const customers = {
   },
 };
 
+const getCustomersListSecond = obj => {
+  const newObj = JSON.parse(JSON.stringify(obj));
+
+  const sortedByAge = Object.values(newObj)
+    .map((a, i) => {
+      a['id'] = Object.keys(newObj)[i];
+      return a;
+    })
+    .sort((prev, next) => prev['age'] - next['age']);
+  return sortedByAge;
+};
+
+console.log('=====2=====', getCustomersListSecond(customers));
+
+
+
 const getCustomersList = obj => {
   const newObj = JSON.parse(JSON.stringify(obj));
   console.log('newObjstart', newObj);
@@ -67,16 +83,3 @@ const getCustomersList = obj => {
 
 console.log(getCustomersList(customers));
 
-const getCustomersListSecond = obj => {
-  const newObj = JSON.parse(JSON.stringify(obj));
- 
-  const sortedByAge = Object.values(newObj)
-    .map((a, i) => {
-      a['id'] = Object.keys(newObj)[i];
-      return a;
-    })
-    .sort((prev, next) => prev['age'] - next['age']);
-  return sortedByAge;
-};
-
-console.log('=====2=====', getCustomersListSecond(customers));
