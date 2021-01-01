@@ -3,10 +3,16 @@ const getRandomNumbers = (length, from, to) => {
   if (!integer) {
     return null;
   }
-  const arr
+  const arr = [];
+  arr.length = length;
+  arr.forEach(el =>
+    el = Math.floor(Math.random() * (Math.floor(to) - Math.ceil(from)) + Math.ceil(from));
+    arr.push(el));
+
+  return arr
 };
 
 // examples
-getRandomNumbers(5, 1.4, 3.22); // ==> [2, 2, 2, 3, 2]
-getRandomNumbers(5, 1.4, 3.22); // ==> [3, 2, 2, 2, 2]
-getRandomNumbers(5, 1.4, 3.22); // ==> [3, 3, 2, 3, 2]
+console.log(getRandomNumbers(5, 1.4, 3.22)); // ==> [2, 2, 2, 3, 2]
+console.log(getRandomNumbers(5, 1.4, 3.22)); // ==> [3, 2, 2, 2, 2]
+console.log(getRandomNumbers(5, 1.4, 3.22)); // ==> [3, 3, 2, 3, 2]
