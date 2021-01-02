@@ -1,6 +1,5 @@
 const getRandomNumbers = (length, from, to) => {
-  const integer = num => Number.isInteger(num);
-  if (!integer || to - from < 1) {
+  if (to - from < 1) {
     return null;
   }
   const arr = [];
@@ -16,3 +15,4 @@ console.log(getRandomNumbers(5, 1.4, 3.22)); // ==> [2, 2, 2, 3, 2]
 console.log(getRandomNumbers(5, 1.4, 3.22)); // ==> [3, 2, 2, 2, 2]
 console.log(getRandomNumbers(5, 1.4, 3.22)); // ==> [3, 3, 2, 3, 2]
 console.log(getRandomNumbers(5, 1.4, 1.68)); // ==> null
+console.log(getRandomNumbers(5, 'five', 1.68)); // ==> null
