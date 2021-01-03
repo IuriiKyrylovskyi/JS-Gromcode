@@ -8,7 +8,7 @@ const countOccurrences = (text, str) => {
   return text.split(str).length - 1;
 };
 
-const string = 'I am learning JavaScript not Java Java JavaScript.';
+const string = 'JavaI am learning JavaScript not Java Java JavaScript. Java';
 // const string = undefined;
 // const re = /Java/gi;
 const re = 'Java';
