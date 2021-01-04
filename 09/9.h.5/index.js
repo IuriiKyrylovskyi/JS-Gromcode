@@ -1,10 +1,12 @@
-const getTotalRevenue = transactions => {
-  let sum = 0;
-  transactions.forEach(item => {
-    sum += item.amount;
-  });
-  return sum;
-};
+// const getTotalRevenue = transactions => {
+//   let sum = 0;
+//   transactions.forEach(item => {
+//     sum += item.amount;
+//   });
+//   return sum;
+// };
+
+const getTotalRevenue = transactions => transactions.reduce((acc, item) => acc + item.amount, 0);
 
 // examples
 const dayTransactions = [
