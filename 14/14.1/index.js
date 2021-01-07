@@ -17,6 +17,7 @@ sendMessage('Ann');
 
 function setMessage(text) {
   message = text;
+  return message;
 }
 
 setMessage('Good job');
