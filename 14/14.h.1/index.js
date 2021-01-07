@@ -11,7 +11,7 @@ const reset = () => {
   result = 0;
 };
 
-let getMemo = result;
+const getMemo = () => result;
 
 add(5);
 console.log(result); // 5
@@ -24,3 +24,6 @@ console.log(result); // 3
 console.log(getMemo); // 3
 reset();
 console.log(result); // 0
+decrease(7);
+console.log(result); // 3
+console.log(getMemo); // 3
