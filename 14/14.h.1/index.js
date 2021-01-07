@@ -2,19 +2,16 @@ let result = 0;
 
 const add = num => {
   result += num;
-  return result;
 };
 const decrease = num => {
   result -= num;
-  return result;
 };
 
 const reset = () => {
   result = 0;
-  return result;
 };
 
-const getMemo = () => result;
+let getMemo = result;
 
 add(5);
 console.log(result); // 5
