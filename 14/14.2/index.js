@@ -1,10 +1,14 @@
-const createMessager = () => {
+const createMessenger = () => {
   let message = ' Just learn it';
   let sender = ' Gromcode';
 
-  function setSender(text) {
-    sender = text;
-    return sender;
+  function sendMessage(name) {
+	 console.log(`${name}, ${message}! Your ${sender}`);
+	}
+	
+  function setSender(author) {
+    sender = author;
+    //  return sender;
   }
 
   function setMessage(text) {
@@ -12,17 +16,23 @@ const createMessager = () => {
     //   return message;
   }
 
-  function sendMessage(name) {
-    console.log(`${name}, ${message}! Your ${setSender(sender)}`);
-  }
-
   return {
     sendMessage,
     setMessage,
+    setSender,
   };
 };
 
-// export default createMessager;
+// export default createMessenger;
 
-const messanger = createMessager();
+const messanger = createMessenger();
 messanger.sendMessage('Bob');
+
+const messanger2 = createMessenger();
+messanger2.setMessage('Hello');
+messanger2.setSender('Gromcodik');
+messanger2.sendMessage('Tom');
+
+messanger.sendMessage('Ann');
+
+
