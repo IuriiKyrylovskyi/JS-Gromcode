@@ -1,6 +1,6 @@
 let result = 0;
 
-const getMemo = () => {
+export const getMemo = () => {
   function add(num) {
     result += num;
     return result;
@@ -20,12 +20,15 @@ const getMemo = () => {
   };
 };
 
-const plus = getMemo();
+const memo = getMemo();
+export const add = memo.add();
+export const decrease = memo.decrease();
+export const reset = memo.reset();
 
-console.log(plus.add(5)); // 5
-console.log(plus.reset()); // 5
-console.log(plus.decrease(5)); // 5
-console.log(plus.decrease(-15)); // 5
+console.log(memo.add(5)); // 5
+console.log(memo.reset()); // 5
+console.log(memo.decrease(5)); // 5
+console.log(memo.decrease(-15)); // 5
 
 // // let result = 0;
 
