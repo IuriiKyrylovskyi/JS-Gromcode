@@ -1,7 +1,7 @@
 const getPeople = obj =>
   Object.values(obj)
     .flat()
-    .map(a => a['name']);
+    .map(({ name }) => name);
 
 const rooms = {
   room1: [{ name: 'Ann' }, { name: 'Kate' }],
