@@ -1,4 +1,7 @@
-const getPeople = obj => Object.entries(obj);
+const getPeople = obj =>
+  Object.values(obj)
+    .flat()
+    .map(a => a['name']);
 
 const rooms = {
   room1: [{ name: 'Ann' }, { name: 'Kate' }],
@@ -7,3 +10,10 @@ const rooms = {
 };
 
 console.log(getPeople(rooms));
+
+const people = obj =>
+  Object.values(obj)
+    .reduce((arr, item) => arr.concat(item), [])
+    .map(({ name }) => name);
+
+console.log(people(rooms));
