@@ -1,56 +1,22 @@
-export const getMemo = () => {
-  let result = 0;
-  function add(num) {
-    result += num;
-  }
-  function decrease(num) {
-    result -= num;
-  }
-  function reset() {
-    result = 0;
-  }
-  return {
-    add,
-    decrease,
-    reset,
-  };
+let result = 0;
+const getMemo = () => result;
+
+// export
+const add = num => {
+  result += num;
+};
+// export
+const decrease = number => {
+  result -= number;
+};
+// export
+const reset = () => {
+  result = 0;
 };
 
-const memo = getMemo();
-export const add = memo.add();
-export const decrease = memo.decrease();
-export const reset = memo.reset();
-
-console.log(memo.add(5)); // 5
-console.log(memo.reset()); // 5
-console.log(memo.decrease(5)); // 5
-console.log(memo.decrease(-15)); // 5
-
-// // let result = 0;
-
-// const add = num => {
-//   getMemo() += num;
-//   //   result += num;
-// };
-// const decrease = num => {
-//   result -= num;
-// };
-
-// const reset = () => {
-//   result = 0;
-// };
-
-// add(5);
-// console.log(result); // 5
-// console.log(getMemo); // 5
-// add(5);
-// console.log(result); // 10
-// console.log(getMemo); // 10
-// decrease(7);
-// console.log(result); // 3
-// console.log(getMemo); // 3
-// reset();
-// console.log(result); // 0
-// decrease(7);
-// console.log(result); // 3
-// console.log(getMemo); // 3
+// export	default getMemo;
+add(10);
+console.log(getMemo());
+decrease(3);
+reset();
+console.log(getMemo());
