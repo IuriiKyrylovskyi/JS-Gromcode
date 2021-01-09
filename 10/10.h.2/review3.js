@@ -11,7 +11,6 @@ const getRandomNumbers = (length, from, to) => {
       el =>
         el + Math.floor(Math.random() * (Math.floor(to) - Math.ceil(from) + 1) + Math.ceil(from)),
     );
- 
 };
 
 // examples
