@@ -6,15 +6,12 @@ const getMemoPrivat = () => {
   }
   function add(num) {
     result += num;
-    //  return result;
   }
-  function decrease(numUp) {
-    result -= numUp;
-    //  return result;
+  function decrease(number) {
+    result -= number;
   }
   function reset() {
     result = 0;
-    //  return result;
   }
   return {
     getMemo,
@@ -24,8 +21,10 @@ const getMemoPrivat = () => {
   };
 };
 
-// export default getMemo;
+// export default getMemoPrivat;
 const memo = getMemoPrivat();
+
+console.log(memo.add(5));
 
 // export
 const add = memo.add;
@@ -34,7 +33,8 @@ const decrease = memo.decrease;
 // export
 const reset = memo.reset;
 
-console.log(add(5)); // 5
-console.log(reset()); // 5
-console.log(decrease(5)); // 5
-console.log(decrease(-15)); // 5
+console.log(add(10)); // 5
+// console.log(add(5)); // 5
+// console.log(reset()); // 5
+// console.log(decrease(5)); // 5
+// console.log(decrease(-15)); // 5

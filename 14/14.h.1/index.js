@@ -1,17 +1,13 @@
-let result = 0;
-
 export const getMemo = () => {
+  let result = 0;
   function add(num) {
     result += num;
-    return result;
   }
   function decrease(num) {
     result -= num;
-    return result;
   }
   function reset() {
     result = 0;
-    return result;
   }
   return {
     add,
