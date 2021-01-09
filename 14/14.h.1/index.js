@@ -1,4 +1,5 @@
 let result = 0;
+// export
 const getMemo = () => result;
 
 // export
@@ -14,7 +15,6 @@ const reset = () => {
   result = 0;
 };
 
-// export	default getMemo;
 add(10);
 console.log(getMemo());
 decrease(3);
