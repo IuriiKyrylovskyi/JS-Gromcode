@@ -4,11 +4,13 @@ const getRandomNumbers = (length, from, to) => {
   }
   const arr = [];
   arr.length = length;
-  const newArr = [...arr].map(el => {
-    let item = el;
-    item = Math.floor(Math.random() * (Math.floor(to) - Math.ceil(from) + 1) + Math.ceil(from));
-    return item;
-  });
+
+  return [...arr].map(el =>
+    el === undefined
+      ? Math.floor(Math.random() * (Math.floor(to) - Math.ceil(from) + 1) + Math.ceil(from))
+      : 0,
+  );
+};
 
 // examples
 console.log(getRandomNumbers(5, 1.4, 3.22)); // ==> [2, 2, 2, 3, 2]
