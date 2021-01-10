@@ -10,7 +10,7 @@ const createLogger = () => {
     return memory.filter(a => a.type === messageType);
   }
 
-  function messageTamplate(text, type) {
+  function messageTemplate(text, type) {
     message.message = text;
     message.type = type;
     message.dateTime = new Date();
@@ -19,15 +19,15 @@ const createLogger = () => {
   }
 
   function warn(messageText) {
-    messageTamplate(messageText, 'warn');
+    messageTemplate(messageText, 'warn');
   }
 
   function error(messageText) {
-    messageTamplate(messageText, 'error');
+    messageTemplate(messageText, 'error');
   }
 
   function log(messageText) {
-    messageTamplate(messageText, 'log');
+    messageTemplate(messageText, 'log');
   }
 
   return {
