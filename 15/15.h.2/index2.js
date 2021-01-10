@@ -14,8 +14,8 @@ const createLogger = () => {
     message.message = text;
     message.type = type;
     message.dateTime = new Date();
-    const logMesage = { ...message };
-    memory.unshift(logMesage);
+    const inputMesage = { ...message };
+    memory.unshift(inputMesage);
   }
 
   function warn(messageText) {
