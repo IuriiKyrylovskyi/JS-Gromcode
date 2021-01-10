@@ -5,7 +5,7 @@ const createLogger = () => {
 
   function getRecords(messageType) {
     if (typeof messageType === 'undefined') {
-      return memory;
+      return memory.sort((a, b) => b.dateTime - a.dateTime);
     }
     return memory.filter(a => a.type === messageType).sort((a, b) => b.dateTime - a.dateTime);
   }
