@@ -4,42 +4,33 @@ const createLogger = () => {
   const message = {};
 
   function getRecords(messageType) {
-    // if (typeof messageType === 'undefined') {
-    //   console.log('mainPush: +++++ :', memory.push(message));
-    //   return memory.push(message);
-    //   // .sort((a, b) => b.dateTime - a.dateTime);
-    // }
-    // console.log('mainPush: ****** :', memory.slice().push(message));
-    console.log('getRecords = ', memory);
-    return memory;
-
-    // return memory.filter(a => a.type === messageType);
-    // .sort((a, b) => b.dateTime - a.dateTime);
+    if (typeof messageType === 'undefined') {
+      return memory;
+    }
+    return memory.filter(a => a.type === messageType).sort((a, b) => b.dateTime - a.dateTime);
   }
 
   function log(messageText) {
     message.message = messageText;
     message.type = 'log';
     message.dateTime = new Date();
-
-    memory.push(message);
+    const logMesage = { ...message };
+    memory.push(logMesage);
   }
 
   function error(messageText) {
     message.message = messageText;
     message.type = 'error';
     message.dateTime = new Date();
-
-    // console.log('message-error---', message);
-    memory.push(message);
+    const logMesage = { ...message };
+    memory.push(logMesage);
   }
   function warn(messageText) {
     message.message = messageText;
     message.type = 'warn';
     message.dateTime = new Date();
-
-    // console.log('message-warn---', message);
-    memory.push(message);
+    const logMesage = { ...message };
+    memory.push(logMesage);
   }
 
   return {
