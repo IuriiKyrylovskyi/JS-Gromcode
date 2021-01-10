@@ -1,6 +1,5 @@
 // export
 const createLogger = () => {
-  // const Date = new Date().toUTCString();
   let message = [{ message: { typedMessage }, type: type, dateTime: new Date() }];
   // let message = [];
   // console.log(message[0]);
