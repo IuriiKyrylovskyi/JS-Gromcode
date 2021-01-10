@@ -10,27 +10,24 @@ const createLogger = () => {
     return memory.filter(a => a.type === messageType);
   }
 
-  function log(messageText) {
-    message.message = messageText;
-    message.type = 'log';
+  function messageTamplate(text, type) {
+    message.message = text;
+    message.type = type;
     message.dateTime = new Date();
     const logMesage = { ...message };
     memory.unshift(logMesage);
   }
 
-  function error(messageText) {
-    message.message = messageText;
-    message.type = 'error';
-    message.dateTime = new Date();
-    const logMesage = { ...message };
-    memory.unshift(logMesage);
-  }
   function warn(messageText) {
-    message.message = messageText;
-    message.type = 'warn';
-    message.dateTime = new Date();
-    const logMesage = { ...message };
-    memory.unshift(logMesage);
+    messageTamplate(messageText, 'warn');
+  }
+
+  function error(messageText) {
+    messageTamplate(messageText, 'error');
+  }
+
+  function log(messageText) {
+    messageTamplate(messageText, 'log');
   }
 
   return {
