@@ -3,16 +3,14 @@
 /* eslint-disable */
 // export
 const createArrayOfFunctions = length => {
-  const array = [];
-  array.length = length;
   if (typeof length !== Number.isInteger && typeof length !== 'undefined') {
     return null;
   }
-  return array.fill().map(
+  return new Array(length).fill().map(
     (a, i) =>
-      function () {
+      (a = function () {
         return i;
-      },
+      }),
   );
 };
 
