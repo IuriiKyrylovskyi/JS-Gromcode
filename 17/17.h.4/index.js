@@ -10,6 +10,14 @@ const user = {
   },
 };
 
+
+
+
+// undone example
 const str = 'John Doe';
-const johnDoe = user.setFullName.bind(str);
+const userName = function () {
+  this.setFullName();
+};
+
+const johnDoe = userName.call(user);
 console.log(johnDoe());
