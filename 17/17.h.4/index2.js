@@ -5,11 +5,11 @@ const user = {
   },
 };
 
-function setFullName(name) {
+const setFullName = function (name) {
   const splited = name.split(' ');
   this.firstName = splited[0];
   this.lastName = splited[1];
-}
+};
 
 setFullName.call(user, 'John Doe');
 console.log(user.firstName);
