@@ -10,14 +10,9 @@ const user = {
   },
 };
 
-
-
-
-// undone example
-const str = 'John Doe';
-const userName = function () {
-  this.setFullName();
-};
-
-const johnDoe = userName.call(user);
-console.log(johnDoe());
+const name = 'John Doe';
+user.setFullName(name);
+console.log(user.firstName);
+console.log(user.lastName);
+console.log(user);
+console.log(user.getFullName());
