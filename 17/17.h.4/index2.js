@@ -15,3 +15,4 @@ setFullName.call(user, 'John Doe');
 console.log(user.firstName);
 console.log(user.lastName);
 console.log(user);
+console.log(user.getFullName());
