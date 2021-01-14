@@ -23,3 +23,8 @@ export function bind(func) {
 
 export const bind = func.call(context, arg1, arg2, ...);
 export const bind = func.apply(context, args);
+
+
+export function bind() {
+	return func.apply(context, arguments);
+}
