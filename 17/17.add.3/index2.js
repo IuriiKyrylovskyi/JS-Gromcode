@@ -23,8 +23,11 @@ function calculator(a, b) {
  * с использования .bind
  * и должна принимать 2 числа и возвращать из произведение
  */
-
-const multiplier = calculator.bind(calculator, '*');
+// export
+function multiplier(a, b) {
+  const operation = '*';
+  return calculator.switch.bind(calculator, operation, a, b);
+}
 console.log(multiplier(2, 3));
 
 /*
