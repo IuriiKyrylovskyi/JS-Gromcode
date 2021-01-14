@@ -2,9 +2,10 @@
 const timer = {
   secondsPassed: 0,
   minsPassed: 0,
+  interval: {},
 
   startTimer() {
-    setInterval(() => {
+    this.interval = setInterval(() => {
       if (this.secondsPassed === 59) {
         this.minsPassed += 1;
         this.secondsPassed -= 60;
@@ -20,7 +21,7 @@ const timer = {
   },
 
   stopTimer() {
-    clearInterval(this.startTimer.setInterval);
+    clearInterval(this.interval);
     console.log('stop ', this.secondsPassed);
     console.log('stop ', this.minsPassed);
   },
@@ -33,6 +34,9 @@ const timer = {
 
 console.log(timer.getTime());
 timer.startTimer();
+
+console.log('timer ', timer.secondsPassed);
+console.log('timer ', timer.minsPassed);
 timer.stopTimer();
 console.log('after stop ', timer.getTime());
 console.log('timer ', timer.secondsPassed);
