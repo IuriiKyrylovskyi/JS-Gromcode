@@ -4,8 +4,6 @@ const timer = {
   minsPassed: 0,
 
   startTimer() {
-    // let seconds = this.secondsPassed;
-    // let minutes = this.minsPassed;
     setInterval(() => {
       if (this.secondsPassed === 59) {
         this.minsPassed += 1;
@@ -15,11 +13,6 @@ const timer = {
 
       console.log(`${this.minsPassed} : ${this.secondsPassed}`);
     }, 1000);
-    // this.secondsPassed; // = seconds;
-    // this.minsPassed; // = minutes;
-    // // return {
-    // console.log(`${minutes} : ${seconds}`);
-    // }
   },
 
   getTime() {
@@ -28,10 +21,8 @@ const timer = {
 
   stopTimer() {
     clearInterval(this.startTimer.setInterval);
-    this.secondsPassed = timer.startTimer.seconds;
-    this.minsPassed = this.startTimer.minutes;
-    console.log(this.secondsPassed);
-    console.log(this.minsPassed);
+    console.log('stop ', this.secondsPassed);
+    console.log('stop ', this.minsPassed);
   },
 
   resetTimer() {
@@ -40,15 +31,15 @@ const timer = {
   },
 };
 
-// console.log(timer.getTime());
+console.log(timer.getTime());
 timer.startTimer();
-// console.log('timer ', timer.secondsPassed);
-// console.log('timer ', timer.secondsPassed);
-// // console.log('time : ', timer.getTime());
-// timer.stopTimer();
+timer.stopTimer();
+console.log('after stop ', timer.getTime());
+console.log('timer ', timer.secondsPassed);
+console.log('timer ', timer.minsPassed);
+// console.log('time : ', timer.getTime());
 // console.log('timer ', timer.secondsPassed);
 
-// console.log('after stop ', timer.getTime());
 // console.log('after stop ', timer);
 
 // timer.resetTimer();
