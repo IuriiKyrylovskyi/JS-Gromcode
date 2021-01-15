@@ -1,30 +1,30 @@
-//export
-func.call(bind, context, [arg1], [arg2]);
-// func.apply(func, context, [ [arg1], [arg2] ]);
+// // //export
+// // func.call(bind, context, [arg1], [arg2]);
+// // // func.apply(func, context, [ [arg1], [arg2] ]);
 
-function bind(func, context, [arg1], [arg2], ...[argn]) {
-  return function (...args) {
-    return func.call(context, [arg1], [arg2], ...[argn], ...args);
+// // function bind(func, context, [arg1], [arg2], ...[argn]) {
+// //   return function (...args) {
+// //     return func.call(context, [arg1], [arg2], ...[argn], ...args);
+// //   };
+// // }
+// export function bind1(func) {
+//   return () => {
+//     setTimeout(() => func.call(this));
+//   };
+// }
+
+export function bind2(func) {
+  return () => {
+    setTimeout(() => func.apply(this));
   };
 }
 
-export function bind(func) {
-  return function () {
-    setTimeout(() => func.call(this, ...arguments));
-  };
-}
+// // export
+// 	const bind3 = func.call(context, arg1, arg2, ...);
 
+// export
+const bind4 = func.apply(context, args);
 
-export function bind(func) {
-  return function () {
-    setTimeout(() => func.apply(this, args));
-  };
-}
-
-export const bind = func.call(context, arg1, arg2, ...);
-export const bind = func.apply(context, args);
-
-
-export function bind() {
-	return func.apply(context, arguments);
+export function bind5() {
+  return func.apply(context, arguments);
 }
