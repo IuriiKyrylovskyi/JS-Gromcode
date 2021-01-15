@@ -1,4 +1,4 @@
-export { calculator, multiplier, summator, twice } from './index';
+import { calculator, multiplier, summator, twice } from './index';
 
 it('should multiply', () => {
   const result = multiplier(2, 3);
@@ -12,8 +12,8 @@ it('should sum', () => {
   expect(result).toEqual(5);
 });
 
-it('should sum', () => {
-  const result = twice(2, 5);
+it('should twice', () => {
+  const result = twice(5);
 
   expect(result).toEqual(10);
 });
