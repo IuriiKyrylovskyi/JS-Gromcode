@@ -24,6 +24,7 @@ function multiplier(a, b) {
   const mult = { operation: '*' };
   return calculator.bind(mult, a, b);
 }
+// console.log(multiplier()(2, 3));
 console.log(multiplier(2, 3)());
 
 /*
@@ -36,6 +37,7 @@ function summator(a, b) {
   const plus = { operation: '+' };
   return calculator.bind(plus, a, b);
 }
+// console.log(summator()(2, 3));
 console.log(summator(2, 3)());
 
 /*
@@ -48,8 +50,9 @@ console.log(summator(2, 3)());
 function twice(a) {
   const two = {
     operation: '*',
-    num: 2,
+    // num: 2,
   };
-  calculator.bind(two, a, two.num);
+  return calculator.bind(two, 2);
 }
-console.log(twice(5)());
+// console.log(twice()(5));
+console.log(twice()(5));
