@@ -9,13 +9,10 @@
 // 	return withMemory;
 // }
 
-const calls = {
-	calls: [],
-}
-
+const calls = [];
 export function saveCalls(func) {
-	function withMemory(...args,[...rest]) {
-		func.apply(this, args.concat(rest));
-	}
-	return withMemory();
+  function withMemory(...rest) {
+    func.apply(this, calls.concat(rest));
+  }
+  return withMemory;
 }

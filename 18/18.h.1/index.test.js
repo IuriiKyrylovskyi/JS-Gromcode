@@ -1,4 +1,4 @@
-import { saveCalls } from './index';
+import { saveCalls, calls } from './index';
 
 it('should test', () => {
   function test(a, b) {
