@@ -1,4 +1,5 @@
-export function calculator(a, b) {
+// export
+function calculator(a, b) {
   switch (this.operation) {
     case '+':
       return a + b;
@@ -18,28 +19,26 @@ export function calculator(a, b) {
  * с использования .bind
  * и должна принимать 2 числа и возвращать из произведение
  */
-const calculationV1 = {
-  version: 1,
-  sum: function (a, b) {
-    console.log(`Calculation version ${this.version}. The sum of           
-                 ${a} and ${b} is ${a + b}`);
-  },
-};
-const calculationV2 = {
-  version: 2,
-};
-let sumV1 = calculationV1.sum(1, 2); // Calculation version 1. The sum of 1 and 2 is 3
-let sumV2 = calculationV1.sum.apply(calculationV2, [4, 5]); // Calculation version 2. The sum of 4 and 5 is 9
-//export
-const multiplier = calculator.switch.bind();
+// export
+function multiplier(a, b) {
+  const mult = { operation: '*' };
+  return calculator.bind(mult, a, b);
+}
+// console.log(multiplier()(2, 3));
+console.log(multiplier(2, 3)());
 
 /*
  * Ф-ция summator должна быть создана на основе calculator
  * с использования .bind
  * и должна принимать 2 числа и возвращать из сумму
  */
-
-// put your code here
+// export
+function summator(a, b) {
+  const plus = { operation: '+' };
+  return calculator.bind(plus, a, b);
+}
+// console.log(summator()(2, 3));
+console.log(summator(2, 3)());
 
 /*
  * Ф-ция twice должна быть создана на основе calculator
@@ -47,4 +46,13 @@ const multiplier = calculator.switch.bind();
  * и должна принимать 1 число и возвращать это число умноженное на 2
  */
 
-// put your code here
+// export
+function twice(a) {
+  const two = {
+    operation: '*',
+    // num: 2,
+  };
+  return calculator.bind(two, a, 2);
+}
+// console.log(twice()(5));
+console.log(twice()(5));
