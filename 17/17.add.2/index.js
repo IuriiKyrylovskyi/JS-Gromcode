@@ -1,5 +1,3 @@
-export function bind(func, context) {
-  // return function () {
-  return func.call(context);
-  // };
-}
+// export const bind = func => (...args) => func.call(this, ...args);
+
+export const bind = (func, context, ...args) => () => func.call(context, ...args);
