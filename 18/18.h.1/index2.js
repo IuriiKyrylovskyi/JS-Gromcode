@@ -7,7 +7,7 @@ export function saveCalls(func) {
       return this.calls;
     });
   }
-  return withMemory;
+  return withMemory.calls();
 }
 
 // const arr = [
