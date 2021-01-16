@@ -1,21 +1,31 @@
-export const sumOfSquares = () => {
+export function sumOfSquares() {
   return [].reduce.apply(arguments, [
-    (sum, num) => {
+    function (sum, num) {
       return sum + num * num;
     },
     0,
   ]);
-};
-export const sumOfSquaresCall = () => {
-  [].reduce.call(
+}
+
+// export const sumOfSquares = () => {
+//   return [].reduce.apply(arguments, [
+//     (sum, num) => {
+//       return sum + num * num;
+//     },
+//     0,
+//   ]);
+// };
+
+export function sumOfSquaresCall() {
+  return [].reduce.call(
     arguments,
-    ((sum, num) => {
-      sum + num * num;
+    (function (sum, num) {
+      return sum + num * num;
     },
     0),
   );
-};
+}
 
-export const sumOfSquaresSpred = () => {
-  [...arguments].reduce((sum, num) => sum + num * num, 0);
-};
+export function sumOfSquaresSpred() {
+  return [...arguments].reduce((sum, num) => sum + num * num, 0);
+}
