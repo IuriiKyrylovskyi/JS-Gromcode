@@ -6,10 +6,10 @@ export function saveCalls(func) {
     },
   };
 
-  function withMemory(rest) {
-    function() {
+  function withMemory() {
+    function () {
         func.apply(calls, [rest]);
       };
   }
-  return withMemory;
+  return withMemory(calls);
 }
