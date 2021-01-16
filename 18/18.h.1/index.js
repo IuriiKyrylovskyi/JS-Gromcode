@@ -1,18 +1,15 @@
-// export function saveCalls(func) {
-//   function withMemory([...args, [...rest]]) {
-//     const callsObj = {
-//       callsArr: [...args, [...rest]],
-//     };
-// 		callsObj.calls = Object.values(callsObj)
-// 			.reduce((arr, el) => arr.concat(el), Object.values(callsObj));
-//   }
-// 	return withMemory;
-// }
-
-const calls = [];
 export function saveCalls(func) {
+  const calls = {
+    calls: [],
+    // calls() {
+    //   this.calls;
+    // },
+  };
   function withMemory(...rest) {
-    func.apply(this, calls.concat(rest));
+    function(){
+      func.apply(calls, this.calls.concat(rest));
+      // return calls;
+    }
+    return withMemory;
   }
-  return withMemory;
 }
