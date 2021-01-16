@@ -6,10 +6,10 @@ export function saveCalls(func) {
     // },
   };
   function withMemory(...rest) {
-    function(){
+    () => {
       func.apply(calls, this.calls.concat(rest));
       // return calls;
-    }
-    return withMemory;
+    };
+    // return withMemory;
   }
 }
