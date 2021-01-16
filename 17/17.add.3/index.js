@@ -18,8 +18,8 @@ export function calculator(a, b) {
  * с использования .bind
  * и должна принимать 2 числа и возвращать из произведение
  */
-const mult = { operation: '*' };
 export function multiplier(a, b) {
+  const mult = { operation: '*' };
   return calculator.bind(mult, a, b)();
 }
 // console.log(multiplier()(2, 3));
