@@ -1,15 +1,12 @@
 export function saveCalls(func) {
-  const calls = {
-    calls: [],
-    // calls() {
-    //   this.calls;
-    // },
-  };
+  const calls = [];
+  
   function withMemory(...rest) {
-    () => {
-      func.apply(calls, this.calls.concat(rest));
-      // return calls;
+    function(){
+      // const args =
+        func.apply(calls, [rest]);
+      // return calls.push(args);
     };
-    // return withMemory;
   }
+  return withMemory.calls;
 }
