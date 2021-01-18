@@ -1,14 +1,17 @@
-export function saveCalls(func) {
-  function withMemory(...args) {
-    withMemory.calls.push(args);
-    return func.apply(this, args);
-  }
+// export function saveCalls(func) {
+//   function withMemory(...args) {
+//     withMemory.calls.push(args);
+//     return func.apply(this, args);
+//   }
 
-  withMemory.calls = [];
+//   withMemory.calls = [];
 
-  return withMemory;
+//   return withMemory;
+// }
+function test(a, b) {
+  return Math.sqrt(a * a + b * b);
 }
-
+console.log(test(2, 3));
 // // ========================
 // export function saveCalls(func) {
 //   const calls = [];
