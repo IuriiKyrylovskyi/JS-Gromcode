@@ -28,6 +28,22 @@ it('should test', () => {
 
 // /* Поддержка функций с контекстом */
 
+it('should test with this', () => {
+  const user = {
+    name: 'John',
+    sayHi() {
+      return this.name;
+    },
+  };
+
+  const methodWithMemory = saveCalls(user.sayHi);
+  methodWithMemory.apply({ name: 'Tom' }); // 'Tom';
+
+  const result = methodWithMemory.calls; // [ [] ]
+
+  expect(result).toEqual([[]]);
+});
+
 // const user = {
 //     name: 'John',
 //     sayHi() {

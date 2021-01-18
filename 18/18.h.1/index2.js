@@ -1,14 +1,24 @@
 export function saveCalls(func) {
-  const calls = [];
   function withMemory(...args) {
-    calls(() => {
-      const funcArgs = func.apply(this, [args]);
-      this.calls.push(funcArgs);
-      return this.calls;
-    });
+    withMemory.calls.push(args);
+    return func.apply(this, args);
   }
-  return withMemory.calls();
+
+  withMemory.calls = [];
+
+  return withMemory;
 }
+
+// // ========================
+// export function saveCalls(func) {
+//   const calls = [];
+//   // withMemory.calls;
+//   return function withMemory(...args) {
+//     calls: calls, (this.calls = func.apply(this, args));
+//     calls.push(this.calls);
+//     return calls;
+//   };
+// }
 
 // const arr = [
 //   [1, 2],
