@@ -8,7 +8,7 @@ const arr = [];
 // export
 function getOwnProps(obj) {
   for (let prop in obj) {
-    if (obj.hasOwnProperty(prop)) {
+    if (obj.hasOwnProperty(prop) && typeof prop === 'string') {
       arr.push(prop);
     }
   }
@@ -38,3 +38,6 @@ const ship = {
 Object.setPrototypeOf(ship, vehicle);
 
 console.log(getOwnProps(ship)); // [ 'name', 'startMachine', 'stoptMachine' ]
+
+console.log(typeof ship.startMachine);
+console.log(typeof ship.name);
