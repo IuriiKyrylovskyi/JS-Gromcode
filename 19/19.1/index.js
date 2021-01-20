@@ -19,14 +19,12 @@ const vehicle = {
 const ship = {
   name: 'Argo',
   startMachine() {
-    if (!this.move()) {
-      console.log(`${this.name} lifting anchor up`);
-    }
+    console.log(`${this.name} lifting anchor up`);
+    ship.move();
   },
   stoptMachine() {
-    if (this.stop) {
-      console.log(`${this.name} lifting anchor down`);
-    }
+    ship.stop();
+    console.log(`${this.name} lifting anchor down`);
   },
 };
 
