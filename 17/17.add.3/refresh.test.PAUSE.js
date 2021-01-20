@@ -1,4 +1,4 @@
-import { multiplier, summator, twice } from './index';
+import { multiplier, summator, twice } from './refresh';
 
 it('should multiply', () => {
   const result = multiplier(2, 3);
