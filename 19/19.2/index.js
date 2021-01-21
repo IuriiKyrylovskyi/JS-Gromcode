@@ -9,8 +9,7 @@ function getOwnProps(obj) {
   for (let prop in obj) {
     // console.log(obj[prop]);
     if (obj.hasOwnProperty(prop) && typeof obj[prop] !== 'function') {
-      // console.log(typeof prop);
-      // arr.push(`${prop} ${obj[prop]}`);
+      // console.log(typeof obj[prop]);
       arr.push(prop);
     }
   }
@@ -31,6 +30,8 @@ const ship = {
   name: 'Argo',
   type: 'fast',
   age: 5,
+  abroad: false,
+  capacity: null,
   startMachine() {
     console.log(`${this.name} lifting anchor up`);
   },
@@ -43,7 +44,7 @@ const ship = {
 Object.setPrototypeOf(ship, vehicle);
 
 console.log('getOwnProps ', getOwnProps(ship)); // [ 'name', 'type', 'age' ]
-console.log('getOwnProps type', typeof getOwnProps(ship)); // object
+// console.log('getOwnProps type', typeof getOwnProps(ship)); // object
 
-console.log(typeof ship.startMachine);
-console.log(typeof ship.name);
+// console.log(typeof ship.startMachine);
+// console.log(typeof ship.name);
