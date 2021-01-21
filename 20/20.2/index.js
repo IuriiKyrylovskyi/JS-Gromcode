@@ -10,6 +10,7 @@
 // 6. obj.name = "Argo"
 
 // export
+// eslint-disable-next-line max-classes-per-file
 class Vehicle {
   constructor(name, numberOfWheels) {
     this.name = name;
