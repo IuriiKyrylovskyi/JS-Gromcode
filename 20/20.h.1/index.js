@@ -8,6 +8,7 @@
 // 														dateCreated = now Date()
 // 6. create isValidTypeType() => if type = Buy or Sell return true.
 // 														if else return false
+
 // export
 class Order {
   constructor(price, city, type) {
@@ -71,6 +72,8 @@ console.log(typeof (this.id = (Math.random() * 1e10).toFixed(0)));
 console.log(String('city'));
 console.log(typeof String('city'));
 
+console.log(new Date());
+console.log(typeof new Date());
 console.log(Date.now());
 console.log(typeof Date.now());
 console.log(Date(Date.now()));
