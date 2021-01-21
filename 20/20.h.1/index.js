@@ -6,7 +6,7 @@
 // 4. create Order.checkPrice() and if sum of order > 1000 return true if else false
 // 5. create confirmOrder() => if isConfirmed === false => true
 // 														dateCreated = now Date()
-// 6. create isValidType() => if type = Buy or Sell return true.
+// 6. create isValidTypeType() => if type = Buy or Sell return true.
 // 														if else return false
 // export
 class Order {
@@ -34,7 +34,7 @@ class Order {
     }
   }
 
-  isValid() {
+  isValidType() {
     if (this.type === 'Buy' || this.type === 'Sell') {
       return true;
     }
@@ -49,7 +49,7 @@ console.log('start order1: ', order1);
 console.log('order1.isConfirmed: ', order1.isConfirmed);
 console.log('order1.checkPrice: ', order1.checkPrice());
 console.log('order1.confirmOrder: ', order1.confirmOrder());
-console.log('order1.isValid: ', order1.isValid());
+console.log('order1.isValidType: ', order1.isValidType());
 console.log('finish order1: ', order1);
 // console.log('order1.isConfirmed: ', order1.isConfirmed);
 console.log('dateCreated order1: ', typeof order1.dateCreated);
@@ -60,7 +60,7 @@ console.log('start order2: ', order2);
 console.log('order2.isConfirmed: ', order2.isConfirmed);
 console.log('order2.checkPrice: ', order2.checkPrice());
 console.log('order2.confirmOrder: ', order2.confirmOrder());
-console.log('order2.isValid: ', order2.isValid());
+console.log('order2.isValidType: ', order2.isValidType());
 console.log('order2.isConfirmed: ', order2.isConfirmed);
 console.log('finish order2: ', order2);
 console.log('-----------------------------------------------------');
@@ -81,7 +81,4 @@ console.log(typeof false);
 console.log(Boolean('false'));
 console.log(typeof Boolean('false'));
 
-// console.log('false' == 'false');
-// console.log(typeof ('false' == 'false'));
-// console.log('false' === 'false');
-// console.log(typeof ('false' === 'false'));
+
