@@ -20,12 +20,14 @@ const ship = {
   name: 'Argo',
   startMachine() {
     console.log(`${this.name} lifting anchor up`);
-    ship.move();
+    this.move();
   },
-  stoptMachine() {
-    ship.stop();
+  stopMachine() {
+    this.stop();
     console.log(`${this.name} lifting anchor down`);
   },
 };
 
 Object.setPrototypeOf(ship, vehicle);
+console.log(ship.startMachine()); // Argo lifting anchor up Argo is moving
+console.log(ship.stopMachine()); // Argo stopped Argo lifting anchor down
