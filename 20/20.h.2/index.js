@@ -46,8 +46,9 @@ class UserRepository {
     return this.users.map(a => a.id);
   }
 
-  getUserNameById() {
-    return this.users.filter(a => a.id).map(a => a.name);
+  getUserNameById(id) {
+    console.log(this.users.filter(a => a.id === id).map(a => a.name));
+    return this.users.filter(a => a.id === id).map(a => a.name);
   }
 }
 
