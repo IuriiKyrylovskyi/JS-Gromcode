@@ -13,10 +13,8 @@ class User {
     this.id = String(id);
     this.name = String(name);
     this.sessionId = String(sessionId);
-    // Object.freeze(this.id);
-    // Object.freeze(this.name);
-    // Object.freeze(this.sessionId);
-    // Object.freeze(this);
+
+    Object.freeze(this);
   }
 
   get userProp() {
@@ -28,7 +26,7 @@ class User {
 class UserRepository {
   constructor(users) {
     this.users = users;
-    // Object.freeze(this.users);
+    Object.freeze(this.users);
   }
 
   get freezeArray() {
@@ -87,7 +85,7 @@ console.log('repo1.users[1].name = ', repo1.users[1].name); // Jill
 
 const alien = new User('20', 'Alien', '2000');
 console.log(typeof repo1.users);
-repo1.push(alien);
+// repo1.push(alien);
 console.log('repo1.users push ', users);
 console.log(repo1);
 
@@ -96,7 +94,9 @@ console.log('****************************');
 // -users frozen check-
 console.log('typeof repo1.users ', typeof repo1.users);
 console.log(Object.isFrozen(repo1.users));
+console.log(Object.isFrozen(repo1));
 console.log(Object.isFrozen(User));
+console.log(Object.isFrozen(User.name));
 
 console.log('repo1.users[0] - ', repo1.users[0]);
 delete repo1.users[0];
