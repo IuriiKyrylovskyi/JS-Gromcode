@@ -17,7 +17,7 @@ class User {
   }
 
   get userProp() {
-    // return Object.freeze(`${this.id} ${this.name} ${this.sessionId}`.split(' '));
+    // return `${this.id} ${this.name} ${this.sessionId}`.split(' ');
     // writable: false;
     // this.id;
     // this.name;
@@ -31,10 +31,11 @@ class User {
 class UserRepository {
   constructor(users) {
     this.users = users;
+    Object.freeze(this.users);
   }
 
   get freezeArray() {
-    return Object.freeze(this.users);
+    return this.users;
   }
 
   getUserNames() {
@@ -88,5 +89,5 @@ console.log(
 );
 console.log(
   'users.getUserNameId: ',
-  users.filter(a => a.id === '2').map(a => a.name),
+  users.filter(a => a.id === '4').map(a => a.name),
 );
