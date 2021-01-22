@@ -13,7 +13,10 @@ class User {
     this.id = String(id);
     this.name = String(name);
     this.sessionId = String(sessionId);
-    Object.freeze(this);
+    // Object.freeze(this.id);
+    // Object.freeze(this.name);
+    // Object.freeze(this.sessionId);
+    // Object.freeze(this);
   }
 
   get userProp() {
@@ -25,7 +28,7 @@ class User {
 class UserRepository {
   constructor(users) {
     this.users = users;
-    Object.freeze(this.users);
+    // Object.freeze(this.users);
   }
 
   get freezeArray() {
@@ -47,7 +50,11 @@ class UserRepository {
         .map(a => a.name)
         .toString(),
     );
-    return this.users.filter(a => a.id === id).map(a => a.name)[0];
+    // return this.users.filter(a => a.id === id).map(a => a.name)[0];
+    return this.users
+      .filter(a => a.id === id)
+      .map(a => a.name)
+      .pop();
   }
 }
 
@@ -79,8 +86,9 @@ repo1.users[1].name = 'Jill';
 console.log('repo1.users[1].name = ', repo1.users[1].name); // Jill
 
 const alien = new User('20', 'Alien', '2000');
-[...users].push(alien);
-console.log('users push ', users);
+console.log(typeof repo1.users);
+repo1.push(alien);
+console.log('repo1.users push ', users);
 console.log(repo1);
 
 console.log('****************************');
