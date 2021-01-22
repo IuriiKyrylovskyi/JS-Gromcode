@@ -17,12 +17,6 @@ class User {
   }
 
   get userProp() {
-    // return `${this.id} ${this.name} ${this.sessionId}`.split(' ');
-    // writable: false;
-    // this.id;
-    // this.name;
-    // this.sessionId;
-    // return;
     return `${this.id} ${this.name}	${this.sessionId}`;
   }
 }
@@ -47,8 +41,13 @@ class UserRepository {
   }
 
   getUserNameById(id) {
-    console.log(this.users.filter(a => a.id === id).map(a => a.name));
-    return this.users.filter(a => a.id === id).map(a => a.name);
+    console.log(
+      this.users
+        .filter(a => a.id === id)
+        .map(a => a.name)
+        .toString(),
+    );
+    return this.users.filter(a => a.id === id).map(a => a.name)[0];
   }
 }
 
@@ -75,20 +74,40 @@ console.log('user1.name = ', user1.name);
 user1.name = 'Tomas';
 console.log('user1.name = ', user1.name);
 
-console.log('users: ', users);
-console.log(
-  'users.Name: ',
-  users.map(a => a.name),
-);
-console.log(
-  'users.id: ',
-  users.map(a => a.id),
-);
-console.log(
-  'users.sessionId: ',
-  users.map(a => a.sessionId),
-);
-console.log(
-  'users.getUserNameId: ',
-  users.filter(a => a.id === '4').map(a => a.name),
-);
+console.log('repo1.users[1].name = ', repo1.users[1].name); // Ann
+repo1.users[1].name = 'Jill';
+console.log('repo1.users[1].name = ', repo1.users[1].name); // Jill
+
+const alien = new User('20', 'Alien', '2000');
+[...users].push(alien);
+console.log('users push ', users);
+console.log(repo1);
+
+console.log('****************************');
+
+// -users frozen check-
+console.log('typeof repo1.users ', typeof repo1.users);
+console.log(Object.isFrozen(repo1.users));
+console.log(Object.isFrozen(User));
+
+console.log('repo1.users[0] - ', repo1.users[0]);
+delete repo1.users[0];
+console.log(repo1);
+
+// console.log('users: ', users);
+// console.log(
+//   'users.Name: ',
+//   users.map(a => a.name),
+// );
+// console.log(
+//   'users.id: ',
+//   users.map(a => a.id),
+// );
+// console.log(
+//   'users.sessionId: ',
+//   users.map(a => a.sessionId),
+// );
+// console.log(
+//   'users.getUserNameId: ',
+//   users.filter(a => a.id === '4').map(a => a.name),
+// );
