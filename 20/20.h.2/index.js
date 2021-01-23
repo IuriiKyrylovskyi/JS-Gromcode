@@ -13,6 +13,7 @@ class User {
     this.id = String(id);
     this.name = String(name);
     this.sessionId = String(sessionId);
+
     Object.freeze(this);
   }
 
@@ -41,8 +42,22 @@ class UserRepository {
   }
 
   getUserNameById(id) {
+<<<<<<< HEAD
     // return this.users.filter(a => a.id === id).map(a => a.name)[0];
     return (this.users.filter(a => a.id === id).map(a => a.name)).toString(); // []
+=======
+    console.log(
+      this.users
+        .filter(a => a.id === id)
+        .map(a => a.name)
+        .toString(),
+    );
+    // return this.users.filter(a => a.id === id).map(a => a.name)[0];
+    return this.users
+      .filter(a => a.id === id)
+      .map(a => a.name)
+      .pop();
+>>>>>>> ae46028166487eb7dcf56256192c607c325a5693
   }
 }
 
@@ -74,8 +89,27 @@ repo1.users[1].name = 'Jill';
 console.log('repo1.users[1].name = ', repo1.users[1].name); // Jill
 
 const alien = new User('20', 'Alien', '2000');
+<<<<<<< HEAD
 [...users].push(alien);
 console.log('users push ', users);
+=======
+console.log(typeof repo1.users);
+// repo1.push(alien);
+console.log('repo1.users push ', users);
+console.log(repo1);
+
+console.log('****************************');
+
+// -users frozen check-
+console.log('typeof repo1.users ', typeof repo1.users);
+console.log(Object.isFrozen(repo1.users));
+console.log(Object.isFrozen(repo1));
+console.log(Object.isFrozen(User));
+console.log(Object.isFrozen(User.name));
+
+console.log('repo1.users[0] - ', repo1.users[0]);
+delete repo1.users[0];
+>>>>>>> ae46028166487eb7dcf56256192c607c325a5693
 console.log(repo1);
 
 // console.log('users: ', users);
