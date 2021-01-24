@@ -14,7 +14,7 @@ class User {
     this.name = String(name);
     this.sessionId = String(sessionId);
 
-    Object.freeze(this);
+    // Object.freeze(this);
   }
 
   get userProp() {
@@ -29,7 +29,7 @@ class UserRepository {
     Object.freeze(this.users);
   }
 
-  get freezeArray() {
+  get UserRepositoryProp() {
     return this.users;
   }
 
@@ -70,7 +70,7 @@ const users = [user1, user2, user3, user4, user5];
 const repo1 = new UserRepository(users);
 console.log(repo1);
 console.log('userProp: ', repo1.userProp);
-console.log('freezeArray: ', repo1.freezeArray);
+console.log('UserRepositoryProp: ', repo1.UserRepositoryProp);
 console.log('getUserNames: ', repo1.getUserNames());
 console.log('getUserIds: ', repo1.getUserIds());
 console.log('getUserNameById: ', repo1.getUserNameById('3'));
