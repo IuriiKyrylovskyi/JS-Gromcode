@@ -10,15 +10,25 @@
 // eslint-disable-next-line max-classes-per-file
 class User {
   constructor(id, name, sessionId) {
-    this.id = String(id);
-    this.name = String(name);
-    this.sessionId = String(sessionId);
-
+    this.id = id;
+    this.name = name;
+    this.sessionId = sessionId;
     // Object.freeze(this);
   }
 
-  get userProp() {
-    return `${this.id} ${this.name}	${this.sessionId}`;
+  // get userProp() {
+  //   return `${this.id} ${this.name} ${this.sessionId}`;
+  // }
+  get userId() {
+    return this.id;
+  }
+
+  get userName() {
+    return this.name;
+  }
+
+  get userSessionId() {
+    return this.sessionId;
   }
 }
 
@@ -26,7 +36,7 @@ class User {
 class UserRepository {
   constructor(users) {
     this.users = users;
-    Object.freeze(this.users);
+    Object.freeze(this);
   }
 
   get UserRepositoryProp() {
@@ -57,6 +67,13 @@ class UserRepository {
 }
 
 // ===check===
+const userClose = new User('10', 'Kolian', '100');
+console.log(typeof userClose.name, userClose.name);
+userClose.name = 'Mykola';
+console.log(typeof userClose.name, userClose.name);
+console.log(typeof userClose, userClose);
+
+// // +++++++++++++++++++++++
 console.log(`{this.id} {this.name} {this.sessionId}`);
 
 const user1 = new User('1', 'Tom', '01');
@@ -91,33 +108,33 @@ console.log(typeof repo1.users);
 console.log('repo1.users push ', users);
 console.log(repo1);
 
-console.log('****************************');
+// console.log('****************************');
 
-// -users frozen check-
-console.log('typeof repo1.users ', typeof repo1.users);
-console.log(Object.isFrozen(repo1.users));
-console.log(Object.isFrozen(repo1));
-console.log(Object.isFrozen(User));
-console.log(Object.isFrozen(User.name));
+// // -users frozen check-
+// console.log('typeof repo1.users ', typeof repo1.users);
+// console.log(Object.isFrozen(repo1.users));
+// console.log(Object.isFrozen(repo1));
+// console.log(Object.isFrozen(User));
+// console.log(Object.isFrozen(User.name));
 
-console.log('repo1.users[0] - ', repo1.users[0]);
-delete repo1.users[0];
-console.log(repo1);
+// console.log('repo1.users[0] - ', repo1.users[0]);
+// delete repo1.users[0];
+// console.log(repo1);
 
-// console.log('users: ', users);
-// console.log(
-//   'users.Name: ',
-//   users.map(a => a.name),
-// );
-// console.log(
-//   'users.id: ',
-//   users.map(a => a.id),
-// );
-// console.log(
-//   'users.sessionId: ',
-//   users.map(a => a.sessionId),
-// );
-// console.log(
-//   'users.getUserNameId: ',
-//   users.filter(a => a.id === '4').map(a => a.name),
-// );
+// // console.log('users: ', users);
+// // console.log(
+// //   'users.Name: ',
+// //   users.map(a => a.name),
+// // );
+// // console.log(
+// //   'users.id: ',
+// //   users.map(a => a.id),
+// // );
+// // console.log(
+// //   'users.sessionId: ',
+// //   users.map(a => a.sessionId),
+// // );
+// // console.log(
+// //   'users.getUserNameId: ',
+// //   users.filter(a => a.id === '4').map(a => a.name),
+// // );
