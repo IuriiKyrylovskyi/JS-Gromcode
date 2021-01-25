@@ -10,58 +10,55 @@
 // eslint-disable-next-line max-classes-per-file
 class User {
   constructor(id, name, sessionId) {
-    this.id = id;
-    this.name = name;
-    this.sessionId = sessionId;
-    // Object.freeze(this);
+    this._id = Object.freeze(id);
+    this._name = Object.freeze(name);
+    this._sessionId = Object.freeze(sessionId);
   }
 
   // get userProp() {
-  //   return `${this.id} ${this.name} ${this.sessionId}`;
+  //   return `${this._id} ${this._name} ${this._sessionId}`;
   // }
-  get userId() {
-    return this.id;
+  get id() {
+    return this._id;
   }
 
-  get userName() {
-    return this.name;
+  get name() {
+    return this._name;
   }
 
-  get userSessionId() {
-    return this.sessionId;
+  get sessionId() {
+    return this._sessionId;
   }
 }
 
 // export
 class UserRepository {
   constructor(users) {
-    this.users = users;
-    Object.freeze(this);
+    this._users = Object.freeze(users);
   }
 
-  get UserRepositoryProp() {
-    return this.users;
+  get users() {
+    return this._users;
   }
 
   getUserNames() {
-    return this.users.map(a => a.name);
+    return this._users.map(a => a._name);
   }
 
   getUserIds() {
-    return this.users.map(a => a.id);
+    return this._users.map(a => a._id);
   }
 
   getUserNameById(id) {
     console.log(
-      this.users
-        .filter(a => a.id === id)
-        .map(a => a.name)
+      this._users
+        .filter(a => a._id === id)
+        .map(a => a._name)
         .toString(),
     );
-    // return this.users.filter(a => a.id === id).map(a => a.name)[0];
-    return this.users
-      .filter(a => a.id === id)
-      .map(a => a.name)
+    return this._users
+      .filter(a => a._id === id)
+      .map(a => a._name)
       .pop();
   }
 }
@@ -92,13 +89,13 @@ console.log('getUserNames: ', repo1.getUserNames());
 console.log('getUserIds: ', repo1.getUserIds());
 console.log('getUserNameById: ', repo1.getUserNameById('3'));
 
-console.log('user1.name = ', user1.name); // Tom
+console.log('user1.name = ', user1._name); // Tom
 user1.name = 'Tomas';
-console.log('user1.name = ', user1.name); // Tom
+console.log('user1.name = ', user1._name); // Tom
 
-console.log('repo1.users[1].name = ', repo1.users[1].name); // Ann
-repo1.users[1].name = 'Jill';
-console.log('repo1.users[1].name = ', repo1.users[1].name); // Jill
+console.log('repo1.users[1].name = ', repo1.users[1]._name); // Ann
+repo1.users[1]._name = 'Jill';
+console.log('repo1.users[1].name = ', repo1.users[1]._name); // Jill
 
 const alien = new User('20', 'Alien', '2000');
 [...users].push(alien);
