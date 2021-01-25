@@ -1,8 +1,9 @@
 export const getTitleElement = () => {
   const titleElem = document.querySelector('.title');
-  console.dir(titleElem.outerHTML);
+  console.dir(titleElem);
+  return titleElem;
 };
-// getTitleElement();
+getTitleElement();
 
 export const getInputElement = () => {
   const inputElem = document.querySelector('input').getAttribute('type', 'text');
@@ -14,4 +15,4 @@ export const getInputElement = () => {
   return inputElem;
 };
 
-// getInputElement();
+getInputElement();
