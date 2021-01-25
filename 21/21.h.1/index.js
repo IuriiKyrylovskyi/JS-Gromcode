@@ -3,16 +3,17 @@ export const getTitleElement = () => {
   console.dir(titleElem);
   return titleElem;
 };
-getTitleElement();
+// getTitleElement();
 
 export const getInputElement = () => {
-  const inputElem = document.querySelector('input').getAttribute('type', 'text');
-  // const textAtr = inputElem.getAttribute('type', 'text');
+  const inputElem = document.querySelector('input'); // .getAttribute('type', 'text');
+  const textAtr = inputElem.getAttribute('type', 'text');
   console.dir(inputElem);
-  // if (textAtr) {
-  //   console.dir(inputElem);
-  // }
-  return inputElem;
+  if (textAtr) {
+    console.dir(inputElem);
+    return inputElem;
+  }
+  return false;
 };
 
-getInputElement();
+// getInputElement();
