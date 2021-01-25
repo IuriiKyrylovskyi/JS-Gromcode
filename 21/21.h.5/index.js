@@ -1,10 +1,10 @@
 // const btnTxt = 'dont click me';
 
-export const setButton = (arg = 'button text') => {
+export const setButton = buttonText => {
   const setBtn = document.querySelector('body');
   // setBtn.textContent = `<button>${buttonText}</button>`;
-  setBtn.innerHTML = `<button>${arg}</button>`;
+  setBtn.innerHTML = `<button>${buttonText}</button>`;
   // return setBtn.innerHTML;
 };
 
-setButton();
+// setButton();
