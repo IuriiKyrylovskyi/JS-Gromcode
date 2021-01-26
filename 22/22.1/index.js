@@ -9,14 +9,14 @@ const logTarget = (text, color) => {
   eventsList.innerHTML += `<span style="color: ${color}; margin-left: 8px">${text}</span>`;
 };
 
-const logGreenDiv = logTarget.bind(null, 'div', 'green');
 const logGreyDiv = logTarget.bind(null, 'div', 'grey');
+const logGreenDiv = logTarget.bind(null, 'div', 'green');
 
-const logGreenP = logTarget.bind(null, 'p', 'green');
 const logGreyP = logTarget.bind(null, 'p', 'grey');
+const logGreenP = logTarget.bind(null, 'p', 'green');
 
-const logGreenSpan = logTarget.bind(null, 'span', 'green');
 const logGreySpan = logTarget.bind(null, 'span', 'grey');
+const logGreenSpan = logTarget.bind(null, 'span', 'green');
 
 // divEl.addEventListener('click', logGreenDiv);
 // pEl.addEventListener('click', logGreenP);
@@ -38,13 +38,13 @@ clearBtn.addEventListener('click', clearList);
 const attachHandlersBtn = document.querySelector('.attach-handlers-btn');
 
 const attachHandlers = () => {
-  divEl.addEventListener('click', logGreenDiv);
-  pEl.addEventListener('click', logGreenP);
-  spanEl.addEventListener('click', logGreenSpan);
-
   divEl.addEventListener('click', logGreyDiv, true);
   pEl.addEventListener('click', logGreyP, true);
   spanEl.addEventListener('click', logGreySpan, true);
+
+  divEl.addEventListener('click', logGreenDiv);
+  pEl.addEventListener('click', logGreenP);
+  spanEl.addEventListener('click', logGreenSpan);
 };
 attachHandlers();
 attachHandlersBtn.addEventListener('click', attachHandlers);
@@ -53,13 +53,13 @@ attachHandlersBtn.addEventListener('click', attachHandlers);
 const removeHandlersBtn = document.querySelector('.remove-handlers-btn');
 
 const removeHandlers = () => {
-  divEl.removeEventListener('click', logGreenDiv);
-  pEl.removeEventListener('click', logGreenP);
-  spanEl.removeEventListener('click', logGreenSpan);
-
   divEl.removeEventListener('click', logGreyDiv, true);
   pEl.removeEventListener('click', logGreyP, true);
   spanEl.removeEventListener('click', logGreySpan, true);
+
+  divEl.removeEventListener('click', logGreenDiv);
+  pEl.removeEventListener('click', logGreenP);
+  spanEl.removeEventListener('click', logGreenSpan);
 };
 
 removeHandlersBtn.addEventListener('click', removeHandlers);
