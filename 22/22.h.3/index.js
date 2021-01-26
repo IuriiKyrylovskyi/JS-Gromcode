@@ -6,7 +6,7 @@ const changeStatus = () => {
   } else {
     console.log('false');
   }
-  console.log('taskStatus.value ', taskStatus.checked);
+  // console.log('taskStatus.value ', taskStatus.checked);
 };
 
 taskStatus.addEventListener('change', changeStatus);
