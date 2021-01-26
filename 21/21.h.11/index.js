@@ -1,4 +1,4 @@
-export const squaredNumber = () => {
+export const squaredNumbers = () => {
   const numberEls = document.querySelectorAll('.number');
   console.dir(numberEls);
 
@@ -12,4 +12,4 @@ export const squaredNumber = () => {
   return newNumberEls;
 };
 
-// squaredNumber();
+// squaredNumbers();
