@@ -1,5 +1,6 @@
 export const squaredNumbers = () => {
-  const numberEls = document.querySelectorAll('.number');
+	
+	const numberEls = document.querySelectorAll('.number');
   console.dir(numberEls);
 
   const newNumberEls = Array.from(numberEls).map(numEl => {
