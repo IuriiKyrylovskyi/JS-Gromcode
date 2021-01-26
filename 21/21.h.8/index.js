@@ -2,21 +2,29 @@
 const finishList = () => {
   const incr = 1;
 
-  const listItem = document.createElement('li');
   const list = document.querySelector('.list');
   const specListItem = list.querySelector('.special');
   const specText = specListItem.textContent;
-  // const innerTexts = document.querySelectorAll('li').innerText;
 
-  const first = list.prepend(listItem);
-  const last = list.append(listItem);
-  const specBefore = specListItem.before(listItem);
-  const specAfter = specListItem.after(listItem);
+  const first = document.createElement('li');
+  const last = document.createElement('li');
+  const specBefore = document.createElement('li');
+  const specAfter = document.createElement('li');
 
-  specBefore.textContent = +specText - incr;
+  specBefore.textContent = specText - incr;
   specAfter.textContent = +specText + incr;
   first.textContent = incr;
-  last.textContent = +list.length + incr;
+
+  specListItem.before(specBefore);
+  specListItem.after(specAfter);
+  list.prepend(first);
+
+  let listLength = list.querySelectorAll('li').length;
+  console.dir(listLength);
+  last.textContent = listLength + incr;
+  list.append(last);
+
+  return list;
 };
 
 finishList();
