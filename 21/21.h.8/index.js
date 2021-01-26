@@ -1,5 +1,4 @@
-// export
-const finishList = () => {
+export const finishList = () => {
   const incr = 1;
 
   const list = document.querySelector('.list');
@@ -27,4 +26,4 @@ const finishList = () => {
   return list;
 };
 
-finishList();
+// finishList();
