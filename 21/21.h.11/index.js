@@ -8,6 +8,7 @@ export const squaredNumber = () => {
     numEl.dataset.squaredNumber = squaredNum;
     return numEl;
   });
+
   return newNumberEls;
 };
 
