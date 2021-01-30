@@ -57,8 +57,10 @@ const formElem = document.querySelector('.login-form');
 const onFormSubmit = event => {
   event.preventDefault(); // reject default browser behavior
 
-  const formData = [...new FormData(formElem)] // get key:value
-    .reduce((acc, [field, value]) => ({ ...acc, [field]: value }), {});
+  // const formData = [...new FormData(formElem)] // get key:value
+  //   .reduce((acc, [field, value]) => ({ ...acc, [field]: value }), {});
+
+  const formData = Object.fromEntries(new FormData(formElem)); // 2d variant
 
   alert(JSON.stringify(formData)); // object object -> {'email':'str', 'password':'str'}
 };
