@@ -1,11 +1,11 @@
 const listElem = document.querySelector('.list');
 
 const tasks = [
-  { text: 'Buy milk', done: false },
-  { text: 'Pick up Tom from airport', done: true },
-  { text: 'Visit party', done: false },
-  { text: 'Visit doctor', done: false },
-  { text: 'Buy meat', done: true },
+  { text: 'Buy milk', done: false, id: 1 },
+  { text: 'Pick up Tom from airport', done: true, id: 2 },
+  { text: 'Visit party', done: false, id: 3 },
+  { text: 'Visit doctor', done: false, id: 4 },
+  { text: 'Buy meat', done: true, id: 5 },
 ];
 
 const renderTasks = tasksList => {
@@ -15,6 +15,9 @@ const renderTasks = tasksList => {
       const listItemElem = document.createElement('li');
       listItemElem.classList.add('list__item');
       const checkbox = document.createElement('input');
+
+      // checkbox.setAttribute('data-id', id);
+
       checkbox.setAttribute('type', 'checkbox');
       checkbox.checked = done;
       checkbox.classList.add('list__item-checkbox');
@@ -42,7 +45,8 @@ const addNewTask = () => {
     return;
   }
   listElem.innerHTML = '';
-  const newTaskObj = { text: newTaskText, done: false };
+  const idNum = tasks.length + 1;
+  const newTaskObj = { text: newTaskText, done: false, id: idNum };
   tasks.push(newTaskObj);
   renderTasks(tasks);
   inputElem.value = '';
@@ -53,6 +57,21 @@ createBtnElem.addEventListener('click', addNewTask);
 
 // =============================================================
 
+const onChangeStatus = event => {
+  const targetedElem = event.target.closest('.list__item');
+  if (event.target.classList.contains('list__item-checkbox') && event.target.checked) {
+    const checkedId = event.target.getAttribute('id');
+    targetedElem.classList.add('list__item_done');
+
+    console.log('true', event.target.checked);
+    console.log('checkedId', checkedId);
+  } else {
+    targetedElem.classList.remove('list__item_done');
+    console.log('false', event.target.checked);
+  }
+};
+
+listElem.addEventListener('change', onChangeStatus);
 
 // const isChecked = event => {
 //   const isCheckbox = event.target.classList.contains('list__item-checkbox');
