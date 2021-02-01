@@ -36,39 +36,48 @@ const renderTasks = tasksList => {
 renderTasks(tasks);
 
 // ============= change checkbox status ================================================
+const changeElDone = (array, idEl, status) => {
+  array
+    .filter(obj => obj.id === +idEl)
+    .map(el => {
+      el.done = status;
+      return el;
+    });
+};
 
 const onChangeStatus = event => {
   const targetedElem = event.target.closest('.list__item');
   const checkedId = event.target.getAttribute('data-id');
   if (event.target.classList.contains('list__item-checkbox') && event.target.checked) {
     targetedElem.classList.add('list__item_done');
-    tasks
-      .filter(obj => obj.id === checkedId)
-      .map(el => {
-        el.done = true;
-        return el;
-      });
-    console.log('true', event.target.checked);
-    console.log('checkedId', checkedId);
+    changeElDone(tasks, checkedId, true);
+
+    // tasks
+    //   .filter(obj => obj.id === +checkedId)
+    //   .map(el => {
+    //     el.done = true;
+    //     return el;
+    //   });
+    // console.log('true', event.target.checked);
+    // console.log('checkedId true', checkedId);
   } else {
     targetedElem.classList.remove('list__item_done');
-    tasks
-      .filter(obj => obj.id === checkedId)
-      .map(el => {
-        el.done = false;
-        return el;
-      });
+    changeElDone(tasks, checkedId, false);
 
-    console.log('false', event.target.checked);
-    console.log('checkedId false', checkedId);
+    // tasks
+    //   .filter(obj => obj.id === +checkedId)
+    //   .map(el => {
+    //     el.done = false;
+    //     return el;
+    //   });
+    // console.log('false', event.target.checked);
+    // console.log('checkedId false', checkedId);
   }
-  console.log('done tasks', tasks);
+  // console.log('done tasks', tasks);
   return tasks;
 };
 
 listElem.addEventListener('change', onChangeStatus);
-
-
 
 // =========== add new task ====================
 
