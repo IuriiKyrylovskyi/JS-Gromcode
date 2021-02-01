@@ -43,6 +43,7 @@ const changeElDone = (array, idEl, status) => {
       el.done = status;
       return el;
     });
+  return array;
 };
 
 const onChangeStatus = event => {
@@ -74,7 +75,7 @@ const onChangeStatus = event => {
     // console.log('checkedId false', checkedId);
   }
   // console.log('done tasks', tasks);
-  return tasks;
+  // return tasks;
 };
 
 listElem.addEventListener('change', onChangeStatus);
