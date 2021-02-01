@@ -74,7 +74,7 @@ const onChangeStatus = event => {
     // console.log('false', event.target.checked);
     // console.log('checkedId false', checkedId);
   }
-  // console.log('done tasks', tasks);
+  console.log('done tasks', tasks);
   // return tasks;
 };
 
@@ -100,7 +100,7 @@ const addNewTask = () => {
   tasks.push(newTaskObj);
   renderTasks(tasks);
   inputElem.value = '';
-  console.log(tasks);
+  // console.log(tasks);
 };
 
 createBtnElem.addEventListener('click', addNewTask);
