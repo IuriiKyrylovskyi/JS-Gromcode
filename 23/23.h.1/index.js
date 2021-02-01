@@ -8,6 +8,7 @@ const tasks = [
   { text: 'Buy meat', done: true, id: 5 },
 ];
 
+// ============ start ==============
 const renderTasks = tasksList => {
   const tasksElems = tasksList
     .sort((a, b) => a.done - b.done)
@@ -34,6 +35,41 @@ const renderTasks = tasksList => {
 
 renderTasks(tasks);
 
+// ============= change checkbox status ================================================
+
+const onChangeStatus = event => {
+  const targetedElem = event.target.closest('.list__item');
+  const checkedId = event.target.getAttribute('data-id');
+  if (event.target.classList.contains('list__item-checkbox') && event.target.checked) {
+    targetedElem.classList.add('list__item_done');
+    tasks
+      .filter(obj => obj.id === checkedId)
+      .map(el => {
+        el.done = true;
+        return el;
+      });
+    console.log('true', event.target.checked);
+    console.log('checkedId', checkedId);
+  } else {
+    targetedElem.classList.remove('list__item_done');
+    tasks
+      .filter(obj => obj.id === checkedId)
+      .map(el => {
+        el.done = false;
+        return el;
+      });
+
+    console.log('false', event.target.checked);
+    console.log('checkedId false', checkedId);
+  }
+  console.log('done tasks', tasks);
+  return tasks;
+};
+
+listElem.addEventListener('change', onChangeStatus);
+
+
+
 // =========== add new task ====================
 
 const inputElem = document.querySelector('.task-input');
@@ -59,57 +95,15 @@ const addNewTask = () => {
 
 createBtnElem.addEventListener('click', addNewTask);
 
-// =============================================================
+// // --- test ----
+// const idis = 5;
+// console.log(tasks[4]);
 
-const onChangeStatus = event => {
-  const targetedElem = event.target.closest('.list__item');
-  const checkedId = event.target.getAttribute('data-id');
+// const test = tasks
+//   .filter(obj => obj.id === idis)
+//   .map(el => {
+//     el.done = false;
+//     return el;
+//   });
 
-  if (event.target.classList.contains('list__item-checkbox') && event.target.checked) {
-    targetedElem.classList.add('list__item_done');
-    tasks.map(obj => {
-      if (obj.id === checkedId) {
-        obj.done = true;
-        console.log('done true', obj.done);
-      }
-      return obj;
-    });
-    console.log('true', event.target.checked);
-    console.log('checkedId', checkedId);
-  } else {
-    tasks.filter(obj => {
-      if (obj.id === checkedId) {
-        obj.done = false;
-        console.log('done false', obj.done);
-      }
-      return obj;
-    });
-    targetedElem.classList.remove('list__item_done');
-    console.log('false', event.target.checked);
-  }
-};
-
-listElem.addEventListener('change', onChangeStatus);
-
-// const isChecked = event => {
-//   const isCheckbox = event.target.classList.contains('list__item-checkbox');
-//   if (isCheckbox.checked) {
-//     isCheckbox.closest('.list__item').classList.add('list__item_done');
-//   }
-//   isCheckbox.closest('.list__item').classList.remove('list__item_done');
-// };
-
-// const onChangeStatus = () => {
-//   const chbEl = Array.from(chboxEls).map(
-//     el => {
-//       if (!el.checked) {
-//         el.closest('.list__item').classList.add('list__item_done');
-//       }
-//       el.closest('.list__item').classList.remove('list__item_done');
-//     },
-//     console.log(chbEl, chbEl.closest('.list__item')), // .classList.contains('list__item_done')),
-//     // console.log(el.checked, el.closest('.list__item')), // .classList.contains('list__item_done')),
-//   );
-// };
-
-// listElem.addEventlistener('click', isCheckedBox);
+// console.log(test);
