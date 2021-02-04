@@ -49,17 +49,17 @@ const eventHandler = e => {
     });
   }
   if (e.target.className === 'btn create-task-btn' && newTaskText !== '') {
-    console.log('2', e.target.className);
+    // console.log('2', e.target.className);
     const newTaskObj = {
       text: newTaskText,
       done: false,
       id: idNum + 1,
     };
     tasks.push(newTaskObj);
-    // console.log('tasks', tasks);
   }
+  // console.log('tasks', tasks);
 
-  console.log('value', inputTextElem.value);
+  // console.log('value', inputTextElem.value);
   renderTasks(tasks);
 };
 
