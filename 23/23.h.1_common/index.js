@@ -40,6 +40,16 @@ const eventHandler = e => {
   const dataId = e.target.getAttribute('data-id');
   const idNum = tasks.length;
   const newTaskText = inputTextElem.value;
+
+  // if (e.target.className !== 'list__item-checkbox') {
+  //   return;
+  // }
+  // if (e.target.className !== 'btn create-task-btn') {
+  //   return;
+  // }
+  // if (e.target.className !== 'todo-list') {
+  //   return;
+  // }
   if (e.target.className === 'list__item-checkbox') {
     tasks.map(el => {
       if (el.id === +dataId) {
