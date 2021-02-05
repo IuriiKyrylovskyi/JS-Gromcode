@@ -1,6 +1,7 @@
 const todoEl = document.querySelector('.todo-list');
 const listElem = document.querySelector('.list');
 const inputTextElem = document.querySelector('.task-input');
+const createBtnElem = document.querySelector('.btn');
 
 const tasks = [
   { text: 'Buy milk', done: false, id: 1 },
@@ -36,30 +37,17 @@ const renderTasks = tasksList => {
 
 renderTasks(tasks);
 
-const eventHandler = e => {
-  const dataId = e.target.getAttribute('data-id');
+const onClickHandler = e => {
   const idNum = tasks.length;
   const newTaskText = inputTextElem.value;
 
-  // if (e.target.className !== 'list__item-checkbox') {
-  //   return;
-  // }
-  // if (e.target.className !== 'btn create-task-btn') {
-  //   return;
-  // }
-  // if (e.target.className !== 'todo-list') {
-  //   return;
-  // }
+
   if (e.target.className === 'list__item-checkbox') {
-    tasks.map(el => {
-      if (el.id === +dataId) {
-        el.done = e.target.checked;
-      }
-      // console.log('el', el);
-    });
+    const targetEl = tasks.find(el => el.id === +e.target.dataset.id);
+    targetEl.done = e.target.checked;
   }
-  if (e.target.className === 'btn create-task-btn' && newTaskText !== '') {
-    // console.log('2', e.target.className);
+
+  if (e.target === createBtnElem && newTaskText !== '') {
     const newTaskObj = {
       text: newTaskText,
       done: false,
@@ -67,10 +55,8 @@ const eventHandler = e => {
     };
     tasks.push(newTaskObj);
   }
-  // console.log('tasks', tasks);
 
-  // console.log('value', inputTextElem.value);
   renderTasks(tasks);
 };
 
-todoEl.addEventListener('click', eventHandler);
+todoEl.addEventListener('click', onClickHandler);
