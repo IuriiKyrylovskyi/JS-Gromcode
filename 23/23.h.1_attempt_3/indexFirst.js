@@ -1,19 +1,4 @@
-// algorithm
-// Handlers:
-// 1. create handler to change checkbox status by click in array
-// 2. create handler to add new undone not empty task by click on 'create' button 
-// Render:
-// 1. clear html list
-// 2. clear input field
-// 3. render new data array  
-
-
-
-
-
 const listElem = document.querySelector('.list');
-const inputElem = document.querySelector('.task-input');
-const createBtnElem = document.querySelector('.create-task-btn');
 
 const tasks = [
   { text: 'Buy milk', done: false, id: 1 },
@@ -25,9 +10,6 @@ const tasks = [
 
 // ============ start ==============
 const renderTasks = tasksList => {
-  listElem.innerHTML = ''; // * from add new task
-  inputElem.value = ''; // * from add new task
-
   const tasksElems = tasksList
     .sort((a, b) => a.done - b.done)
     .map(({ text, done, id }) => {
@@ -65,8 +47,10 @@ const changeElDone = (array, idEl, status) => {
 };
 
 const onChangeStatus = event => {
+  const targetedElem = event.target.closest('.list__item');
   const checkedId = event.target.getAttribute('data-id');
   if (event.target.classList.contains('list__item-checkbox') && event.target.checked) {
+    targetedElem.classList.add('list__item_done');
     changeElDone(tasks, checkedId, true);
 
     // tasks
@@ -78,6 +62,7 @@ const onChangeStatus = event => {
     // console.log('true', event.target.checked);
     // console.log('checkedId true', checkedId);
   } else {
+    targetedElem.classList.remove('list__item_done');
     changeElDone(tasks, checkedId, false);
 
     // tasks
@@ -89,19 +74,23 @@ const onChangeStatus = event => {
     // console.log('false', event.target.checked);
     // console.log('checkedId false', checkedId);
   }
-  renderTasks(tasks);
-  // console.log('done tasks', tasks);
+  console.log('done tasks', tasks);
+  // return tasks;
 };
 
 listElem.addEventListener('change', onChangeStatus);
 
 // =========== add new task ====================
 
+const inputElem = document.querySelector('.task-input');
+const createBtnElem = document.querySelector('.create-task-btn');
+
 const addNewTask = () => {
   const newTaskText = inputElem.value;
   if (!newTaskText) {
     return;
   }
+  listElem.innerHTML = '';
   const idNum = tasks.length + 1;
   const newTaskObj = {
     text: newTaskText,
@@ -110,6 +99,7 @@ const addNewTask = () => {
   };
   tasks.push(newTaskObj);
   renderTasks(tasks);
+  inputElem.value = '';
   // console.log(tasks);
 };
 

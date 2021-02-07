@@ -1,15 +1,11 @@
 // algorithm
 // Handlers:
-// 1. create handler to change checkbox status by click in array
-// 2. create handler to add new undone not empty task by click on 'create' button 
+// 1. create handler to change array element 'done' status on checkbox click
+// 2. create handler to add new undone (not empty) task in array on click 'create' button
 // Render:
 // 1. clear html list
 // 2. clear input field
-// 3. render new data array  
-
-
-
-
+// 3. render new data array in filtered oder
 
 const listElem = document.querySelector('.list');
 const inputElem = document.querySelector('.task-input');
@@ -54,46 +50,19 @@ const renderTasks = tasksList => {
 renderTasks(tasks);
 
 // ============= change checkbox status ================================================
-const changeElDone = (array, idEl, status) => {
-  array
-    .filter(obj => obj.id === +idEl)
-    .map(el => {
-      el.done = status;
-      return el;
-    });
-  return array;
-};
-
 const onChangeStatus = event => {
   const checkedId = event.target.getAttribute('data-id');
-  if (event.target.classList.contains('list__item-checkbox') && event.target.checked) {
-    changeElDone(tasks, checkedId, true);
-
-    // tasks
-    //   .filter(obj => obj.id === +checkedId)
-    //   .map(el => {
-    //     el.done = true;
-    //     return el;
-    //   });
-    // console.log('true', event.target.checked);
-    // console.log('checkedId true', checkedId);
-  } else {
-    changeElDone(tasks, checkedId, false);
-
-    // tasks
-    //   .filter(obj => obj.id === +checkedId)
-    //   .map(el => {
-    //     el.done = false;
-    //     return el;
-    //   });
-    // console.log('false', event.target.checked);
-    // console.log('checkedId false', checkedId);
+  if (!event.target.classList.contains('list__item-checkbox')) {
+    return;
   }
+  const changedTask = tasks.find(el => el.id === +checkedId);
+  changedTask.done = event.target.checked;
+
   renderTasks(tasks);
   // console.log('done tasks', tasks);
 };
 
-listElem.addEventListener('change', onChangeStatus);
+listElem.addEventListener('click', onChangeStatus);
 
 // =========== add new task ====================
 
@@ -114,16 +83,3 @@ const addNewTask = () => {
 };
 
 createBtnElem.addEventListener('click', addNewTask);
-
-// // --- test ----
-// const idis = 5;
-// console.log(tasks[4]);
-
-// const test = tasks
-//   .filter(obj => obj.id === idis)
-//   .map(el => {
-//     el.done = false;
-//     return el;
-//   });
-
-// console.log(test);
