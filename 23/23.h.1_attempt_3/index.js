@@ -66,18 +66,30 @@ const onChangeStatus = event => {
 listElem.addEventListener('click', onChangeStatus);
 
 // =========== add new task ====================
+const checkTaskLength = (inputText, arr) => {
+  if (inputText.length < 5) {
+    alert('enter valid task');
+    renderTasks(arr);
+  }
+};
 
 const addNewTask = () => {
   const newTaskText = inputElem.value;
   console.log(newTaskText.length);
-  if (!newTaskText) {
+  // if (!newTaskText) {
+  //   return;
+  // }
+
+  if (checkTaskLength(newTaskText, tasks)) {
     return;
   }
-  if (newTaskText.length < 5) {
-    alert('enter valid task');
-    renderTasks(tasks);
-    return;
-  }
+
+  // if (newTaskText.length < 5) {
+  //   alert('enter valid task');
+  //   renderTasks(tasks);
+  //   return;
+  // }
+
   const idNum = tasks.length + 1;
   const newTaskObj = {
     text: newTaskText,
