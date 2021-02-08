@@ -52,6 +52,7 @@ renderTasks(tasks);
 // ============= change checkbox status ================================================
 const onChangeStatus = event => {
   const checkedId = event.target.getAttribute('data-id');
+
   if (!event.target.classList.contains('list__item-checkbox')) {
     return;
   }
@@ -68,7 +69,13 @@ listElem.addEventListener('click', onChangeStatus);
 
 const addNewTask = () => {
   const newTaskText = inputElem.value;
+  console.log(newTaskText.length);
   if (!newTaskText) {
+    return;
+  }
+  if (newTaskText.length < 5) {
+    alert('enter valid task');
+    renderTasks(tasks);
     return;
   }
   const idNum = tasks.length + 1;
