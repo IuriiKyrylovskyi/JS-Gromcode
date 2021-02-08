@@ -5,9 +5,6 @@ const studentsBirthDays = students => {
   }
   console.log(students[0].birthDate);
 
-  const getMonthName = new Intl.DateTimeFormat('en', { month: 'short' });
-  const getMonthName = new Date().toLocalString('en', { month: 'short' });
-
   const monthArr = [
     'Jan',
     'Feb',
@@ -27,12 +24,17 @@ const studentsBirthDays = students => {
     (studentPrev, studentNext) =>
       new Date(studentPrev.birthDate).getMonth() - new Date(studentNext.birthDate).getMonth(),
   );
-  const monthGroupedArr = monthBirthSortedArr.filter(student =>
-    new Date(student.birthDate).getMonth(),
-  );
-  console.log('monthArr: ', monthGroupedArr);
-  console.log('getMonthName: ', getMonthName);
+  const formatter = new Intl.DateTimeFormat('en', { month: 'short' });
 
+  const monthGroupedArr = monthBirthSortedArr.filter(student =>
+    formatter.format(student.birthDate),
+  );
+
+  //   const month = formatter.format(student.birthDate);
+  //   return month;
+  // });
+
+  console.log('monthArr: ', monthGroupedArr);
   return monthBirthSortedArr;
   // return sortedByBirth;
 };
@@ -45,5 +47,5 @@ const group = [
   { name: 'Tom', birthDate: '01/15/1987' },
 ];
 
-console.log(studentsBirthDays(group));
-console.log(group);
+console.log('result = ', studentsBirthDays(group));
+console.log('init arr ', group);
