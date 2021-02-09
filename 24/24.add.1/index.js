@@ -24,11 +24,11 @@ const studentsBirthDays = students => {
     (studentPrev, studentNext) =>
       new Date(studentPrev.birthDate).getMonth() - new Date(studentNext.birthDate).getMonth(),
   );
-  //   .map(student => {
-  //     student.birthDate = formatter.format(new Date(student.birthDate));
-  //     return student;
-  //   }); // { name: 'Bill', birthDate: 'Jan' },
-  // // .map(student => new Array(formatter.format(new Date(student.birthDate)) + ': ' + student.name)); // [],[]
+  // .map(student => new Array(formatter.format(new Date(student.birthDate)) + ': ' + student.name)); // [],[]
+  // .map(student => {
+  //   student.birthDate = formatter.format(new Date(student.birthDate));
+  //   return student;
+  // }); // { name: 'Bill', birthDate: 'Jan' },
 
   // .filter((student, index) => {
   // 	if (student[index].birthDate !== student[index + 1].birthDate) {
@@ -38,13 +38,13 @@ const studentsBirthDays = students => {
   // });
 
   console.log('monthBirthSorted: ', monthBirthSorted);
-  console.log('monthBirthSorted[0][1]: ', monthBirthSorted[0].birthDate);
+  // console.log('monthBirthSorted[0][1]: ', monthBirthSorted[0].birthDate);
 
-  const getCommonBirth = (arr, month) => {
-    arr.filter(item => item[1] === month);
-  };
+  // const getCommonBirth = (arr, month) => {
+  //   arr.filter(item => item[1] === month);
+  // };
 
-  console.log('getCommonBirth', getCommonBirth(monthBirthSorted, 'Jan'));
+  // console.log('getCommonBirth', getCommonBirth(monthBirthSorted, 'Jan'));
 
   const getMonths = monthBirthSorted.map(student => formatter.format(new Date(student.birthDate)));
   const getNames = monthBirthSorted.map(student => student.name);
@@ -54,26 +54,26 @@ const studentsBirthDays = students => {
 
   const unsortedObj = getMonthsNamesObj(getMonths, getNames);
 
-  const getUniqMonths = [...new Set(getMonths)];
+  // const getUniqMonths = [...new Set(getMonths)];
 
-  // const groupBithStudents = monthBirthSorted.map((student, index) => {
-  //   const arr = [];
-  //   if (
-  //     new Date(student[index].birthDate).getMonth() ==
-  //     new Date(student[index + 1].birthDate).getMonth()
-  //   ) {
-  //     arr.push(student.name);
-  //   }
-  //   return arr;
-  // });
+  // // const groupBithStudents = monthBirthSorted.map((student, index) => {
+  // //   const arr = [];
+  // //   if (
+  // //     new Date(student[index].birthDate).getMonth() ==
+  // //     new Date(student[index + 1].birthDate).getMonth()
+  // //   ) {
+  // //     arr.push(student.name);
+  // //   }
+  // //   return arr;
+  // // });
 
   console.log('getMonths: ', getMonths);
   console.log('getNames: ', getNames);
-  console.log('getUniqMonths: ', getUniqMonths);
+  // console.log('getUniqMonths: ', getUniqMonths);
   console.log('unsortedObj: ', unsortedObj);
-  // console.log('groupBithStudents: ', groupBithStudents);
-  // return getStudentsBirth;
-  // return sortedByBirth;
+  // // console.log('groupBithStudents: ', groupBithStudents);
+  // // return getStudentsBirth;
+  // // return sortedByBirth;
 };
 
 const group = [
