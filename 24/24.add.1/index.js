@@ -1,40 +1,40 @@
+// algorithm
+
 // export
 const studentsBirthDays = students => {
   if (!Array.isArray(students)) {
     return;
   }
-  console.log(students[0].birthDate);
+  // test------------------------------------------------------------------
+  const test = students[0].birthDate;
+  console.log(test); // 07/06/2002
+  console.log(new Date(test)); // 2002-07-05T21:00:00.000Z
+  console.log(new Date(test).getMonth()); // 6
+  console.log(new Date(test).toLocaleString('en', { month: 'short' })); // Jul
 
-  const monthArr = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
+  console.log(
+    'getMonth ',
+    new Intl.DateTimeFormat('en', { month: 'short' }).format(new Date(test)),
+  ); // Jul
+
+  // ----------------------------------------------------------------------
+	const formatter = new Intl.DateTimeFormat('en', { month: 'short' });
+
+	const getMonthsArr = monthBirthSortedArr.map(student =>
+		formatter.format(new Date(student.birthDate)),
+	);
+
+	const getUniqMonthsArr = [...new Set(getMonthsArr)];
 
   const monthBirthSortedArr = [...students].sort(
     (studentPrev, studentNext) =>
       new Date(studentPrev.birthDate).getMonth() - new Date(studentNext.birthDate).getMonth(),
-  );
-  const formatter = new Intl.DateTimeFormat('en', { month: 'short' });
+  ).map({});
+  console.log('monthBirthSortedArr: ', monthBirthSortedArr);
 
-  const monthGroupedArr = monthBirthSortedArr.filter(student =>
-    formatter.format(student.birthDate),
-  );
 
-  //   const month = formatter.format(student.birthDate);
-  //   return month;
-  // });
-
-  console.log('monthArr: ', monthGroupedArr);
+  console.log('getMonthsArr: ', getMonthsArr);
+  console.log('getUniqMonthsArr: ', getUniqMonthsArr);
   return monthBirthSortedArr;
   // return sortedByBirth;
 };
@@ -49,3 +49,18 @@ const group = [
 
 console.log('result = ', studentsBirthDays(group));
 console.log('init arr ', group);
+
+const monthArr = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
