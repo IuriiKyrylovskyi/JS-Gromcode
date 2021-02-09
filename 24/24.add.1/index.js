@@ -52,8 +52,15 @@ const studentsBirthDays = students => {
   const getMonthsNamesObj = (keysList, valuesList) =>
     keysList.reduce((obj, key, value) => {
       console.log('obj', obj);
-      return { ...obj, [key]: valuesList[value] };
-    }, {});
+      console.log('obj[key]', obj[key]);
+      console.log('valuesList[value]', valuesList[value]);
+
+      //   return { ...obj, [key]: (obj[key] ? [] : false).push(valuesList[value]) };
+      // }, {});
+
+      // {...obj, [key]: (obj[key] ??  []).push(valuesList[value])}
+      return { ...obj, [key]: (obj[key] ? obj[key] : []).push(valuesList[value]) };
+    });
 
   const unsortedObj = getMonthsNamesObj(getMonths, getNames);
 
@@ -85,6 +92,7 @@ const group = [
   { name: 'Bill', birthDate: '01/20/2000' },
   { name: 'Kate', birthDate: '03/23/1990' },
   { name: 'Tom', birthDate: '01/15/1987' },
+  { name: 'Cruze', birthDate: '03/05/1984' },
 ];
 
 console.log('result = ', studentsBirthDays(group));
