@@ -18,24 +18,52 @@ const studentsBirthDays = students => {
   ); // Jul
 
   // ----------------------------------------------------------------------
-	const formatter = new Intl.DateTimeFormat('en', { month: 'short' });
+  const formatter = new Intl.DateTimeFormat('en', { month: 'short' });
 
-	const getMonthsArr = monthBirthSortedArr.map(student =>
-		formatter.format(new Date(student.birthDate)),
-	);
-
-	const getUniqMonthsArr = [...new Set(getMonthsArr)];
-
-  const monthBirthSortedArr = [...students].sort(
+  const monthBirthSorted = [...students].sort(
     (studentPrev, studentNext) =>
       new Date(studentPrev.birthDate).getMonth() - new Date(studentNext.birthDate).getMonth(),
-  ).map({});
-  console.log('monthBirthSortedArr: ', monthBirthSortedArr);
+  );
+  // .map(student => {
+  //   student.birthDate = formatter.format(new Date(student.birthDate));
+  //   return student;
+  // });
 
+  console.log('monthBirthSorted: ', monthBirthSorted);
 
-  console.log('getMonthsArr: ', getMonthsArr);
-  console.log('getUniqMonthsArr: ', getUniqMonthsArr);
-  return monthBirthSortedArr;
+  const getMonths = monthBirthSorted.map(student => formatter.format(new Date(student.birthDate)));
+  const getNames = monthBirthSorted.map(student => student.name);
+
+  const getMonthsNamesObj = (keysList, valuesList) =>
+    keysList.reduce((obj, key, value) => ({ ...obj, [key]: valuesList[value] }), {});
+
+  const unsortedObj = getMonthsNamesObj(getMonths, getNames);
+
+  const getUniqMonths = [...new Set(getMonths)];
+
+  // const groupBithStudents = monthBirthSorted.map((student, index) => {
+  //   const arr = [];
+  //   if (
+  //     new Date(student[index].birthDate).getMonth() ==
+  //     new Date(student[index + 1].birthDate).getMonth()
+  //   ) {
+  //     arr.push(student.name);
+  //   }
+  //   return arr;
+  // });
+
+  const getStudentsBirth = (studentsArr, months) => {
+    // const result = {
+    //   months.name: [studentsArr.name],
+    // };
+  };
+
+  console.log('getMonths: ', getMonths);
+  console.log('getNames: ', getNames);
+  console.log('getUniqMonths: ', getUniqMonths);
+  console.log('unsortedObj: ', unsortedObj);
+  // console.log('groupBithStudents: ', groupBithStudents);
+  // return getStudentsBirth;
   // return sortedByBirth;
 };
 
