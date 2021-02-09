@@ -50,7 +50,10 @@ const studentsBirthDays = students => {
   const getNames = monthBirthSorted.map(student => student.name);
 
   const getMonthsNamesObj = (keysList, valuesList) =>
-    keysList.reduce((obj, key, value) => ({ ...obj, [key]: valuesList[value] }), {});
+    keysList.reduce((obj, key, value) => {
+      console.log('obj', obj);
+      return { ...obj, [key]: valuesList[value] };
+    }, {});
 
   const unsortedObj = getMonthsNamesObj(getMonths, getNames);
 
