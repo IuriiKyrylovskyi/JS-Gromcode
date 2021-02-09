@@ -77,23 +77,17 @@ const addNewTask = () => {
 
   if (validateTaskLength(newTaskText)) {
     alert('enter valid task');
-    return;
+  } else {
+    const idNum = tasks.length + 1;
+    const newTaskObj = {
+      text: newTaskText,
+      done: false,
+      id: idNum,
+    };
+    tasks.push(newTaskObj);
   }
-
-  // if (newTaskText.length < 5) {
-  //   renderTasks(tasks);
-  //   alert('enter valid task');
-  //   return;
-  // }
-
-  const idNum = tasks.length + 1;
-  const newTaskObj = {
-    text: newTaskText,
-    done: false,
-    id: idNum,
-  };
-  tasks.push(newTaskObj);
   renderTasks(tasks);
+
   // console.log(tasks);
 };
 
