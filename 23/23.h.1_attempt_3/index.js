@@ -12,7 +12,7 @@ const inputElem = document.querySelector('.task-input');
 const createBtnElem = document.querySelector('.create-task-btn');
 
 const tasks = [
-  { text: 'Buy milk', done: false, id: 1 },
+  { text: 'Buy', done: false, id: 1 },
   { text: 'Pick up Tom from airport', done: true, id: 2 },
   { text: 'Visit party', done: false, id: 3 },
   { text: 'Visit doctor', done: false, id: 4 },
@@ -50,30 +50,40 @@ const renderTasks = tasksList => {
 renderTasks(tasks);
 
 // ============= change checkbox status ================================================
+const validateTaskLength = inputText => inputText.length < 5; // ? true: false;
+
 const onChangeStatus = event => {
   const checkedId = event.target.getAttribute('data-id');
 
   if (!event.target.classList.contains('list__item-checkbox')) {
     return;
-  }
+	}
+	
+  const TaskText = event.target.closest('.list__item').innerText;
+  console.log('length', TaskText.length);
+  if (validateTaskLength(TaskText)) {
+    event.preventDefault();
+    alert('invalid task');
+    return;
+	}
+	
   const changedTask = tasks.find(el => el.id === +checkedId);
   changedTask.done = event.target.checked;
 
+  console.log('done tasks on change', tasks);
   renderTasks(tasks);
-  // console.log('done tasks', tasks);
 };
 
 listElem.addEventListener('click', onChangeStatus);
 
 // =========== add new task ====================
-const validateTaskLength = inputText => inputText.length < 5; // ? true: false;
 
-console.log('valid', validateTaskLength('123'));
-console.log('valid', validateTaskLength('123456'));
+// console.log('valid', validateTaskLength('123'));
+// console.log('valid', validateTaskLength('123456'));
 
 const addNewTask = () => {
   const newTaskText = inputElem.value;
-  console.log(newTaskText.length);
+  // console.log(newTaskText.length);
 
   if (validateTaskLength(newTaskText)) {
     alert('enter valid task');
@@ -88,7 +98,7 @@ const addNewTask = () => {
   }
   renderTasks(tasks);
 
-  // console.log(tasks);
+  console.log(tasks);
 };
 
 createBtnElem.addEventListener('click', addNewTask);
