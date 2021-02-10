@@ -57,16 +57,16 @@ const onChangeStatus = event => {
 
   if (!event.target.classList.contains('list__item-checkbox')) {
     return;
-	}
-	
+  }
+
   const TaskText = event.target.closest('.list__item').innerText;
   console.log('length', TaskText.length);
   if (validateTaskLength(TaskText)) {
     event.preventDefault();
     alert('invalid task');
     return;
-	}
-	
+  }
+
   const changedTask = tasks.find(el => el.id === +checkedId);
   changedTask.done = event.target.checked;
 
@@ -98,7 +98,7 @@ const addNewTask = () => {
   }
   renderTasks(tasks);
 
-  console.log(tasks);
+  // console.log(tasks);
 };
 
 createBtnElem.addEventListener('click', addNewTask);
