@@ -55,7 +55,7 @@ const getSortedList = arr => {
 };
 
 // ============= change checkbox status ================================================
-const validateTaskLength = inputText => inputText.length < 1; // ? true: false;
+// const validateTaskLength = inputText => inputText.length < 1; // ? true: false;
 
 const onChangeStatus = event => {
   const checkedId = event.target.getAttribute('data-id');
@@ -63,15 +63,15 @@ const onChangeStatus = event => {
   if (!event.target.classList.contains('list__item-checkbox')) {
     return;
   }
-  // unreal check --------
-  const TaskText = event.target.closest('.list__item').innerText;
-  console.log('length', TaskText.length);
-  if (validateTaskLength(TaskText)) {
-    event.preventDefault();
-    alert('invalid task');
-    return;
-  }
-  // ---------------------------
+  // // unreal check --------
+  // const TaskText = event.target.closest('.list__item').innerText;
+  // console.log('length', TaskText.length);
+  // if (validateTaskLength(TaskText)) {
+  //   event.preventDefault();
+  //   alert('invalid task');
+  //   return;
+  // }
+  // // ---------------------------
   const changedTask = tasks.find(el => el.id === +checkedId);
   changedTask.done = event.target.checked;
   changedTask.id = Date.now();
@@ -97,7 +97,6 @@ const addNewTask = () => {
     renderTasks(tasks);
     return;
   }
-  // const idNum = tasks.length + 1;
   const idNum = Date.now();
   const newTaskObj = {
     text: newTaskText,
@@ -109,7 +108,7 @@ const addNewTask = () => {
   getSortedList(tasks);
   renderTasks(tasks);
 
-  console.log(tasks);
+  // console.log(tasks);
 };
 
 createBtnElem.addEventListener('click', addNewTask);
