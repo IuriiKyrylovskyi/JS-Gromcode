@@ -2,6 +2,7 @@
 // Handlers:
 // 1. create handler to change array element 'done' status on checkbox click
 // 2. create handler to add new undone (not empty) task in array on click 'create' button
+// 3. sort tasks by date
 // Render:
 // 1. clear html list
 // 2. clear input field
