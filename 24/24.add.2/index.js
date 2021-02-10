@@ -12,11 +12,11 @@ const inputElem = document.querySelector('.task-input');
 const createBtnElem = document.querySelector('.create-task-btn');
 
 const tasks = [
-  { text: 'Buy milk', done: false, id: 1 },
-  { text: 'Pick up Tom from airport', done: true, id: 2 },
-  { text: 'Visit party', done: false, id: 3 },
-  { text: 'Visit doctor', done: false, id: 4 },
-  { text: 'Buy meat', done: true, id: 5 },
+  { text: 'Buy milk', done: false, id: Date.now() - 1 },
+  { text: 'Pick up Tom from airport', done: true, id: Date.now() - 2 },
+  { text: 'Visit party', done: false, id: Date.now() - 3 },
+  { text: 'Visit doctor', done: false, id: Date.now() - 4 },
+  { text: 'Buy meat', done: true, id: Date.now() - 5 },
 ];
 
 // ============ start ==============
@@ -49,8 +49,13 @@ const renderTasks = tasksList => {
 
 renderTasks(tasks);
 
+// ======= sort done/undone sublists ==============
+const getSortedList = arr => {
+  arr.sort((prevTask, nextTask) => nextTask.id - prevTask.id);
+};
+
 // ============= change checkbox status ================================================
-const validateTaskLength = inputText => inputText.length < 5; // ? true: false;
+const validateTaskLength = inputText => inputText.length < 1; // ? true: false;
 
 const onChangeStatus = event => {
   const checkedId = event.target.getAttribute('data-id');
@@ -58,7 +63,7 @@ const onChangeStatus = event => {
   if (!event.target.classList.contains('list__item-checkbox')) {
     return;
   }
-
+  // unreal check --------
   const TaskText = event.target.closest('.list__item').innerText;
   console.log('length', TaskText.length);
   if (validateTaskLength(TaskText)) {
@@ -66,11 +71,13 @@ const onChangeStatus = event => {
     alert('invalid task');
     return;
   }
-
+  // ---------------------------
   const changedTask = tasks.find(el => el.id === +checkedId);
   changedTask.done = event.target.checked;
+  changedTask.id = Date.now();
 
   console.log('done tasks on change', tasks);
+  getSortedList(tasks);
   renderTasks(tasks);
 };
 
@@ -90,7 +97,8 @@ const addNewTask = () => {
     renderTasks(tasks);
     return;
   }
-  const idNum = tasks.length + 1;
+  // const idNum = tasks.length + 1;
+  const idNum = Date.now();
   const newTaskObj = {
     text: newTaskText,
     done: false,
@@ -98,6 +106,7 @@ const addNewTask = () => {
   };
   tasks.push(newTaskObj);
 
+  getSortedList(tasks);
   renderTasks(tasks);
 
   console.log(tasks);
