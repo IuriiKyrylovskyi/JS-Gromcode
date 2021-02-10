@@ -55,7 +55,7 @@ const getSortedList = arr => {
 };
 
 // ============= change checkbox status ================================================
-// const validateTaskLength = inputText => inputText.length < 1; // ? true: false;
+const validateTaskLength = inputText => inputText.length < 1; // ? true: false;
 
 const onChangeStatus = event => {
   const checkedId = event.target.getAttribute('data-id');
