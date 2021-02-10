@@ -51,16 +51,12 @@ const studentsBirthDays = students => {
 
   const getMonthsNamesObj = (keysList, valuesList) =>
     keysList.reduce((obj, key, value) => {
-      console.log('obj', obj);
-      console.log('obj[key]', obj[key]);
-      console.log('valuesList[value]', valuesList[value]);
+      // console.log('obj', obj);
+      // console.log('obj[key]', obj[key]);
+      // console.log('valuesList[value]', valuesList[value]);
 
-      //   return { ...obj, [key]: (obj[key] ? [] : false).push(valuesList[value]) };
-      // }, {});
-
-      // {...obj, [key]: (obj[key] ??  []).push(valuesList[value])}
-      return { ...obj, [key]: (obj[key] ? obj[key] : []).push(valuesList[value]) };
-    });
+      ({ ...obj, [key]: (obj[key] ? obj[key] : []).push(valuesList[value]) });
+    }, {});
 
   const unsortedObj = getMonthsNamesObj(getMonths, getNames);
 
@@ -98,17 +94,17 @@ const group = [
 console.log('result = ', studentsBirthDays(group));
 console.log('init arr ', group);
 
-const monthArr = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-];
+// const monthArr = [
+//   'Jan',
+//   'Feb',
+//   'Mar',
+//   'Apr',
+//   'May',
+//   'Jun',
+//   'Jul',
+//   'Aug',
+//   'Sep',
+//   'Oct',
+//   'Nov',
+//   'Dec',
+// ];
