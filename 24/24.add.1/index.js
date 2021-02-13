@@ -1,4 +1,11 @@
 // algorithm
+// 1. check if array
+// 2. sort array without initial array changes
+//  - by month
+//  - by date
+// 3. format data (month number to string)
+// 4. group objects by key
+// 5. export func
 
 // export
 const studentsBirthDays = students => {
@@ -23,7 +30,8 @@ const studentsBirthDays = students => {
   const monthBirthSorted = [...students]
     .sort(
       (studentPrev, studentNext) =>
-        new Date(studentPrev.birthDate).getMonth() - new Date(studentNext.birthDate).getMonth(),
+        new Date(studentPrev.birthDate).getMonth() - new Date(studentNext.birthDate).getMonth() ||
+        new Date(studentPrev.birthDate).getDate() - new Date(studentNext.birthDate).getDate(),
     )
     // .map(student => {
     //   student.birthDate = formatter.format(new Date(student.birthDate));
@@ -59,6 +67,7 @@ const studentsBirthDays = students => {
   // console.log('getMonths: ', getMonths);
   // console.log('getNames: ', getNames);
   // console.log('getUniqMonths: ', getUniqMonths);
+  return monthBirthSorted;
 };
 
 const group = [
@@ -66,7 +75,7 @@ const group = [
   { name: 'Bob', birthDate: '11/17/1995' },
   { name: 'Bill', birthDate: '01/20/2000' },
   { name: 'Kate', birthDate: '03/11/1993' },
-  { name: 'Kate', birthDate: '03/23/1990' },
+  { name: 'Pole', birthDate: '03/23/1990' },
   { name: 'Tom', birthDate: '01/15/1987' },
   { name: 'Cruze', birthDate: '03/05/1984' },
 ];
