@@ -2,11 +2,11 @@
 // Handlers:
 // 1. create handler to change array element 'done' status on checkbox click
 // 2. create handler to add new undone (not empty) task in array on click 'create' button
-// 3. sort tasks by date
 // Render:
 // 1. clear html list
 // 2. clear input field
-// 3. render new data array in filtered oder
+// 3. sort tasks by date
+// 4. render new data array in filtered oder
 
 const listElem = document.querySelector('.list');
 const inputElem = document.querySelector('.task-input');
