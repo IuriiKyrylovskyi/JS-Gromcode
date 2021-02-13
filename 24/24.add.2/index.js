@@ -26,7 +26,7 @@ const renderTasks = tasksList => {
   inputElem.value = ''; // * from add new task
 
   const tasksElems = tasksList
-    .sort((a, b) => a.done - b.done)
+    .sort((a, b) => a.done - b.done || b.id - a.id)
     .map(({ text, done, id }) => {
       const listItemElem = document.createElement('li');
       listItemElem.classList.add('list__item');
@@ -78,7 +78,7 @@ const onChangeStatus = event => {
   changedTask.id = Date.now();
 
   console.log('done tasks on change', tasks);
-  getSortedList(tasks);
+  // getSortedList(tasks);
   renderTasks(tasks);
 };
 
@@ -106,7 +106,7 @@ const addNewTask = () => {
   };
   tasks.push(newTaskObj);
 
-  getSortedList(tasks);
+  // getSortedList(tasks);
   renderTasks(tasks);
 
   // console.log(tasks);
