@@ -14,10 +14,10 @@ const createBtnElem = document.querySelector('.create-task-btn');
 
 const tasks = [
   { text: 'Buy milk', done: false, id: Date.now() - 1, data: Date.now() - 1 },
-  { text: 'Pick up Tom from airport', done: true, id: Date.now() - 2, data: Date.now() - 1 },
-  { text: 'Visit party', done: false, id: Date.now() - 3, data: Date.now() - 1 },
-  { text: 'Visit doctor', done: false, id: Date.now() - 4, data: Date.now() - 1 },
-  { text: 'Buy meat', done: true, id: Date.now() - 5, data: Date.now() - 1 },
+  { text: 'Pick up Tom from airport', done: true, id: Date.now() - 2, data: Date.now() - 2 },
+  { text: 'Visit party', done: false, id: Date.now() - 3, data: Date.now() - 3 },
+  { text: 'Visit doctor', done: false, id: Date.now() - 4, data: Date.now() - 4 },
+  { text: 'Buy meat', done: true, id: Date.now() - 5, data: Date.now() - 5 },
 ];
 
 // ============ start ==============
@@ -51,10 +51,10 @@ const renderTasks = tasksList => {
 
 renderTasks(tasks);
 
-// ======= sort done/undone sublists ==============
-const getSortedList = arr => {
-  arr.sort((prevTask, nextTask) => nextTask.id - prevTask.id);
-};
+// // ======= sort done/undone sublists ==============
+// const getSortedList = arr => {
+//   arr.sort((prevTask, nextTask) => nextTask.id - prevTask.id);
+// };
 
 // ============= change checkbox status ================================================
 const validateTaskLength = inputText => inputText.length < 1; // ? true: false;
