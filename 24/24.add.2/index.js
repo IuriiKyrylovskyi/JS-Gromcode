@@ -13,11 +13,11 @@ const inputElem = document.querySelector('.task-input');
 const createBtnElem = document.querySelector('.create-task-btn');
 
 const tasks = [
-  { text: 'Buy milk', done: false, id: Date.now() - 1 },
-  { text: 'Pick up Tom from airport', done: true, id: Date.now() - 2 },
-  { text: 'Visit party', done: false, id: Date.now() - 3 },
-  { text: 'Visit doctor', done: false, id: Date.now() - 4 },
-  { text: 'Buy meat', done: true, id: Date.now() - 5 },
+  { text: 'Buy milk', done: false, id: Date.now() - 1, data: Date.now() - 1 },
+  { text: 'Pick up Tom from airport', done: true, id: Date.now() - 2, data: Date.now() - 1 },
+  { text: 'Visit party', done: false, id: Date.now() - 3, data: Date.now() - 1 },
+  { text: 'Visit doctor', done: false, id: Date.now() - 4, data: Date.now() - 1 },
+  { text: 'Buy meat', done: true, id: Date.now() - 5, data: Date.now() - 1 },
 ];
 
 // ============ start ==============
@@ -26,13 +26,14 @@ const renderTasks = tasksList => {
   inputElem.value = ''; // * from add new task
 
   const tasksElems = tasksList
-    .sort((a, b) => a.done - b.done || b.id - a.id)
-    .map(({ text, done, id }) => {
+    .sort((a, b) => a.done - b.done || b.data - a.data)
+    .map(({ text, done, id, data }) => {
       const listItemElem = document.createElement('li');
       listItemElem.classList.add('list__item');
       const checkbox = document.createElement('input');
 
       checkbox.setAttribute('data-id', id);
+      checkbox.setAttribute('data-data', data);
 
       checkbox.setAttribute('type', 'checkbox');
       checkbox.checked = done;
@@ -75,7 +76,7 @@ const onChangeStatus = event => {
   // // ---------------------------
   const changedTask = tasks.find(el => el.id === +checkedId);
   changedTask.done = event.target.checked;
-  changedTask.id = Date.now();
+  changedTask.data = Date.now();
 
   console.log('done tasks on change', tasks);
   // getSortedList(tasks);
@@ -99,10 +100,12 @@ const addNewTask = () => {
     return;
   }
   const idNum = Date.now();
+  const doneDataNum = Date.now();
   const newTaskObj = {
     text: newTaskText,
     done: false,
     id: idNum,
+    data: doneDataNum,
   };
   tasks.push(newTaskObj);
 
