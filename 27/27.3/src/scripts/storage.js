@@ -1,4 +1,4 @@
-const storage = {};
+// const storage = {};
 // [
 //   { text: 'Buy', done: false, id: 1 },
 //   { text: 'Pick up Tom from airport', done: true, id: 2 },
@@ -8,7 +8,8 @@ const storage = {};
 // ];
 
 export const setItem = (key, value) => {
-  Object.assign(storage, { [key]: value });
+  localStorage.setItem(key, JSON.stringify(value));
+  // Object.assign(storage, { [key]: value });
 };
 
-export const getItem = key => storage[key];
+export const getItem = key => JSON.parse(localStorage.getItem(key));
