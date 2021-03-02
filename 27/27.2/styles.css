@@ -7,10 +7,12 @@
 	
 }
 .counter {
+	width: 400px;
 	font-size: 70px;
 	font-weight: 700;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 }
 
 .counter__btn{
@@ -20,14 +22,18 @@
 	border-radius: 10px;
 	background-color: #fff;
 	outline: none;
-}
+	cursor: pointer;
+	transition: all 0.3s linear;
+	}
 
 .counter__btn:first-child{
 	padding: 0 0 15px 0;
 }
+.counter__btn:hover{
+background-color: rgb(214, 214, 214);
+}
 .counter__value{
-	flex: 0 0 125px;
-	/* min-width: 75px; */
+	flex: 0 0 150px;
 	text-align: center;
 }
 
