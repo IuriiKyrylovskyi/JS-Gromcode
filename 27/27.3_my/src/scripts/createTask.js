@@ -15,9 +15,9 @@ export const addNewTask = () => {
       done: false,
       id: idNum,
     };
-    setItem('tasksList', newTaskObj);
+    return setItem('tasksList', newTaskObj);
   }
-  renderTasks(getItem('tasksList'));
+  renderTasks();
 
   // console.log(tasks);
 };

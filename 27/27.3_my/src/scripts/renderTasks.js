@@ -2,9 +2,9 @@ import { getItem } from './storage.js';
 
 const listElem = document.querySelector('.list');
 const inputElem = document.querySelector('.task-input');
-const tasksList = getItem('tasksList');
-const isEmptyTasksList = tasksList ? tasksList.length > 0 : [];
-console.log(isEmptyTasksList);
+const tasksList = getItem('tasksList') || [];
+// const isEmptyTasksList = tasksList ? tasksList.length > 0 : [];
+console.log(tasksList);
 
 export const renderTasks = () => {
   listElem.innerHTML = ''; // * from add new task
@@ -13,7 +13,7 @@ export const renderTasks = () => {
   // if (!isEmptyTasksList) {
 
   // }
-  const tasksElems = isEmptyTasksList
+  const tasksElems = tasksList
     .sort((a, b) => a.done - b.done)
     .map(({ text, done, id }) => {
       const listItemElem = document.createElement('li');

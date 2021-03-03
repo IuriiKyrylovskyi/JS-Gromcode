@@ -10,17 +10,17 @@ export const onChangeStatus = event => {
     return;
   }
 
-  const TaskText = event.target.closest('.list__item').innerText;
-  console.log('length', TaskText.length);
-  if (validateTaskLength(TaskText)) {
+  const taskText = event.target.closest('.list__item').innerText;
+  console.log('length', taskText.length);
+  if (validateTaskLength(taskText)) {
     event.preventDefault();
     alert('invalid task');
     return;
   }
 
-  const changedTask = getItem.find(el => el.id === +checkedId);
+  const changedTask = getItem('tasksList').find(el => el.id === +checkedId);
   changedTask.done = event.target.checked;
 
   console.log('done tasks on change', getItem);
-  renderTasks(getItem);
+  renderTasks();
 };
