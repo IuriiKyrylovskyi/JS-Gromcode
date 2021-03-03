@@ -4,6 +4,7 @@ const listElem = document.querySelector('.list');
 const inputElem = document.querySelector('.task-input');
 const tasksList = getItem('tasksList');
 const isEmptyTasksList = tasksList ? tasksList.length > 0 : [];
+console.log(isEmptyTasksList);
 
 export const renderTasks = () => {
   listElem.innerHTML = ''; // * from add new task
