@@ -2,6 +2,19 @@ import { getItem } from './storage.js';
 
 const listElem = document.querySelector('.list');
 
+const compareTasks = () => {
+	
+
+
+
+
+
+
+	
+	return new Date(b.createDate) - new Date(a.createDate);
+}
+
+
 const createCheckbox = ({ done, id }) => {
   const checkboxElem = document.createElement('input');
   checkboxElem.setAttribute('data-id', id);
