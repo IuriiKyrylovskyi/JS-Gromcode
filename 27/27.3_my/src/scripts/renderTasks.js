@@ -1,8 +1,8 @@
 import { getItem } from './storage.js';
 
-const tasksList = getItem('tasksList');
+const tasksList = getItem('tasksList') || [];
 
-export const renderTasks = tasksList => {
+export const renderTasks = () => {
   const listElem = document.querySelector('.list');
   const inputElem = document.querySelector('.task-input');
 
