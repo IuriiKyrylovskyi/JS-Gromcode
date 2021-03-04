@@ -10,7 +10,7 @@ export const addNewTask = () => {
   if (validateTaskLength(newTaskText)) {
     alert('enter valid task');
   } else {
-    createNewTask();
+    createNewTask(newTaskText);
   }
   setItem('tasksList', newTaskObj);
 
