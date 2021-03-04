@@ -4,21 +4,21 @@ import { renderTasks } from './renderTasks.js';
 import { createNewTask } from './createTask.js';
 
 export const newTaskHandler = () => {
-  const newTaskText = document.querySelector('.task-input').value;
+  const newTaskText = document.querySelector('.task-input');
   // console.log(newTaskText.length);
 
-  if (!validateTaskLength(newTaskText)) {
+  if (!validateTaskLength(newTaskText.value)) {
     alert('enter valid task');
+
     newTaskText.textContent = null;
-    // newTaskText.innerHTML = '';
+    // console.log(newTaskText.textContent);
+    renderTasks();
+
     return;
   }
-  // else {
-  createNewTask(newTaskText);
-  // }
-  // setItem('tasksList', createNewTask(newTaskText));
 
+  createNewTask(newTaskText.value);
+  
   renderTasks();
 
-  // console.log(tasks);
 };
