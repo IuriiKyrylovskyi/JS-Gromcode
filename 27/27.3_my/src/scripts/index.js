@@ -9,4 +9,4 @@ renderTasks();
 
 listElem.addEventListener('click', onChangeStatus);
 
-createBtnElem.addEventListener('click', addNewTask);
+createBtnElem.addEventListener('click', newTaskHandler);
