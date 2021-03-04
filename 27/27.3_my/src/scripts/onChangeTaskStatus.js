@@ -1,7 +1,7 @@
 import { getItem, setItem } from './storage.js';
 import { renderTasks } from './renderTasks.js';
 
-export const validateTaskLength = inputText => inputText.length < 5; // ? true: false;
+export const unvalidTaskLength = inputText => inputText.length < 5; // ? true: false;
 
 export const onChangeStatus = event => {
   const checkedId = event.target.getAttribute('data-id');
@@ -12,7 +12,7 @@ export const onChangeStatus = event => {
 
   const taskText = event.target.closest('.list__item').innerText;
   console.log('length', taskText.length);
-  if (validateTaskLength(taskText)) {
+  if (unvalidTaskLength(taskText)) {
     event.preventDefault();
     alert('invalid task');
     return;
