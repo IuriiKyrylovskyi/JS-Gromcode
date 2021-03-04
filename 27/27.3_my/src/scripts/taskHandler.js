@@ -3,7 +3,7 @@
 import { renderTasks } from './renderTasks.js';
 import { createNewTask } from './createTask.js';
 
-export const addNewTask = () => {
+export const newTaskHandler = () => {
   const newTaskText = document.querySelector('.task-input').value;
   // console.log(newTaskText.length);
 

@@ -1,6 +1,6 @@
 import { renderTasks } from './renderTasks.js';
 import { onChangeStatus } from './onChangeTaskStatus.js';
-import { addNewTask } from './addTask.js';
+import { newTaskHandler } from './taskHandler.js';
 
 const createBtnElem = document.querySelector('.create-task-btn');
 const listElem = document.querySelector('.list');
