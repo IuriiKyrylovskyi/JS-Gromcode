@@ -1,24 +1,25 @@
 import { getItem, setItem } from './storage.js';
-import { validateTaskLength } from './onChangeTaskStatus.js';
-import { renderTasks } from './renderTasks.js';
+// import { validateTaskLength } from './onChangeTaskStatus.js';
+// import { renderTasks } from './renderTasks.js';
 
-export const addNewTask = () => {
+export const createNewTask = () => {
   const newTaskText = document.querySelector('.task-input').value;
-  // console.log(newTaskText.length);
+  // // console.log(newTaskText.length);
 
-  if (validateTaskLength(newTaskText)) {
-    alert('enter valid task');
-  } else {
+  // if (validateTaskLength(newTaskText)) {
+  //   alert('enter valid task');
+  // } else {
     const idNum = getItem('tasksList').length + 1;
     const newTaskObj = {
       text: newTaskText,
       done: false,
       id: idNum,
-    };
-  }
-  setItem('tasksList', newTaskObj);
+  };
+  return newTaskObj;
+  // }
+  // setItem('tasksList', newTaskObj);
 
-  renderTasks();
+  // renderTasks();
 
   // console.log(tasks);
 };
