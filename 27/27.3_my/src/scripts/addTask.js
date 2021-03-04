@@ -12,7 +12,7 @@ export const addNewTask = () => {
   } else {
     createNewTask(newTaskText);
   }
-  setItem('tasksList', newTaskObj);
+  setItem('tasksList', createNewTask(newTaskText));
 
   renderTasks();
 
