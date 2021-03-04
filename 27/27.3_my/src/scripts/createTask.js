@@ -5,7 +5,7 @@ import { validateTaskLength } from './onChangeTaskStatus.js';
 export const createNewTask = newTaskText => {
   // const newTaskText = document.querySelector('.task-input').value;
   // // console.log(newTaskText.length);
-  let newTaskObj = {};
+  let newTaskObj;
 
   if (validateTaskLength(newTaskText)) {
     alert('enter valid task');
