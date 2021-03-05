@@ -1,7 +1,6 @@
-import { setItem } from './storage.js';
+import { getItem, setItem } from './storage.js';
 
 export const createNewTask = newTaskText => {
-  
   const idNum = new Date().getTime();
 
   console.log(idNum);
@@ -11,7 +10,9 @@ export const createNewTask = newTaskText => {
     done: false,
     id: idNum,
   };
+  const tasks = getItem('tasksList') || [];
+  const newTasks = tasks.concat(newTaskObj);
 
-  setItem('tasksList', newTaskObj);
- 
+  setItem('tasksList', newTasks);
+  console.log(setItem('tasksList', newTasks));
 };
