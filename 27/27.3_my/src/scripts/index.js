@@ -1,12 +1,15 @@
 import { renderTasks } from './renderTasks.js';
-import { onChangeStatus } from './onChangeTaskStatus.js';
-import { newTaskHandler } from './taskHandler.js';
+import { initTodoListHandlers } from './todoList.js';
 
-const createBtnElem = document.querySelector('.create-task-btn');
-const listElem = document.querySelector('.list');
+document.addEventListener('DOMContentLoaded', () => {
+  renderTasks();
+  initTodoListHandlers();
+});
 
-renderTasks();
-
-listElem.addEventListener('click', onChangeStatus);
-
-createBtnElem.addEventListener('click', newTaskHandler);
+const onStorageChange = e => {
+  if (e.key === 'tasksList') {
+    console.log(e.key);
+    renderTasks();
+  }
+};
+window.addEventListener('storage', onStorageChange);

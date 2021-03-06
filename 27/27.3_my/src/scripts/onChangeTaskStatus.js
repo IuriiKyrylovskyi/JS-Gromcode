@@ -13,7 +13,7 @@ export const onChangeStatus = event => {
   }
 
   const taskText = event.target.closest('.list__item').innerText;
-  console.log('length', taskText.length);
+  // console.log('length', taskText.length);
   if (!validateTaskLength(taskText)) {
     event.preventDefault();
     alert('invalid task');
@@ -21,18 +21,18 @@ export const onChangeStatus = event => {
   }
 
   const changedTaskList = getItem('tasksList').map(task => {
-    if (task.id === +checkedId) {
-      console.log(task);
-      console.log(task.done);
-      console.log(event.target.checked);
+    if (task.id === Number(checkedId)) {
+      // console.log(task);
+      // console.log(task.done);
+      // console.log(event.target.checked);
 
       task.done = event.target.checked;
-      console.log(task.done);
+      // console.log(task.done);
     }
     return task;
   });
 
   setItem('tasksList', changedTaskList);
-  console.log('done tasks on change', getItem('tasksList'));
+  // console.log('done tasks on change', getItem('tasksList'));
   renderTasks();
 };

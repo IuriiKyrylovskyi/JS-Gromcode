@@ -1,10 +1,10 @@
-// export { onCreateTask } from './createTask.js';
-// export { onToggleTask } from './updateTask.js';
+import { newTaskHandler } from './taskHandler.js';
+import { onChangeStatus } from './onChangeTaskStatus.js';
 
-// export const initTodoListHandlers = () => {
-//   const createBtnElem = document.querySelector('.create-task-btn');
-//   createBtnElem.addEventListener('click', onCreateTask);
+export const initTodoListHandlers = () => {
+  const createBtnElem = document.querySelector('.create-task-btn');
+  createBtnElem.addEventListener('click', newTaskHandler);
 
-//   const toggleListElem = document.querySelector('.list');
-//   toggleListElem.addEventListener('click', onToggleTask);
-// };
+  const listElem = document.querySelector('.list');
+  listElem.addEventListener('click', onChangeStatus);
+};

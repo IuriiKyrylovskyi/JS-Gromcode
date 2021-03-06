@@ -1,12 +1,13 @@
 import { getItem } from './storage.js';
 
-const listElem = document.querySelector('.list');
-const inputElem = document.querySelector('.task-input');
-const tasksList = getItem('tasksList') || [];
 // const isEmptyTasksList = tasksList ? tasksList.length > 0 : [];
-console.log(tasksList);
 
 export const renderTasks = () => {
+	const listElem = document.querySelector('.list');
+	const inputElem = document.querySelector('.task-input');
+	const tasksList = getItem('tasksList') || [];
+	console.log(tasksList);
+
   listElem.innerHTML = ''; // * from add new task
   inputElem.value = ''; // * from add new task
 
