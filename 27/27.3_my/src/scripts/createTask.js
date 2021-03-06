@@ -14,5 +14,5 @@ export const createNewTask = newTaskText => {
   const newTasks = tasks.concat(newTaskObj);
 
   setItem('tasksList', newTasks);
-  console.log(setItem('tasksList', newTasks));
+  console.log(getItem('tasksList'));
 };

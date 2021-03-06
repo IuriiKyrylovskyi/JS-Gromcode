@@ -23,6 +23,6 @@ export const onChangeStatus = event => {
   const changedTask = getItem('tasksList').find(el => el.id === +checkedId);
   changedTask.done = event.target.checked;
 
-  console.log('done tasks on change', getItem);
+  console.log('done tasks on change', getItem('tasksList'));
   renderTasks();
 };
