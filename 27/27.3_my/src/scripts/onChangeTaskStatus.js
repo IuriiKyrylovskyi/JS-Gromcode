@@ -1,9 +1,9 @@
 import { getItem, setItem } from './storage.js';
 import { renderTasks } from './renderTasks.js';
 
-const minTaskNameLength = 5;
+const MIN_TASK_LENGTH = 5;
 
-export const validateTaskLength = inputText => inputText.length >= minTaskNameLength; // ? true: false;
+export const validateTaskLength = inputText => inputText.length >= MIN_TASK_LENGTH; // ? true: false;
 
 export const onChangeStatus = event => {
   const checkedId = event.target.getAttribute('data-id');
@@ -20,9 +20,19 @@ export const onChangeStatus = event => {
     return;
   }
 
-  const changedTask = getItem('tasksList').find(el => el.id === +checkedId);
-  changedTask.done = event.target.checked;
+  const changedTaskList = getItem('tasksList').map(task => {
+    if (task.id === +checkedId) {
+      console.log(task);
+      console.log(task.done);
+      console.log(event.target.checked);
 
+      task.done = event.target.checked;
+      console.log(task.done);
+    }
+    return task;
+  });
+
+  setItem('tasksList', changedTaskList);
   console.log('done tasks on change', getItem('tasksList'));
   renderTasks();
 };
