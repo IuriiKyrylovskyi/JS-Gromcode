@@ -27,6 +27,7 @@ export const onChangeStatus = event => {
       // console.log(event.target.checked);
 
       task.done = event.target.checked;
+      task.data = new Date().getTime();
       // console.log(task.done);
     }
     return task;
