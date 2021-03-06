@@ -1,6 +1,6 @@
 import { getItem, setItem } from './storage.js';
 
-export const getList = getItem('tasksList') || [];
+const tasks = () => getItem('tasksList') || [];
 
 export const createNewTask = newTaskText => {
   const idNum = new Date().getTime();
@@ -14,15 +14,14 @@ export const createNewTask = newTaskText => {
     id: idNum,
     data: doneDataNum,
   };
-  const tasks = getList;
-  const newTasks = tasks.concat(newTaskObj);
+  const newTasks = tasks().concat(newTaskObj);
 
   setItem('tasksList', newTasks);
-  console.log(getList);
+  console.log(tasks);
 };
 
 export const changeStatus = (id, status) => {
-  const changedTaskList = getList.map(task => {
+  const changedTaskList = tasks().map(task => {
     if (task.id === Number(id)) {
       // console.log(task);
       // console.log(task.done);
