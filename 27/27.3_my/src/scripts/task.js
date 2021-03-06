@@ -14,7 +14,7 @@ export const createNewTask = newTaskText => {
     id: idNum,
     data: doneDataNum,
   };
-  const tasks = getList || [];
+  const tasks = getList;
   const newTasks = tasks.concat(newTaskObj);
 
   setItem('tasksList', newTasks);
