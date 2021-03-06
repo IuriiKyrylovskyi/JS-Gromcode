@@ -1,12 +1,13 @@
-import { getItem, setItem } from './storage.js';
+// import { getItem, setItem } from './storage.js';
 import { renderTasks } from './renderTasks.js';
+import { changeStatus } from './task.js';
 
 const MIN_TASK_LENGTH = 5;
 
 export const validateTaskLength = inputText => inputText.length >= MIN_TASK_LENGTH; // ? true: false;
 
 export const onChangeStatus = event => {
-  const checkedId = event.target.getAttribute('data-id');
+  // const checkedId = event.target.getAttribute('data-id');
 
   if (!event.target.classList.contains('list__item-checkbox')) {
     return;
@@ -20,20 +21,22 @@ export const onChangeStatus = event => {
     return;
   }
 
-  const changedTaskList = getItem('tasksList').map(task => {
-    if (task.id === Number(checkedId)) {
-      // console.log(task);
-      // console.log(task.done);
-      // console.log(event.target.checked);
+  changeStatus(event);
 
-      task.done = event.target.checked;
-      task.data = new Date().getTime();
-      // console.log(task.done);
-    }
-    return task;
-  });
+  // const changedTaskList = getItem('tasksList').map(task => {
+  //   if (task.id === Number(checkedId)) {
+  //     // console.log(task);
+  //     // console.log(task.done);
+  //     // console.log(event.target.checked);
 
-  setItem('tasksList', changedTaskList);
+  //     task.done = event.target.checked;
+  //     task.data = new Date().getTime();
+  //     // console.log(task.done);
+  //   }
+  //   return task;
+  // });
+
+  // setItem('tasksList', changedTaskList);
   // console.log('done tasks on change', getItem('tasksList'));
   renderTasks();
 };

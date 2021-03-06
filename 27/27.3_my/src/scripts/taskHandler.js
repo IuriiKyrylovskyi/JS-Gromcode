@@ -1,7 +1,6 @@
-// import { getItem, setItem } from './storage.js';
 import { validateTaskLength } from './onChangeTaskStatus.js';
 import { renderTasks } from './renderTasks.js';
-import { createNewTask } from './createTask.js';
+import { createNewTask } from './task.js';
 
 export const newTaskHandler = () => {
   const newTaskText = document.querySelector('.task-input');
