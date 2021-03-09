@@ -7,9 +7,11 @@ export const newTaskHandler = () => {
   // console.log(newTaskText.length);
 
   if (!validateTaskLength(newTaskText.value)) {
+    console.log(newTaskText.value);
+
     alert('enter valid task');
 
-    newTaskText.textContent = null;
+		newTaskText.textContent = ''; // null;
     // console.log(newTaskText.textContent);
     renderTasks();
 
@@ -17,7 +19,6 @@ export const newTaskHandler = () => {
   }
 
   createNewTask(newTaskText.value);
-  
-  renderTasks();
 
+  renderTasks();
 };

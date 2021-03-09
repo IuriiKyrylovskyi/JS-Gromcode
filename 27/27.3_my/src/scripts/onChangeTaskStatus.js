@@ -1,7 +1,7 @@
 import { renderTasks } from './renderTasks.js';
 import { changeStatus } from './task.js';
 
-const MIN_TASK_LENGTH = 1;
+const MIN_TASK_LENGTH = 5;
 
 export const validateTaskLength = inputText => inputText.length >= MIN_TASK_LENGTH;   // ? true: false;
 
