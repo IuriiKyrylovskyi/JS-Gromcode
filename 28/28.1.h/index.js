@@ -16,8 +16,7 @@ const setValue = {
   milliseconds: 'setMilliseconds',
 };
 
-// export
-const shmoment = initDate => {
+export const shmoment = initDate => {
   let result = new Date(initDate);
   // console.log(result);
 
@@ -58,7 +57,6 @@ console.log(check3);
 console.log(check4);
 console.log(check5);
 console.log(check1);
-
 
 const check0 = shmoment(new Date(2021, 2, 9)).subtract('years', 5).result();
 const check02 = shmoment(new Date(2021, 2, 9)).subtract('months', 1).result();
