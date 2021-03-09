@@ -3,7 +3,7 @@ import { changeStatus } from './task.js';
 
 const MIN_TASK_LENGTH = 5;
 
-export const validateTaskLength = inputText => inputText.length >= MIN_TASK_LENGTH;   // ? true: false;
+export const validateTaskLength = inputText => inputText.length >= MIN_TASK_LENGTH; // ? true: false;
 
 export const onChangeStatus = event => {
   const checkedId = event.target.getAttribute('data-id');
@@ -12,15 +12,18 @@ export const onChangeStatus = event => {
     return;
   }
 
-  const taskText = event.target.closest('.list__item').innerText;
-  // console.log('length', taskText.length);
-  if (!validateTaskLength(taskText)) {
-    event.preventDefault();
-    alert('invalid task');
-    return;
-  }
+  // const taskText = event.target.closest('.list__item').innerText;
+  // // console.log('length', taskText.length);
+
+  // console.log(validateTaskLength(taskText));
+
+  // if (!validateTaskLength(taskText)) {
+  //   event.preventDefault();
+  //   alert('invalid task');
+  //   return;
+  // }
 
   changeStatus(checkedId, event.target.checked);
-  
+
   renderTasks();
 };
