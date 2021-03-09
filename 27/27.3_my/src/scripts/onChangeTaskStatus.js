@@ -1,9 +1,9 @@
 import { renderTasks } from './renderTasks.js';
 import { changeStatus } from './task.js';
 
-const MIN_TASK_LENGTH = 5;
+const MIN_TASK_LENGTH = 1;
 
-export const validateTaskLength = inputText => inputText.length >= MIN_TASK_LENGTH; // ? true: false;
+export const validateTaskLength = inputText => inputText.length >= MIN_TASK_LENGTH;   // ? true: false;
 
 export const onChangeStatus = event => {
   const checkedId = event.target.getAttribute('data-id');
