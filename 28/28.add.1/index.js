@@ -1,23 +1,28 @@
 // export
 const maxFibonacci = number => {
-  let result = 0;
+	if (number === 0) return 0;
 
-	const calcMaxFibonacci = {
-		add(value) {
-			result += value;
-			return this ;
-		},
-		result() {
-			return result;
-		}
-	};
+	if (number === 1) return 1;
+
+	return maxFibonacci(number - 1) + maxFibonacci(number - 2);
+	
+	
+	// let result = 0;
+	
+
+	// const calcMaxFibonacci = {
+	// 	add(value) {
+	// 		result += value;
+	// 		return this ;
+	// 	},
+	// 	result() {
+	// 		return result;
+	// 	}
+	// };
 
 
-  return calcMaxFibonacci;
+  // return calcMaxFibonacci;
 };
 
 
-const fib = prev => next => {
-	[].reduce((acc, ))
-
-}
+console.log(maxFibonacci(8));
