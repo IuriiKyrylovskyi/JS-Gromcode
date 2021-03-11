@@ -21,7 +21,7 @@ const onImageLoaded = (error, imgElem) => {
 	const sizeElem = document.querySelector('.image-size');
   if (error) {
     console.log(error);
-    sizeElem.textContent = `Image load is failed...`;
+    // sizeElem.textContent = `Image load is failed...`;
 
     return;
   }
