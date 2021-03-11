@@ -18,19 +18,17 @@ export const addImage = (imgSrc, callback) => {
 
 //callack example
 const onImageLoaded = (error, imgElem) => {
-	const sizeElem = document.querySelector('.image-size');
   if (error) {
     console.log(error);
-    // sizeElem.textContent = `Image load is failed...`;
-
     return;
   }
   const { width, height } = imgElem;
+  const sizeElem = document.querySelector('.image-size');
   sizeElem.textContent = `${width} x ${height}`;
 };
 
 //test call
 addImage(
-  'https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bistock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg',
+  'https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg',
   onImageLoaded,
 );
