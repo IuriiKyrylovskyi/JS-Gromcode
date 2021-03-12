@@ -25,11 +25,13 @@ const imgSrc =
 
 const resultPromise = addImage(imgSrc);
 
-resultPromise.then(({ width, height }) => {
-  //  const { width, height } = imgElem;
-  const sizeElem = document.querySelector('.image-size');
-  sizeElem.textContent = `${width} x ${height}`;
-});
+resultPromise
+  .then(({ width, height }) => {
+    //  const { width, height } = imgElem;
+    const sizeElem = document.querySelector('.image-size');
+    sizeElem.textContent = `${width} x ${height}`;
+  })
+  .catch(error => console.log(error));
 
 // //callack example
 // const onImageLoaded = (error, imgElem) => {
