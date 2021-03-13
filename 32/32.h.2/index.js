@@ -8,13 +8,15 @@ const promiseNumber3 = Promise.resolve(8);
  */
 
 // update code below
-
-// export
-const resultPromise = (...promiseNumbers) => Promise.all(promiseNumbers);
+const myPromise = (...promiseNumbers) => Promise.all(promiseNumbers)
 
 const numbers = [promiseNumber1, promiseNumber2, promiseNumber3];
 
-resultPromise(...numbers)
+// export
+const resultPromise = myPromise(...numbers);
+
+
+resultPromise
   .then(numbersList => {
     console.log(numbersList);
     const sum = numbersList.reduce((acc, num) => acc + num, 0);
