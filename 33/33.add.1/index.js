@@ -1,24 +1,30 @@
 const url = 'https://api.github.com';
 
+// https://api.github.com/repos/{owner}/{repo}
+// https://api.github.com/repos/IuriiKyrylovskyi/Calendar_project_js/commits?per_page=100
 // const userInfo = {
 //   days: 0,
 //   userId: 'userId',
 //   repoId: 'repoId',
 // };
 
-// export
-const getMostActiveDevs = user =>
-  fetch(`${url}/repos/${user.userId}/${user.repoId}/commits?per_page=100`).then(response =>
-    response.json(),
-  );
+const getRepoData = (userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
+  fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`).then(response => response.json());
+// .then(result => console.log(result));
 
-const userInfo = {
-  // days: 0,
-  id: '65412895',
-  repoId: 'repoId',
-};
+getRepoData().then(result => console.log(result));
 
-getMostActiveDevs(userInfo).then(result => console.log(result));
+// // export
+// const getMostActiveDevs = user => getRepoData(userId, repoId).then(result => console.log(result));
+
+// const userInfo = {
+//   // days: 0,
+//   id: '65412895',
+//   repoId: 'Calendar_project_js',
+// };
+
+// getMostActiveDevs(userInfo).then(result => console.log(result));
+// ==============================================================================================
 // // export
 // const getTaskById = taskId =>
 //   fetch(`${baseUrl}?id=${taskId}`)
