@@ -43,7 +43,7 @@ const mostActiveAuthors = authors =>
 		return author.count === max;
   });
 
-// const getRepoData = (days = 7, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
+// const getRepoData = (days = 17, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
 const getRepoData = (days = 237, userId = 'andrii142', repoId = 'developer-roadmap') =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
