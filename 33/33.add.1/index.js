@@ -39,30 +39,23 @@ const testArr = commits => {
 
 // console.log(testArr(test));
 
-const sortAuthorByActivness = authors =>
-  authors.sort((authorPrev, authorNext) => authorPrev.count - authorNext.count);
+const mostActiveAuthors = authors=>
+// const sortAuthorByActivness = authors =>
+//   authors.sort((authorPrev, authorNext) => authorPrev.count - authorNext.count);
 
 // const getRepoData = (days = 7, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
 // const getRepoData = (days = 415, userId = 'velmyk', repoId = 'js') =>
 const getRepoData = (days = 237, userId = 'andrii142', repoId = 'developer-roadmap') =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
-    .then(
-      commits =>
-        commits
-          .map(commit => commit.commit.author)
-          .filter(
-            authorData =>
-              new Date().getTime() - new Date(authorData.date).getTime() <=
-              days * 24 * 60 * 60 * 1000,
-          ),
-      // .reduce(
-      //   (acc, value) => ({
-      //     ...acc,
-      //     [value.name]: (acc[value.name] || 0) + 1,
-      //   }),
-      //   [],
-      // ),
+    .then(commits =>
+      commits
+        .map(commit => commit.commit.author)
+        .filter(
+          authorData =>
+            new Date().getTime() - new Date(authorData.date).getTime() <=
+            days * 24 * 60 * 60 * 1000,
+        ),
     )
     .then(res => testArr(res))
     .then(res => sortAuthorByActivness(res));
@@ -111,3 +104,11 @@ console.log(getRepoData());
 // getTaskById('2').then(taskData => {
 //   console.log(taskData); // {'id':'2', 'done':true ... }
 // });
+
+// .reduce(
+//   (acc, value) => ({
+//     ...acc,
+//     [value.name]: (acc[value.name] || 0) + 1,
+//   }),
+//   [],
+// ),
