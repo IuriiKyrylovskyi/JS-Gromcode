@@ -7,35 +7,42 @@ const url = 'https://api.github.com';
 // console.log(new Date('2021-03-08T21:40:05Z').getTime());
 // console.log(7 * 24 * 60 * 60 * 1000);
 
-const test = ['a', 'b', 'c', 'd', 'd', 'e', 'a', 'b', 'c', 'f', 'g', 'h', 'h', 'h', 'e', 'a'];
-
 const testArr = commits => {
-  const counter = [];
+  const author = {};
 
   commits.forEach(commit => {
+    // const count = 0;
+
     const { name, email } = commit;
-    if (counter[name]) {
-      counter[name].total++;
+
+    // const author = counter[name] ? counter[name] : { count, name, email };
+
+    if (author[name]) {
+      author[name].count++;
       return;
     }
 
-    const total = 1;
+    const count = 1;
 
-    counter[name] = { total, name, email };
+    // counter[name] = { count: author.count + 1, name, email };
+    author[name] = { count, name, email };
 
-    return console.log(counter[name]);
+    console.log(author[name]);
+    console.log(author[name].count);
+    // return counter[name];
+
     // counter[commit] = (counter[commit] || 0) + 1;
     // counter[commit[author]] = (counter[commit[author]] || 0) + 1;
   });
 
-  for (let element in counter) {
-    console.log(element + ' = ' + counter[element]);
-  }
+  // for (let element in counter) {
+  //   console.log(element + ' = ' + counter[element]);
+  // }
 };
 
 // console.log(testArr(test));
 
-const getRepoData = (days = 11, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
+const getRepoData = (days = 7, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
     .then(
