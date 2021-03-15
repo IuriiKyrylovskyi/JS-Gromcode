@@ -23,9 +23,11 @@ const testArr = commits => {
 
     counter[name] = { total, name, email };
 
+    return console.log(counter[name]);
     // counter[commit] = (counter[commit] || 0) + 1;
     // counter[commit[author]] = (counter[commit[author]] || 0) + 1;
   });
+
   for (let element in counter) {
     console.log(element + ' = ' + counter[element]);
   }
