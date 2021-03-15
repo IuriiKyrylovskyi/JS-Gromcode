@@ -28,8 +28,8 @@ const testArr = commits => {
     author[name] = { count, name, email };
   });
 
-  console.log(Object.values(author));
-  console.log(Object.values(author)[0].count);
+  // console.log(Object.values(author));
+  // console.log(Object.values(author)[0].count);
 
   return Object.values(author);
   // for (let element in counter) {
@@ -39,12 +39,20 @@ const testArr = commits => {
 
 // console.log(testArr(test));
 
-const mostActiveAuthors = authors=>
-// const sortAuthorByActivness = authors =>
-//   authors.sort((authorPrev, authorNext) => authorPrev.count - authorNext.count);
+const sortAuthorByActivness = authors =>
+  authors.sort((authorPrev, authorNext) => authorNext.count - authorPrev.count);
+
+const mostActiveAuthors = authors =>
+	authors.filter((author) => {
+		
+    const max = authors[0].count;
+    // console.log(max);
+    // console.log(author.count);
+    
+		return author.count === max;
+  });
 
 // const getRepoData = (days = 7, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
-// const getRepoData = (days = 415, userId = 'velmyk', repoId = 'js') =>
 const getRepoData = (days = 237, userId = 'andrii142', repoId = 'developer-roadmap') =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
@@ -58,11 +66,9 @@ const getRepoData = (days = 237, userId = 'andrii142', repoId = 'developer-roadm
         ),
     )
     .then(res => testArr(res))
-    .then(res => sortAuthorByActivness(res));
-// .then(res => console.log(res));
+    .then(res => sortAuthorByActivness(res))
+    .then(res => mostActiveAuthors(res));
 
-// .then(result => getValues(result));
-// (value, { [value]: count = 0, ...rest }) => ({ [value]: count + 1, ...rest });
 console.log(getRepoData());
 
 // const getAuthorData = getRepoData().then(commits => commits.map(commit => commit.commit.author));
