@@ -15,15 +15,18 @@ const getTasksList = () => fetch(baseUrl).then(response => response.json());
 // const getTaskById = taskId =>
 //   tasks.then(taskList => filterTaskList(taskList, taskId)).then(result => result);
 
-// export
+// // export
+// const getTaskById = taskId => getTasksList().then(arr => arr.filter(task => task.id === taskId));
+
+// // export
 const getTaskById = taskId =>
-  fetch(`${baseUrl}?id=${taskId}`)
+  fetch(`${baseUrl}/?id=${taskId}`)
     .then(response => response.json())
-    // .then(arr => arr.pop());
-    // .then(arr => arr.filter(id => +id === +taskId));
+    .then(arr => arr.filter(task => task.id === taskId))
+    .then(arr => arr.pop());
 
 const getTaskByText = taskText =>
-  fetch(`${baseUrl}?text=${taskText}`)
+  fetch(`${baseUrl}/?text=${taskText}`)
     .then(response => response.json())
     .then(arr => arr.pop());
 
@@ -32,10 +35,10 @@ getTasksList().then(tasksList => {
   console.log(tasksList); // array of the task objects - [ {'id':'1', 'done':false ... }, {'id':'2', 'done':true ... }, ...]
 });
 
-getTaskById('5').then(taskData => {
+getTaskById('3').then(taskData => {
   console.log(taskData); // {'id':'2', 'done':true ... }
 });
 
-getTaskByText('text 9').then(taskData => {
+getTaskByText('text 19').then(taskData => {
   console.log(taskData); // {'id':'2', 'done':true ... }
 });
