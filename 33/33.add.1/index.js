@@ -13,7 +13,17 @@ const testArr = commits => {
   const counter = [];
 
   commits.forEach(commit => {
-    counter[commit] = (counter[commit] || 0) + 1;
+    const { name, email } = commit;
+    if (counter[name]) {
+      counter[name].total++;
+      return;
+    }
+
+    const total = 1;
+
+    counter[name] = { total, name, email };
+
+    // counter[commit] = (counter[commit] || 0) + 1;
     // counter[commit[author]] = (counter[commit[author]] || 0) + 1;
   });
   for (let element in counter) {
@@ -21,7 +31,7 @@ const testArr = commits => {
   }
 };
 
-console.log(testArr(test));
+// console.log(testArr(test));
 
 const getRepoData = (days = 11, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
@@ -42,8 +52,8 @@ const getRepoData = (days = 11, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_
       //   }),
       //   [],
       // ),
-    );
-// .then(res => test(res, author));
+    )
+    .then(res => testArr(res));
 
 // .then(result => getValues(result));
 // (value, { [value]: count = 0, ...rest }) => ({ [value]: count + 1, ...rest });
