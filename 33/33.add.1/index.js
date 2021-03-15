@@ -7,7 +7,16 @@ const url = 'https://api.github.com';
 // console.log(new Date('2021-03-08T21:40:05Z').getTime());
 // console.log(7 * 24 * 60 * 60 * 1000);
 
-const countAuthorCommits = commits => {
+// const getCommitsByPeriod = (commits, days) => {
+//   commits
+//     .map(commit => commit.commit.author)
+//     .filter(
+//       authorData =>
+//         new Date().getTime() - new Date(authorData.date).getTime() <= days * 24 * 60 * 60 * 1000,
+//     );
+// };
+
+const countAuthorsCommits = commits => {
   const author = {};
 
   commits.forEach(commit => {
@@ -28,23 +37,22 @@ const countAuthorCommits = commits => {
 
   return Object.values(author);
 };
-// console.log(countAuthorCommits(test));
+// console.log(countAuthorsCommits(test));
 
 const sortAuthorsByActivness = authors =>
   authors.sort((authorPrev, authorNext) => authorNext.count - authorPrev.count);
 
 const mostActiveAuthors = authors =>
-	authors.filter((author) => {
-		
+  authors.filter(author => {
     const max = authors[0].count;
     // console.log(max);
     // console.log(author.count);
-    
-		return author.count === max;
+
+    return author.count === max;
   });
 
-// const getRepoData = (days = 17, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
-const getRepoData = (days = 237, userId = 'andrii142', repoId = 'developer-roadmap') =>
+// const getAuthorData = (days = 17, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
+export const getMostActiveDevs = (days, userId, repoId) =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
     .then(commits =>
@@ -56,56 +64,22 @@ const getRepoData = (days = 237, userId = 'andrii142', repoId = 'developer-roadm
             days * 24 * 60 * 60 * 1000,
         ),
     )
-    .then(res => countAuthorCommits(res))
+    .then(res => countAuthorsCommits(res))
     .then(res => sortAuthorsByActivness(res))
     .then(res => mostActiveAuthors(res));
 
-console.log(getRepoData());
+const days1 = 237;
+const user1 = {
+  userId: 'andrii142',
+  repoId: 'developer-roadmap',
+};
 
-// const getAuthorData = getRepoData().then(commits => commits.map(commit => commit.commit.author));
+console.log(getMostActiveDevs(days1, user1.userId, user1.repoId));
 
-// console.log(getAuthorData);
-// const getDays = Number(new Date()) - new Date(commit);
+const days2 = 17;
+const user2 = {
+  userId: 'IuriiKyrylovskyi',
+  repoId: 'Calendar_project_js',
+};
 
-// const ttt = getRepoData().then(result => getValues(result));
-// console.log(typeof ttt);
-
-// console.log(getValues(ttt));
-// // export
-// const getMostActiveDevs = user => getRepoData(userId, repoId).then(result => console.log(result));
-
-// const userInfo = {
-//   // days: 0,
-//   id: '65412895',
-//   repoId: 'Calendar_project_js',
-// };
-
-// getMostActiveDevs(userInfo).then(result => console.log(result));
-// ==============================================================================================
-// // export
-// const getTaskById = taskId =>
-//   fetch(`${baseUrl}?id=${taskId}`)
-//     .then(response => response.json())
-// 		.then(arr => arr.pop());
-
-// const getTaskByText = taskText =>
-//   fetch(`${baseUrl}?text=${taskText}`)
-//     .then(response => response.json())
-//     .then(arr => arr.pop());
-
-// // examples
-// getTasksList().then(tasksList => {
-//   console.log(tasksList); // array of the task objects - [ {'id':'1', 'done':false ... }, {'id':'2', 'done':true ... }, ...]
-// });
-
-// getTaskById('2').then(taskData => {
-//   console.log(taskData); // {'id':'2', 'done':true ... }
-// });
-
-// .reduce(
-//   (acc, value) => ({
-//     ...acc,
-//     [value.name]: (acc[value.name] || 0) + 1,
-//   }),
-//   [],
-// ),
+console.log(getMostActiveDevs(days2, user2.userId, user2.repoId));
