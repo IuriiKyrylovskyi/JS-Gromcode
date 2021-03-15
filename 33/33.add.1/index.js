@@ -52,7 +52,7 @@ const mostActiveAuthors = authors =>
   });
 
 // const getAuthorData = (days = 17, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
-export const getMostActiveDevs = (days, userId, repoId) =>
+export const getMostActiveDevs = ({ days, userId, repoId }) =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
     .then(commits =>
@@ -68,18 +68,18 @@ export const getMostActiveDevs = (days, userId, repoId) =>
     .then(res => sortAuthorsByActivness(res))
     .then(res => mostActiveAuthors(res));
 
-// const days1 = 237;
 // const user1 = {
+//   days: 237,
 //   userId: 'andrii142',
 //   repoId: 'developer-roadmap',
 // };
 
-// console.log(getMostActiveDevs(days1, user1.userId, user1.repoId));
+// console.log(getMostActiveDevs(user1));
 
-// const days2 = 17;
 // const user2 = {
+//   days: 17,
 //   userId: 'IuriiKyrylovskyi',
 //   repoId: 'Calendar_project_js',
 // };
 
-// console.log(getMostActiveDevs(days2, user2.userId, user2.repoId));
+// console.log(getMostActiveDevs(user2));
