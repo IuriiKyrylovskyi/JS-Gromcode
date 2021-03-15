@@ -14,7 +14,7 @@ const testArr = commits => {
     // const count = 0;
 
     const { name, email } = commit;
-
+    // console.log({ name, email });
     // const author = counter[name] ? counter[name] : { count, name, email };
 
     if (author[name]) {
@@ -39,8 +39,12 @@ const testArr = commits => {
 
 // console.log(testArr(test));
 
+const sortAuthorByActivness = authors =>
+  authors.sort((authorPrev, authorNext) => authorPrev.count - authorNext.count);
+
 // const getRepoData = (days = 7, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
-const getRepoData = (days = 37, userId = 'velmyk', repoId = 'js') =>
+// const getRepoData = (days = 415, userId = 'velmyk', repoId = 'js') =>
+const getRepoData = (days = 237, userId = 'andrii142', repoId = 'developer-roadmap') =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
     .then(
@@ -60,7 +64,9 @@ const getRepoData = (days = 37, userId = 'velmyk', repoId = 'js') =>
       //   [],
       // ),
     )
-    .then(res => testArr(res));
+    .then(res => testArr(res))
+    .then(res => sortAuthorByActivness(res));
+// .then(res => console.log(res));
 
 // .then(result => getValues(result));
 // (value, { [value]: count = 0, ...rest }) => ({ [value]: count + 1, ...rest });
