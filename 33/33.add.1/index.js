@@ -68,18 +68,18 @@ export const getMostActiveDevs = (days, userId, repoId) =>
     .then(res => sortAuthorsByActivness(res))
     .then(res => mostActiveAuthors(res));
 
-const days1 = 237;
-const user1 = {
-  userId: 'andrii142',
-  repoId: 'developer-roadmap',
-};
+// const days1 = 237;
+// const user1 = {
+//   userId: 'andrii142',
+//   repoId: 'developer-roadmap',
+// };
 
-console.log(getMostActiveDevs(days1, user1.userId, user1.repoId));
+// console.log(getMostActiveDevs(days1, user1.userId, user1.repoId));
 
-const days2 = 17;
-const user2 = {
-  userId: 'IuriiKyrylovskyi',
-  repoId: 'Calendar_project_js',
-};
+// const days2 = 17;
+// const user2 = {
+//   userId: 'IuriiKyrylovskyi',
+//   repoId: 'Calendar_project_js',
+// };
 
-console.log(getMostActiveDevs(days2, user2.userId, user2.repoId));
+// console.log(getMostActiveDevs(days2, user2.userId, user2.repoId));
