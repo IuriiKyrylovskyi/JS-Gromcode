@@ -7,26 +7,44 @@ const url = 'https://api.github.com';
 // console.log(new Date('2021-03-08T21:40:05Z').getTime());
 // console.log(7 * 24 * 60 * 60 * 1000);
 
+const test = ['a', 'b', 'c', 'd', 'd', 'e', 'a', 'b', 'c', 'f', 'g', 'h', 'h', 'h', 'e', 'a'];
+
+const testArr = commits => {
+  const counter = [];
+
+  commits.forEach(commit => {
+    counter[commit] = (counter[commit] || 0) + 1;
+    // counter[commit[author]] = (counter[commit[author]] || 0) + 1;
+  });
+  for (let element in counter) {
+    console.log(element + ' = ' + counter[element]);
+  }
+};
+
+console.log(testArr(test));
+
 const getRepoData = (days = 11, userId = 'IuriiKyrylovskyi', repoId = 'Calendar_project_js') =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
-    .then(commits =>
-      commits
-        .map(commit => commit.commit.author)
-        .filter(
-          authorData =>
-            new Date().getTime() - new Date(authorData.date).getTime() <=
-            days * 24 * 60 * 60 * 1000,
-        )
-        .reduce((counter, authorData) => {
-          counter[authorData.name] = (counter[authorData.name] || 0) + 1;
-          console.log(counter[authorData.name]);
-          console.log(counter.value);
-          console.log(typeof counter[authorData.name]);
-          // return counter;
-          return `{ count: ${counter}, name: ${authorData.name}, email: ${authorData.email} }`;
-        }, {}),
+    .then(
+      commits =>
+        commits
+          .map(commit => commit.commit.author)
+          .filter(
+            authorData =>
+              new Date().getTime() - new Date(authorData.date).getTime() <=
+              days * 24 * 60 * 60 * 1000,
+          ),
+      // .reduce(
+      //   (acc, value) => ({
+      //     ...acc,
+      //     [value.name]: (acc[value.name] || 0) + 1,
+      //   }),
+      //   [],
+      // ),
     );
+// .then(res => test(res, author));
+
 // .then(result => getValues(result));
 // (value, { [value]: count = 0, ...rest }) => ({ [value]: count + 1, ...rest });
 console.log(getRepoData());
