@@ -7,7 +7,7 @@ const url = 'https://api.github.com';
 // console.log(new Date('2021-03-08T21:40:05Z').getTime());
 // console.log(7 * 24 * 60 * 60 * 1000);
 
-const testArr = commits => {
+const countAuthorCommits = commits => {
   const author = {};
 
   commits.forEach(commit => {
@@ -28,9 +28,9 @@ const testArr = commits => {
 
   return Object.values(author);
 };
-// console.log(testArr(test));
+// console.log(countAuthorCommits(test));
 
-const sortAuthorByActivness = authors =>
+const sortAuthorsByActivness = authors =>
   authors.sort((authorPrev, authorNext) => authorNext.count - authorPrev.count);
 
 const mostActiveAuthors = authors =>
@@ -56,8 +56,8 @@ const getRepoData = (days = 237, userId = 'andrii142', repoId = 'developer-roadm
             days * 24 * 60 * 60 * 1000,
         ),
     )
-    .then(res => testArr(res))
-    .then(res => sortAuthorByActivness(res))
+    .then(res => countAuthorCommits(res))
+    .then(res => sortAuthorsByActivness(res))
     .then(res => mostActiveAuthors(res));
 
 console.log(getRepoData());
