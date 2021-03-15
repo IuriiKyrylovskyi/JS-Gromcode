@@ -19,8 +19,9 @@ const getTasksList = () => fetch(baseUrl).then(response => response.json());
 const getTaskById = taskId =>
   fetch(`${baseUrl}?id=${taskId}`)
     .then(response => response.json())
-		.then(arr => arr.pop());
-		
+    // .then(arr => arr.pop());
+    // .then(arr => arr.filter(id => +id === +taskId));
+
 const getTaskByText = taskText =>
   fetch(`${baseUrl}?text=${taskText}`)
     .then(response => response.json())
@@ -31,10 +32,10 @@ getTasksList().then(tasksList => {
   console.log(tasksList); // array of the task objects - [ {'id':'1', 'done':false ... }, {'id':'2', 'done':true ... }, ...]
 });
 
-getTaskById('2').then(taskData => {
+getTaskById('5').then(taskData => {
   console.log(taskData); // {'id':'2', 'done':true ... }
 });
 
-getTaskByText('дфжлпздул').then(taskData => {
+getTaskByText('text 9').then(taskData => {
   console.log(taskData); // {'id':'2', 'done':true ... }
 });
