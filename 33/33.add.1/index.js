@@ -11,11 +11,8 @@ const testArr = commits => {
   const author = {};
 
   commits.forEach(commit => {
-    // const count = 0;
-
     const { name, email } = commit;
     // console.log({ name, email });
-    // const author = counter[name] ? counter[name] : { count, name, email };
 
     if (author[name]) {
       author[name].count++;
@@ -24,19 +21,13 @@ const testArr = commits => {
 
     const count = 1;
 
-    // counter[name] = { count: author.count + 1, name, email };
     author[name] = { count, name, email };
   });
-
   // console.log(Object.values(author));
   // console.log(Object.values(author)[0].count);
 
   return Object.values(author);
-  // for (let element in counter) {
-  //   console.log(element + ' = ' + counter[element]);
-  // }
 };
-
 // console.log(testArr(test));
 
 const sortAuthorByActivness = authors =>
