@@ -1,3 +1,4 @@
+import { createTask, getTasksList } from './tasksGateway.js';
 import { renderTasks } from './renderTasks.js';
 import { getItem, setItem } from './storage.js';
 
@@ -10,41 +11,26 @@ export const onCreateTask = () => {
     return;
   }
   taskTitleInputElem.value = '';
-  const tasksList = getItem('tasksList') || [];
 
-  const newTasksList = tasksList.concat({
+  const newTask = {
     text,
     done: false,
     createDate: new Date().toISOString(),
     id: Math.random().toString(),
-  });
+  };
 
-  setItem('tasksList', newTasksList);
+  createTask(newTask)
+    .then(() => getTasksList())
+    .then(newTasksList => {
+      setItem('tasksList', newTasksList);
+      renderTasks();
+    });
 
-  renderTasks();
+
 };
 
-// ===========================================
-// import { getItem, setItem } from './storage.js';
-// import { validateTaskLength } from './onChangeTaskStatus.js';
-// import { renderTasks } from './renderTasks.js';
-
-// export const addNewTask = () => {
-//   const newTaskText = document.querySelector('.task-input').value;
-//   // console.log(newTaskText.length);
-
-//   if (validateTaskLength(newTaskText)) {
-//     alert('enter valid task');
-//   } else {
-//     const idNum = getItem('tasksList').length + 1;
-//     const newTaskObj = {
-//       text: newTaskText,
-//       done: false,
-//       id: idNum,
-//     };
-//     setItem.push(newTaskObj);
-//   }
-//   renderTasks(getItem);
-
-//   // console.log(tasks);
-// };
+// 1. Prepare data
+// 2. Write data to db
+// 3. Read new data from servre
+// 4. Save new data to front - end storage
+// 5. Update UI based on new data
