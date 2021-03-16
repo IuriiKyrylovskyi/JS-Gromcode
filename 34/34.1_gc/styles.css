@@ -39,9 +39,6 @@ body {
   background-color: wheat;
   margin-bottom: 8px;
   padding: 8px;
-	padding-right: 45px;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 
 .list__item_done {
