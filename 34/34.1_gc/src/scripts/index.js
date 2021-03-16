@@ -1,8 +1,13 @@
 import { initTodoListHandlers } from './todoList.js';
 import { renderTasks } from './renderTasks.js';
+import { getTasksList } from './tasksGateway.js';
+import { setItem } from './storage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderTasks();
+  getTasksList().then(taskList => {
+    setItem('taskList', taskList);
+    // renderTasks();
+  });
   initTodoListHandlers();
 });
 
@@ -13,17 +18,5 @@ const onStorageChange = e => {
 };
 window.addEventListener('storage', onStorageChange);
 
-// ===============================================
-// import { getItem, setItem } from './storage.js';
-// import { renderTasks } from './renderTasks.js';
-// import { onChangeStatus } from './onChangeTaskStatus.js';
-// import { addNewTask } from './createTask.js';
-
-// const createBtnElem = document.querySelector('.create-task-btn');
-// const listElem = document.querySelector('.list');
-
-// renderTasks(getItem);
-
-// listElem.addEventListener('click', onChangeStatus);
-
-// createBtnElem.addEventListener('click', addNewTask);
+// 1. Get data from server
+// 2. Save data to front-end storage
