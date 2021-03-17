@@ -29,23 +29,20 @@ const sendForm = formData => {
   });
 };
 
-const getFormData = () => {
-  return fetch(formUrl).then(response => response.json());
-};
+// const getFormData = () => {
+//   return fetch(formUrl).then(response => response.json());
+// };
 
 const clearFormsInputs = () => {
-	return [emailInputElem, nameInputElem, passwordInputElem, errorTextElem]
-		.map(input => {
-			input.innerHTML = '';
-			return input;
-		});
-  // emailInputElem.innerHTML = '';
-  // nameInputElem.innerHTML = '';
-  // passwordInputElem.innerHTML = '';
-  // errorTextElem.innerHTML = '';
+  // return [emailInputElem, nameInputElem, passwordInputElem, errorTextElem].map(input => {
+  //   input.value = '';
+  //   return input;
+  // });
+  emailInputElem.value = '';
+  nameInputElem.value = '';
+  passwordInputElem.value = '';
+  errorTextElem.value = '';
 };
-
-submitBtntElem.disabled = false;
 
 const onSubmitForm = e => {
   if (
@@ -54,10 +51,12 @@ const onSubmitForm = e => {
     // !nameInputElem.reportValidity() ||
     // !passwordInputElem.reportValidity()
   ) {
-    submitBtntElem.disabled = true;
+    // submitBtntElem.disabled = true;
     errorTextElem.innerHTML = 'Failed to create user';
     return;
   }
+  // emailInputElem.addEventListener('change', e => console.log(e.target.value));
+  submitBtntElem.removeAttribute('disabled');
 
   e.preventDefault();
 
@@ -66,13 +65,23 @@ const onSubmitForm = e => {
     {},
   );
 
-	sendForm(formData).then(clearFormsInputs())
-		// .then(getFormData);
-
-  // emailInputElem.innerHTML = '';
-  // nameInputElem.innerHTML = '';
-  // passwordInputElem.innerHTML = '';
-  // errorTextElem.innerHTML = '';
+  sendForm(formData).then(response => {
+    if (response.status === 201) {
+      alert(JSON.stringify(formData));
+      clearFormsInputs();
+      return;
+    }
+    errorTextElem.innerHTML = 'Failed to create user';
+  });
 };
+
+const deleteErrorText = () => {
+  errorTextElem.innerHTML = '';
+  return errorTextElem;
+};
+
+emailInputElem.addEventListener('change', deleteErrorText());
+nameInputElem.addEventListener('change', deleteErrorText());
+passwordInputElem.addEventListener('change', deleteErrorText());
 
 formElem.addEventListener('submit', onSubmitForm);
