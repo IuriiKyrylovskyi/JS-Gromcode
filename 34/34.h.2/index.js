@@ -34,10 +34,15 @@ const getFormData = () => {
 };
 
 const clearFormsInputs = () => {
-  emailInputElem.innerHTML = '';
-  nameInputElem.innerHTML = '';
-  passwordInputElem.innerHTML = '';
-  errorTextElem.innerHTML = '';
+	return [emailInputElem, nameInputElem, passwordInputElem, errorTextElem]
+		.map(input => {
+			input.innerHTML = '';
+			return input;
+		});
+  // emailInputElem.innerHTML = '';
+  // nameInputElem.innerHTML = '';
+  // passwordInputElem.innerHTML = '';
+  // errorTextElem.innerHTML = '';
 };
 
 submitBtntElem.disabled = false;
@@ -61,7 +66,8 @@ const onSubmitForm = e => {
     {},
   );
 
-	sendForm(formData).then(clearFormsInputs()).then(getFormData);
+	sendForm(formData).then(clearFormsInputs())
+		// .then(getFormData);
 
   // emailInputElem.innerHTML = '';
   // nameInputElem.innerHTML = '';
