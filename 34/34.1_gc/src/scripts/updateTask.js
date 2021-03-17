@@ -30,11 +30,12 @@ const onToggleTask = (tasksList, taskId, done) => {
   };
 
   updateTask(taskId, updatedTask)
-    .then(() => getTasksList())
-    .then(newTasksList => {
-      setItem('tasksList', newTasksList);
-      renderTasks();
-    });
+    .then(() => afterChangeTask())
+    // .then(() => getTasksList())
+    // .then(newTasksList => {
+    //   setItem('tasksList', newTasksList);
+    //   renderTasks();
+    // });
 };
 
 export const onListItemClick = e => {
