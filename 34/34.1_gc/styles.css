@@ -34,6 +34,7 @@ body {
 .list__item {
   display: flex;
   align-items: center;
+
   height: 40px;
   border-radius: 8px;
   background-color: wheat;
@@ -42,8 +43,11 @@ body {
 }
 
 .list__item_done {
-  text-decoration: line-through;
+  /* text-decoration: line-through; */
   opacity: 0.7;
+}
+.list__item_done .list__item-text{
+  text-decoration: line-through;
 }
 
 .list__item:last-child {
@@ -74,4 +78,24 @@ body {
   border: 3px solid #ccc;
   border-radius: 8px;
   flex: 1;
+}
+
+.list__item-text{
+	flex: 1	1	auto;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 0px 10px 0px 0px;
+}
+.list__item-delete-btn{
+	display: block;
+	background: transparent;
+	border-radius: 50%;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	transform: rotate(45deg);
+
+}
+.list__item-delete-btn:before{
+		content:'+';
 }
