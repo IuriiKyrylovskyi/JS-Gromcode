@@ -46,10 +46,10 @@ const clearFormsInputs = () => {
 
 const onSubmitForm = e => {
   if (!formElem.reportValidity()) {
+    submitBtntElem.setAttribute('disabled');
     errorTextElem.innerHTML = 'Failed to create user';
     return;
   }
-  // submitBtntElem.removeAttribute('disabled');
 
   e.preventDefault();
 
