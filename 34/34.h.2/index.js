@@ -33,8 +33,6 @@ const sendForm = formData => {
 //   return fetch(formUrl).then(response => response.json());
 // };
 
-submitBtntElem.removeAttribute('disabled');
-
 const clearFormsInputs = () => {
   // return [emailInputElem, nameInputElem, passwordInputElem, errorTextElem].map(input => {
   //   input.value = '';
@@ -47,18 +45,11 @@ const clearFormsInputs = () => {
 };
 
 const onSubmitForm = e => {
-  if (
-    !formElem.reportValidity()
-    // !emailInputElem.reportValidity() ||
-    // !nameInputElem.reportValidity() ||
-    // !passwordInputElem.reportValidity()
-  ) {
-    // submitBtntElem.disabled = true;
+  if (!formElem.reportValidity()) {
     errorTextElem.innerHTML = 'Failed to create user';
     return;
   }
-  // emailInputElem.addEventListener('change', e => console.log(e.target.value));
-  submitBtntElem.removeAttribute('disabled');
+  // submitBtntElem.removeAttribute('disabled');
 
   e.preventDefault();
 
@@ -78,12 +69,13 @@ const onSubmitForm = e => {
 };
 
 const deleteErrorText = () => {
+  submitBtntElem.removeAttribute('disabled');
   errorTextElem.innerHTML = '';
   return errorTextElem;
 };
 
-emailInputElem.addEventListener('change', deleteErrorText());
-nameInputElem.addEventListener('change', deleteErrorText());
-passwordInputElem.addEventListener('change', deleteErrorText());
+emailInputElem.addEventListener('change', deleteErrorText);
+nameInputElem.addEventListener('change', deleteErrorText);
+passwordInputElem.addEventListener('change', deleteErrorText);
 
 formElem.addEventListener('submit', onSubmitForm);
