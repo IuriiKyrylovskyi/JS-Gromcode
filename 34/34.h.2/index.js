@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 const formUrl = 'https://60520890fb49dc00175b761f.mockapi.io/form';
 
 const formElem = document.querySelector('.login-form');
@@ -13,18 +14,59 @@ const errorTextElem = formElem.querySelector('.error-text');
 // console.log(submitBtntElem);
 // console.log(errorTextElem);
 
-submitBtntElem.disabled = false;
+// const formData = [...new FormData(formElem)].reduce(
+//   (acc, [field, value]) => ({ ...acc, [field]: value }),
+//   {},
+// );console.log(formData);
 
-const onSubmitForm = () => {
-  if (
-    !emailInputElem.reportValidity() ||
-    !nameInputElem.reportValidity() ||
-    !passwordInputElem.reportValidity()
-  ) {
-    errorTextElem.innerHTML = 'Failed to create user';
-    submitBtntElem.disabled = true;
-    return;
-  }
+const sendForm = formData => {
+  return fetch(formUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(formData),
+  });
 };
 
-submitBtntElem.addEventListener('click', onSubmitForm);
+const getFormData = () => {
+  return fetch(formUrl).then(response => response.json());
+};
+
+const clearFormsInputs = () => {
+  emailInputElem.innerHTML = '';
+  nameInputElem.innerHTML = '';
+  passwordInputElem.innerHTML = '';
+  errorTextElem.innerHTML = '';
+};
+
+submitBtntElem.disabled = false;
+
+const onSubmitForm = e => {
+  if (
+    !formElem.reportValidity()
+    // !emailInputElem.reportValidity() ||
+    // !nameInputElem.reportValidity() ||
+    // !passwordInputElem.reportValidity()
+  ) {
+    submitBtntElem.disabled = true;
+    errorTextElem.innerHTML = 'Failed to create user';
+    return;
+  }
+
+  e.preventDefault();
+
+  const formData = [...new FormData(formElem)].reduce(
+    (acc, [field, value]) => ({ ...acc, [field]: value }),
+    {},
+  );
+
+	sendForm(formData).then(clearFormsInputs()).then(getFormData);
+
+  // emailInputElem.innerHTML = '';
+  // nameInputElem.innerHTML = '';
+  // passwordInputElem.innerHTML = '';
+  // errorTextElem.innerHTML = '';
+};
+
+formElem.addEventListener('submit', onSubmitForm);
