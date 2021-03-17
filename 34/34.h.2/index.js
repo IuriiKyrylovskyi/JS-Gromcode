@@ -33,6 +33,8 @@ const sendForm = formData => {
 //   return fetch(formUrl).then(response => response.json());
 // };
 
+submitBtntElem.removeAttribute('disabled');
+
 const clearFormsInputs = () => {
   // return [emailInputElem, nameInputElem, passwordInputElem, errorTextElem].map(input => {
   //   input.value = '';
