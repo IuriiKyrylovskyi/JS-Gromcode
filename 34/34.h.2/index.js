@@ -1,5 +1,5 @@
 /* eslint-disable arrow-body-style */
-const formUrl = 'https://60520890fb49dc00175b761f.mockapi.io/forms';
+const formUrl = 'https://60520890fb49dc00175b761f.mockapi.io/form';
 
 const formElem = document.querySelector('.login-form');
 const emailInputElem = formElem.querySelector('[type="email"]');
