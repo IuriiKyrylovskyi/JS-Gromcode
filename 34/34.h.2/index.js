@@ -45,11 +45,20 @@ const clearFormsInputs = () => {
 };
 
 const onSubmitForm = e => {
-  if (!formElem.reportValidity()) {
-    submitBtntElem.setAttribute('disabled');
-    errorTextElem.innerHTML = 'Failed to create user';
-    return;
-  }
+  // // if (!formElem.reportValidity()
+  // if (
+  //   !emailInputElem.reportValidity() ||
+  //   !nameInputElem.reportValidity() ||
+  //   !passwordInputElem.reportValidity()
+  // ) {
+  //   submitBtntElem.setAttribute('disabled');
+  //   errorTextElem.innerHTML = 'Failed to create user';
+  //   // return;
+  // } else {
+  //   submitBtntElem.removeAttribute('disabled');
+  //   emailInputElem.removeAttribute('required');
+  //   nameInputElem.removeAttribute('required');
+  //   passwordInputElem.removeAttribute('required');
 
   e.preventDefault();
 
@@ -58,24 +67,48 @@ const onSubmitForm = e => {
     {},
   );
 
-  sendForm(formData).then(response => {
-    if (response.status === 201) {
-      alert(JSON.stringify(formData));
+  sendForm(formData)
+    .then(response => {
+      if (response.status === 201) {
+        return response.json();
+      }
+      return Promise.resolve(null);
+    })
+    .then(response => {
+      if (response === null) {
+        return (errorTextElem.innerHTML = 'Failed to create user');
+      }
+      alert(JSON.stringify(response));
       clearFormsInputs();
-      return;
-    }
-    errorTextElem.innerHTML = 'Failed to create user';
-  });
+    });
 };
 
 const deleteErrorText = () => {
-  submitBtntElem.removeAttribute('disabled');
+  // submitBtntElem.removeAttribute('disabled');
   errorTextElem.innerHTML = '';
   return errorTextElem;
+};
+
+const onValidateForm = () => {
+  if (!formElem.reportValidity()){
+  // if (
+  //   !emailInputElem.reportValidity() ||
+  //   !nameInputElem.reportValidity() ||
+  //   !passwordInputElem.reportValidity()
+  // ) {
+    // submitBtntElem.setAttribute('disabled');
+    // errorTextElem.innerHTML = 'Failed to create user';
+    return;
+  }
+  submitBtntElem.removeAttribute('disabled');
+  // emailInputElem.removeAttribute('required');
+  // nameInputElem.removeAttribute('required');
+  // passwordInputElem.removeAttribute('required');
 };
 
 emailInputElem.addEventListener('change', deleteErrorText);
 nameInputElem.addEventListener('change', deleteErrorText);
 passwordInputElem.addEventListener('change', deleteErrorText);
 
+formElem.addEventListener('input', onValidateForm);
 formElem.addEventListener('submit', onSubmitForm);
