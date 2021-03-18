@@ -49,20 +49,26 @@ const onSubmitForm = e => {
   );
 
   sendForm(formData)
-    .then(response => {
-      if (response.status === 201) {
-        return response.json();
-      }
-      return Promise.resolve(null);
-    })
-    .then(response => {
-      if (response === null) {
-        errorTextElem.innerHTML = 'Failed to create user';
-        return errorTextElem;
-      }
+     .then(response => response.json())
+    .then(response => 
       alert(JSON.stringify(response));
       clearFormsInputs();
-    });
+   )
+    .catch(new Error(errorTextElem.innerHTML = 'Failed to create user'));
+    // .then(response => {
+    //   if (response.status === 201) {
+    //     return response.json();
+    //   }
+    //   return Promise.resolve(null);
+    // })
+    // .then(response => {
+    //   if (response === null) {
+    //     errorTextElem.innerHTML = 'Failed to create user';
+    //     return errorTextElem;
+    //   }
+    //   alert(JSON.stringify(response));
+    //   clearFormsInputs();
+    // });
 
   submitBtntElem.setAttribute('disabled', 'disabled');
 };
