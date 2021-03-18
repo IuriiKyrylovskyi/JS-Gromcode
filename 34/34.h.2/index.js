@@ -1,5 +1,5 @@
 /* eslint-disable arrow-body-style */
-const formUrl = 'https://60520890fb49dc00175b761f.mockapi.io/forms';
+const formUrl = 'https://60520890fb49dc00175b761f.mockapi.io/form';
 
 const formElem = document.querySelector('.login-form');
 const emailInputElem = formElem.querySelector('[type="email"]');
@@ -29,10 +29,6 @@ const sendForm = formData => {
   });
 };
 
-// const getFormData = () => {
-//   return fetch(formUrl).then(response => response.json());
-// };
-
 const clearFormsInputs = () => {
   // return [emailInputElem, nameInputElem, passwordInputElem, errorTextElem].map(input => {
   //   input.value = '';
@@ -57,16 +53,12 @@ const onSubmitForm = e => {
       if (response.status === 201) {
         return response.json();
       }
-      errorTextElem.innerHTML = 'Failed to create user';
-      return;
-
-      // return Promise.resolve(null);
+      return Promise.resolve(null);
     })
     .then(response => {
-      if (!response) {
-        return;
-        // if (response === null) {
-        // return (errorTextElem.innerHTML = 'Failed to create user');
+      if (response === null) {
+        errorTextElem.innerHTML = 'Failed to create user';
+        return errorTextElem;
       }
       alert(JSON.stringify(response));
       clearFormsInputs();
@@ -76,7 +68,6 @@ const onSubmitForm = e => {
 };
 
 const deleteErrorText = () => {
-  // submitBtntElem.removeAttribute('disabled');
   errorTextElem.innerHTML = '';
   return errorTextElem;
 };
