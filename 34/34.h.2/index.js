@@ -1,5 +1,5 @@
 /* eslint-disable arrow-body-style */
-const formUrl = 'https://60520890fb49dc00175b761f.mockapi.io/form';
+const formUrl = 'https://60520890fb49dc00175b761f.mockapi.io/forms';
 
 const formElem = document.querySelector('.login-form');
 const emailInputElem = formElem.querySelector('[type="email"]');
@@ -45,21 +45,6 @@ const clearFormsInputs = () => {
 };
 
 const onSubmitForm = e => {
-  // // if (!formElem.reportValidity()
-  // if (
-  //   !emailInputElem.reportValidity() ||
-  //   !nameInputElem.reportValidity() ||
-  //   !passwordInputElem.reportValidity()
-  // ) {
-  //   submitBtntElem.setAttribute('disabled');
-  //   errorTextElem.innerHTML = 'Failed to create user';
-  //   // return;
-  // } else {
-  //   submitBtntElem.removeAttribute('disabled');
-  //   emailInputElem.removeAttribute('required');
-  //   nameInputElem.removeAttribute('required');
-  //   passwordInputElem.removeAttribute('required');
-
   e.preventDefault();
 
   const formData = [...new FormData(formElem)].reduce(
@@ -91,19 +76,9 @@ const deleteErrorText = () => {
 
 const onValidateForm = () => {
   if (!formElem.reportValidity()){
-  // if (
-  //   !emailInputElem.reportValidity() ||
-  //   !nameInputElem.reportValidity() ||
-  //   !passwordInputElem.reportValidity()
-  // ) {
-    // submitBtntElem.setAttribute('disabled');
-    // errorTextElem.innerHTML = 'Failed to create user';
     return;
   }
   submitBtntElem.removeAttribute('disabled');
-  // emailInputElem.removeAttribute('required');
-  // nameInputElem.removeAttribute('required');
-  // passwordInputElem.removeAttribute('required');
 };
 
 emailInputElem.addEventListener('change', deleteErrorText);
