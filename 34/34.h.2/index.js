@@ -49,8 +49,9 @@ const onSubmitForm = e => {
   );
 
   sendForm(formData)
-    .then(response => {
-      if (!response.ok) throw response;
+    .then((response,reject) => {
+      // if (!response.ok) throw response;
+      if (!response.ok) reject(response);
       return response.json();
     })
     .then(res => alert(JSON.stringify(res)))
