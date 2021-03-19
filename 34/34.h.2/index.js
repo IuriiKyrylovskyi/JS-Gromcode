@@ -1,5 +1,5 @@
 /* eslint-disable arrow-body-style */
-const formUrl = 'https://60520890fb49dc00175b761f.mockapi.io/forms';
+const formUrl = 'https://60520890fb49dc00175b761f.mockapi.io/form';
 
 const formElem = document.querySelector('.login-form');
 const emailInputElem = formElem.querySelector('[type="email"]');
@@ -48,37 +48,36 @@ const onSubmitForm = e => {
     {},
   );
 
-  const userData = userInf => {
-    return new Promise((resolve, reject) => {
-      if (!userInf) {
-        return reject(new Error('Failed to create user'));
-      }
-      resolve(userInf);
-    });
-  };
+  // const userData = userInf => {
+  //   return new Promise((resolve, reject) => {
+  //     if (!userInf) {
+  //       return reject(new Error('Failed to create user'));
+  //     }
+  //     resolve(userInf);
+  //   });
+  // };
 
-  userData(formData)
-    .then(response => response.json())
-    .then(res => {
-      alert(JSON.stringify(res));
-      clearFormsInputs();
-    })
-    .catch(err => (errorTextElem.innerHTML = err));
-
-  sendForm(res => res).userData(form => form);
-
-  // const sendFormPromise = sendForm(formData)
+  // userData(formData)
   //   .then(response => response.json())
   //   .then(res => {
   //     alert(JSON.stringify(res));
   //     clearFormsInputs();
   //   })
-  //   .catch(() => Promise.reject(new Error((errorTextElem.innerHTML = 'Failed to create user'))));
-  // //   alert(JSON.stringify(res));
-  // //   clearFormsInputs();)
-  // // // })
+  //   .catch(err => (errorTextElem.innerHTML = err));
 
-  // sendFormPromise.then(res => res);
+  // sendForm(res => res).userData(form => form);
+
+  sendForm(formData)
+    .then(response => {
+      if (!response.ok) throw response;
+      return response.json();
+    })
+    .then(res => alert(JSON.stringify(res)))
+    .then(clearFormsInputs)
+    .catch(() => new Error((errorTextElem.innerHTML = 'Failed to create user')));
+  //   alert(JSON.stringify(res));
+  //   clearFormsInputs();)
+  // // })
 
   submitBtntElem.setAttribute('disabled', 'disabled');
 };
