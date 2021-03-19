@@ -37,7 +37,7 @@ const clearFormsInputs = () => {
   emailInputElem.value = '';
   nameInputElem.value = '';
   passwordInputElem.value = '';
-  errorTextElem.value = '';
+  errorTextElem.innerHTML = '';
 };
 
 const onSubmitForm = e => {
