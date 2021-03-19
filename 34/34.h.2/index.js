@@ -48,25 +48,6 @@ const onSubmitForm = e => {
     {},
   );
 
-  // const userData = userInf => {
-  //   return new Promise((resolve, reject) => {
-  //     if (!userInf) {
-  //       return reject(new Error('Failed to create user'));
-  //     }
-  //     resolve(userInf);
-  //   });
-  // };
-
-  // userData(formData)
-  //   .then(response => response.json())
-  //   .then(res => {
-  //     alert(JSON.stringify(res));
-  //     clearFormsInputs();
-  //   })
-  //   .catch(err => (errorTextElem.innerHTML = err));
-
-  // sendForm(res => res).userData(form => form);
-
   sendForm(formData)
     .then(response => {
       if (!response.ok) throw response;
@@ -75,9 +56,6 @@ const onSubmitForm = e => {
     .then(res => alert(JSON.stringify(res)))
     .then(clearFormsInputs)
     .catch(() => new Error((errorTextElem.innerHTML = 'Failed to create user')));
-  //   alert(JSON.stringify(res));
-  //   clearFormsInputs();)
-  // // })
 
   submitBtntElem.setAttribute('disabled', 'disabled');
 };
