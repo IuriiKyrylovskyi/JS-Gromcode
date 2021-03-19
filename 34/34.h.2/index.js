@@ -1,5 +1,5 @@
 /* eslint-disable arrow-body-style */
-const formUrl = 'https://60520890fb49dc00175b761f.mockapi.io/form';
+const formUrl = 'https://60520890fb49dc00175b761f.mockapi.io/forms';
 
 const formElem = document.querySelector('.login-form');
 const emailInputElem = formElem.querySelector('[type="email"]');
@@ -50,12 +50,13 @@ const onSubmitForm = e => {
 
   sendForm(formData)
     .then(response => {
-      if (response.status === 404){//} && response.status !== 201) {
-        return Promise.reject(new Error('Failed to create user'));
+      // if (response.status === 404){//} && response.status !== 201) {
+      if (response.status === 404) {
+        //} && response.status !== 201) {
+        return Promise.reject('Failed to create user');
       }
       return response.json();
     })
-    // .then(response => response.json())
     .then(res => {
       alert(JSON.stringify(res));
       clearFormsInputs();
