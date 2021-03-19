@@ -50,7 +50,7 @@ const onSubmitForm = e => {
 
   sendForm(formData)
     .then(response => {
-      if (response.status !== 200 && response.status !== 201) {
+      if (response.status === 404){//} && response.status !== 201) {
         return Promise.reject(new Error('Failed to create user'));
       }
       return response.json();
