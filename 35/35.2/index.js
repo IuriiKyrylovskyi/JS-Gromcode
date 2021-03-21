@@ -1,8 +1,12 @@
+window.addEventListener('unhandledrejection', function (err) {
+  console.log('error', err);
+});
+
 const successRequest = Promise.resolve({ name: 'Tom' });
 
 successRequest
   .then(function onSuccess1(data) {
-    console.log(data);
+    // console.log('onSuccess1', data);
     throw new Error('Error with data');
   })
   .catch(function onError1(error) {
@@ -14,7 +18,7 @@ const failRequest = Promise.reject(new Error('Something went wrong'));
 failRequest
   .catch(function onError2(error) {
     console.error('onError2', error.message);
-    throw error;
+    throw new Error('Server error');
   })
   .then(function onSuccess2(data) {
     console.log('onSuccess2', data);
