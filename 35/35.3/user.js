@@ -6,7 +6,7 @@ const inputElem = document.querySelector('.name-form__input');
 
 
 export const renderUserData = userData => {
-  const { avatar_url, name, location, repos_url } = userData;
+  const { avatar_url, name, location } = userData;
   userAvatarElem.src = avatar_url;
   userNameElem.textContent = name === null ? `${inputElem.value}` : name;
   userLocationElem.textContent = location ? `from ${location}` : '';
