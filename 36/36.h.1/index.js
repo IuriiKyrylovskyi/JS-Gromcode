@@ -1,17 +1,25 @@
-let result = null;
-
-export const parseUser = str => {
+const getUserData = async userId => {
+  const response = await fetch(`https://api.hgithub.com/users/${userId}`);
   try {
-    result = JSON.parse(str);
+    return await response.json();
   } catch {
-    result = null;
-  } finally {
-    return result;
+    throw new Error('Failed to load data');
   }
 };
 
-const user = '{"name":"Tom","age":"23"}';
-console.log(parseUser(user));
+export const getUserBlogs = (...getUserDatas) => {
+  Promise.all(getUserDatas)
+    .then(userIds => {
+      console.log(userIds.map(el => getUserData(el).then(data => data)));
+      const usersBlogs = userIds.reduce(
+        (acc, userDataId) => acc + getUserData(userDataId).blog,
+        [],
+      );
+      return usersBlogs;
+    })
+    .catch(err => new Error(err.message));
+};
 
-const userz = '{"name:"Tom","age":"23"}';
-console.log(parseUser(userz));
+console.log(typeof getUserBlogs);
+// getUserBlogs(['google', 'facebook', 'git']);
+getUserBlogs(['google', 'facebook', 'git', 'home']);
