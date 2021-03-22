@@ -1,5 +1,5 @@
 const getUserData = async userId => {
-  const response = await fetch(`https://api.hgithub.com/users/${userId}`);
+  const response = await fetch(`https://api.github.com/users/${userId}`);
   try {
     return await response.json();
   } catch {
@@ -7,19 +7,23 @@ const getUserData = async userId => {
   }
 };
 
-export const getUserBlogs = (...getUserDatas) => {
-  Promise.all(getUserDatas)
-    .then(userIds => {
-      console.log(userIds.map(el => getUserData(el).then(data => data)));
-      const usersBlogs = userIds.reduce(
-        (acc, userDataId) => acc + getUserData(userDataId).blog,
-        [],
-      );
-      return usersBlogs;
-    })
-    .catch(err => new Error(err.message));
+export const getUserBlogs = getUserDatas => {
+  // console.log(...getUserDatas);
+  const usersBlogs = getUserDatas.reduce((acc, userDataId) => {
+    console.log(userDataId);
+    console.log(getUserData(userDataId).blog);
+    acc.push(getUserData(userDataId).blog);
+  }, []);
+  console.log(usersBlogs);
+  // return usersBlogs;
+
+  return Promise.all(usersBlogs)
+    .then(data => data)
+    .catch(err => err.message);
 };
 
 console.log(typeof getUserBlogs);
-// getUserBlogs(['google', 'facebook', 'git']);
-getUserBlogs(['google', 'facebook', 'git', 'home']);
+getUserBlogs(['google', 'facebook', 'git']);
+// getUserBlogs(['google', 'facebook', 'git', 'home']);
+
+getUserData('facebook').then(el => console.log(el.blog));
