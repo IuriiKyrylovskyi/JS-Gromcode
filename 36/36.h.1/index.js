@@ -1,16 +1,18 @@
 const getUserData = async userId => {
   const response = await fetch(`https://api.github.com/users/${userId}`);
   try {
-    if (response.ok) {
-      const userData = await response.json();
-      return userData;
+    if (!response.ok) {
+      return null;
     }
+    const userData = await response.json();
+    return userData;
   } catch (err) {
-    throw err;
+    alert(err.message);
+    // throw new Error('Failed to fetch user');
   }
 };
 
-export const getUserBlogs = fetchedData => {
+export const getUsersBlogs = fetchedData => {
   const usersData = fetchedData.reduce((acc, user) => {
     // console.log(user);
     // console.log(getUserData(user).then(userData => userData.blog));
@@ -20,14 +22,16 @@ export const getUserBlogs = fetchedData => {
   // console.log(usersData);
   // return usersBlogs;
 
-  return Promise.all(usersData)
-    .then(data => data)
-    .catch(() => new Error('Failed to load data'))
-    .finally(result => result);
+  return (
+    Promise.all(usersData)
+      .then(data => data)
+      // .catch(() => alert(new Error('Failed to fetch user')))
+      .catch(err => alert(err.message))
+      .finally(result => result)
+  );
 };
 
-getUserBlogs(['google', 'facebook', 'git']).then(linkList => console.log(linkList));
-// .catch(err => console.log(err.message));
-getUserBlogs(['google', 'facebook', 'git', 'home']).then(linkList => console.log(linkList));
+getUsersBlogs(['google', 'facebook', 'git']).then(linkList => console.log(linkList));
+getUsersBlogs(['google', 'facebook', 'git', 'home']).then(linkList => console.log(linkList));
 
 // getUserData('facebook').then(el => console.log(el.blog));
