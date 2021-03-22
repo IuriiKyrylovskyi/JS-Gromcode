@@ -1,8 +1,9 @@
 const getUserData = async userId => {
-  const response = await fetch(`https://api.giRthub.com/users/${userId}`);
+  const response = await fetch(`https://api.1github.com/users/${userId}`);
   try {
     return await response.json();
   } catch (err) {
+    // err => err.message
     throw new Error('Failed to load data');
   }
 };
@@ -22,8 +23,8 @@ const usersNames = givenArr => {
   return usersBlogs;
 };
 
-export const getUserBlogs = userData =>
-  Promise.all(userData)
+export const getUserBlogs = usersData =>
+  Promise.all(usersData)
     .then(userArr => usersNames(userArr))
     .then(data => data)
     .catch(err => err.message);
