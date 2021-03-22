@@ -7,20 +7,32 @@ const getUserData = async userId => {
   }
 };
 
-export const getUserBlogs = getUserDatas => {
-  // console.log(...getUserDatas);
-  const usersBlogs = getUserDatas.reduce((acc, userDataId) => {
+const usersNames = givenArr => {
+  const usersBlogs = givenArr.reduce((acc, userDataId) => {
     console.log(userDataId);
-    console.log(getUserData(userDataId).blog);
-    acc.push(getUserData(userDataId).blog);
+    console.log(getUserData(userDataId).then(user => user.blog));
+    acc + getUserData(userDataId).then(user => user.blog);
   }, []);
   console.log(usersBlogs);
-  // return usersBlogs;
-
-  return Promise.all(usersBlogs)
-    .then(data => data)
-    .catch(err => err.message);
+  return usersBlogs;
 };
+
+export const getUserBlogs = (...getUserDatas) =>
+  Promise.all(getUserDatas)
+    .then(userArr => usersNames(userArr))
+    .catch(err => err.message);
+
+// const usersBlogs = getUserDatas.reduce((acc, userDataId) => {
+//   console.log(userDataId);
+//   console.log(getUserData(userDataId).then(user => user.blog));
+//   acc + getUserData(userDataId).then(user => user.blog);
+// }, []);
+// console.log(usersBlogs);
+// // return usersBlogs;
+
+// return Promise.all(usersBlogs)
+//   .then(data => data)
+//   .catch(err => err.message);
 
 console.log(typeof getUserBlogs);
 getUserBlogs(['google', 'facebook', 'git']);
