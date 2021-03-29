@@ -7,6 +7,14 @@ const url = 'https://api.github.com';
 // console.log(new Date('2021-03-08T21:40:05Z').getTime());
 // console.log(7 * 24 * 60 * 60 * 1000);
 
+const getAllCommitsAuthors = commits => commits.map(com => com.commit.author);
+
+const getAuthorsPerPeriod = (authors, days) =>
+  authors.filter(
+    authorData =>
+      new Date().getTime() - new Date(authorData.date).getTime() <= days * 24 * 60 * 60 * 1000,
+  );
+
 // const getCommitsByPeriod = (commits, days) => {
 //   commits
 //     .map(commit => commit.commit.author)
@@ -55,31 +63,33 @@ const mostActiveAuthors = authors =>
 export const getMostActiveDevs = ({ days, userId, repoId }) =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
-    .then(commits =>
-      commits
-        .map(commit => commit.commit.author)
-        .filter(
-          authorData =>
-            new Date().getTime() - new Date(authorData.date).getTime() <=
-            days * 24 * 60 * 60 * 1000,
-        ),
-    )
-    .then(res => countAuthorsCommits(res))
-    .then(res => sortAuthorsByActivness(res))
-    .then(res => mostActiveAuthors(res));
+    // .then(commits =>
+    //   commits
+    //     .map(commit => commit.commit.author)
+    //     .filter(
+    //       authorData =>
+    //         new Date().getTime() - new Date(authorData.date).getTime() <=
+    //         days * 24 * 60 * 60 * 1000,
+    //     ),
+    // )
+    .then(commits => getAllCommitsAuthors(commits))
+    .then(authors => getAuthorsPerPeriod(authors, days))
+    .then(commits => countAuthorsCommits(commits))
+    .then(authors => sortAuthorsByActivness(authors))
+    .then(authors => mostActiveAuthors(authors));
 
-// const user1 = {
-//   days: 237,
-//   userId: 'andrii142',
-//   repoId: 'developer-roadmap',
-// };
+const user1 = {
+  days: 257,
+  userId: 'andrii142',
+  repoId: 'developer-roadmap',
+};
 
-// console.log(getMostActiveDevs(user1));
+console.log(getMostActiveDevs(user1));
 
-// const user2 = {
-//   days: 17,
-//   userId: 'IuriiKyrylovskyi',
-//   repoId: 'Calendar_project_js',
-// };
+const user2 = {
+  days: 27,
+  userId: 'IuriiKyrylovskyi',
+  repoId: 'Calendar_project_js',
+};
 
-// console.log(getMostActiveDevs(user2));
+console.log(getMostActiveDevs(user2));
