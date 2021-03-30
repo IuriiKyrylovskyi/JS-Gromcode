@@ -24,6 +24,19 @@ const getAuthorsPerPeriod = (commits, days) =>
       : false,
   );
 
+const flatMapAuthors = (commits, days) =>
+  commits.flatMap(commit =>
+    new Date().getTime() - new Date(commit.commit.author.date).getTime() <=
+    days * 24 * 60 * 60 * 1000
+      ? {
+        count: 0,
+        date: commit.commit.author.date,
+        name: commit.commit.author.name,
+        email: commit.commit.author.email
+      }
+      : [],
+  );
+
 const countAuthorsCommits = commits => {
   const author = {};
   console.log(commits);
@@ -56,12 +69,13 @@ const mostActiveAuthors = authors =>
 export const getMostActiveDevs = ({ days, userId, repoId }) =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
+    .then(commits => flatMapAuthors(commits,days))
     // .then(commits => getAllCommitsAuthors(commits))
-    .then(authors => getAuthorsPerPeriod(authors, days))
+    // .then(authors => getAuthorsPerPeriod(authors, days))
     // .then(authors => filterAuthorsPerPeriod(authors, days))
-    .then(commits => countAuthorsCommits(commits))
-    .then(authors => sortAuthorsByActivness(authors))
-    .then(authors => mostActiveAuthors(authors));
+    // .then(commits => countAuthorsCommits(commits));
+// .then(authors => sortAuthorsByActivness(authors))
+// .then(authors => mostActiveAuthors(authors));
 
 const user1 = {
   days: 257,
