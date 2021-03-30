@@ -8,6 +8,14 @@ const filterAuthorsPerPeriod = (authors, days) =>
       new Date().getTime() - new Date(authorData.date).getTime() <= days * 24 * 60 * 60 * 1000,
   );
 
+const getAuthorsPerPeriod = (commits, days) =>
+  commits.filter(com =>
+    com.commit.author
+      ? new Date().getTime() - new Date(com.commit.author.date).getTime() <=
+        days * 24 * 60 * 60 * 1000
+      : false,
+  );
+
 const countAuthorsCommits = commits => {
   const author = {};
 
@@ -39,26 +47,25 @@ const mostActiveAuthors = authors =>
 export const getMostActiveDevs = ({ days, userId, repoId }) =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
-    .then(commits => getAllCommitsAuthors(commits))
-    .then(authors => filterAuthorsPerPeriod(authors, days))
+    // .then(commits => getAllCommitsAuthors(commits))
+    .then(authors => getAuthorsPerPeriod(authors, days))
+    // .then(authors => filterAuthorsPerPeriod(authors, days))
     .then(commits => countAuthorsCommits(commits))
     .then(authors => sortAuthorsByActivness(authors))
     .then(authors => mostActiveAuthors(authors));
 
+const user1 = {
+  days: 257,
+  userId: 'andrii142',
+  repoId: 'developer-roadmap',
+};
 
+console.log(getMostActiveDevs(user1));
 
-// const user1 = {
-//   days: 257,
-//   userId: 'andrii142',
-//   repoId: 'developer-roadmap',
-// };
+const user2 = {
+  days: 27,
+  userId: 'IuriiKyrylovskyi',
+  repoId: 'Calendar_project_js',
+};
 
-// console.log(getMostActiveDevs(user1));
-
-// const user2 = {
-//   days: 27,
-//   userId: 'IuriiKyrylovskyi',
-//   repoId: 'Calendar_project_js',
-// };
-
-// console.log(getMostActiveDevs(user2));
+console.log(getMostActiveDevs(user2));
