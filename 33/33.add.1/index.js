@@ -15,8 +15,8 @@ const getAuthorsDataByPeriod = (commits, days) =>
 const countAuthorsCommits = commits => {
   // const author = {};
   const result = commits.reduce((acc, commit) => {
-    const { name, email } = commit;
-    let count = 1;
+    const { count=1, name, email } = commit;
+    // let count = 1;
 
     if (acc[name]) {
       acc[name].count++;
