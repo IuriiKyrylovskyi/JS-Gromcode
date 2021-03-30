@@ -13,21 +13,24 @@ const getAuthorsDataByPeriod = (commits, days) =>
   );
 
 const countAuthorsCommits = commits => {
-  const author = {};
-  commits.map(commit => {
+  // const author = {};
+  const result = commits.reduce((acc, commit) => {
     const { name, email } = commit;
+    let count = 1;
 
-    if (author[name]) {
-      author[name].count++;
+    if (acc[name]) {
+      acc[name].count++;
       return;
     }
 
-    const count = 1;
 
-    author[name] = { count, name, email };
-  });
+    acc[name] = { count, name, email };
+    console.log(acc);
 
-  return Object.values(author);
+    return acc;
+  }, {});
+
+  return Object.values(result);
 };
 
 // const countAuthorsCommits = commits => {
