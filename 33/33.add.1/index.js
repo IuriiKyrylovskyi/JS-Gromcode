@@ -10,17 +10,26 @@ const filterAuthorsPerPeriod = (authors, days) =>
 
 const getAuthorsPerPeriod = (commits, days) =>
   commits.filter(com =>
-    com.commit.author
-      ? new Date().getTime() - new Date(com.commit.author.date).getTime() <=
-        days * 24 * 60 * 60 * 1000
+    new Date().getTime() - new Date(com.commit.author.date).getTime() <= days * 24 * 60 * 60 * 1000
+      ? console.log(
+          Object.assign(
+            {},
+            {
+              date: com.commit.author.date,
+              name: com.commit.author.name,
+              email: com.commit.author.email,
+            },
+          ),
+        )
       : false,
   );
 
 const countAuthorsCommits = commits => {
   const author = {};
-
+  console.log(commits);
   commits.forEach(commit => {
     const { name, email } = commit;
+    console.log({ name, email });
 
     if (author[name]) {
       author[name].count++;
