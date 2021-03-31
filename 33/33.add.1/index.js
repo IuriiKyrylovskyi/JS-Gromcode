@@ -13,34 +13,40 @@ const url = 'https://api.github.com';
 //   );
 
 const countAuthorsCommits = (commits, days) => {
-  const result = commits
-    .reduce((acc, commit) => {
-      console.log(commit.commit.author.date);
-      if (
-        new Date().getTime() - new Date(commit.commit.author.date).getTime() >
-        days * 24 * 60 * 60 * 1000
-      ) {
-        return acc;
-      }
-
-      const { count = 1, name, email } = commit;
-
-      if (acc[name]) {
-        acc[name].count++; //= acc[name].count + 1;
-        return acc;
-      }
-
-      acc[name] = { count, name, email };
-      console.log(acc);
+  const result = commits.reduce((acc, commit) => {
+    if (
+      new Date().getTime() - new Date(commit.commit.author.date).getTime() >
+      days * 24 * 60 * 60 * 1000
+    ) {
       return acc;
-    }, {})
-    .sort((authorPrev, authorNext) => authorNext.count - authorPrev.count)
-    .filter(author => {
-      const max = authors[0].count;
-      return author.count === max;
-    });
-  return result;
-  // return Object.values(result);
+    }
+
+    const { count = 1, name, email } = commit.commit.author;
+
+    if (acc[name]) {
+      acc[name].count++;
+      return acc;
+    }
+
+    acc[name] = { count, name, email };
+    return acc;
+  }, {});
+
+  return Object.values(result).reduce((acc, obj, index) => {
+    const { count, name, email } = obj;
+    console.log({ count, name, email });
+    if (acc[index].count < acc[index + 1].count) {
+      acc[index + 1].count;
+      return acc;
+    }
+    acc.push(acc[index + 1][count]);
+    return acc;
+  }, []);
+  // .sort((authorPrev, authorNext) => authorNext.count - authorPrev.count)
+  // .filter((author, index, authors) => {
+  //   const max = authors[0].count;
+  //   return author.count === max;
+  // });
 };
 
 const mostActiveAuthors = authors =>
