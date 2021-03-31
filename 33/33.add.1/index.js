@@ -13,28 +13,34 @@ const url = 'https://api.github.com';
 //   );
 
 const countAuthorsCommits = (commits, days) => {
-  const result = commits.reduce((acc, commit) => {
-    console.log(commit.commit.author.date);
-    if (
-      new Date().getTime() - new Date(commit.commit.author.date).getTime() >
-      days * 24 * 60 * 60 * 1000
-    ) {
+  const result = commits
+    .reduce((acc, commit) => {
+      console.log(commit.commit.author.date);
+      if (
+        new Date().getTime() - new Date(commit.commit.author.date).getTime() >
+        days * 24 * 60 * 60 * 1000
+      ) {
+        return acc;
+      }
+
+      const { count = 1, name, email } = commit;
+
+      if (acc[name]) {
+        acc[name].count++; //= acc[name].count + 1;
+        return acc;
+      }
+
+      acc[name] = { count, name, email };
+      console.log(acc);
       return acc;
-    }
-
-    const { count = 1, name, email } = commit;
-
-    if (acc[name]) {
-      acc[name].count++; //= acc[name].count + 1;
-      return acc;
-    }
-
-    acc[name] = { count, name, email };
-    console.log(acc);
-    return acc;
-  }, {});
-
-  return Object.values(result);
+    }, {})
+    .sort((authorPrev, authorNext) => authorNext.count - authorPrev.count)
+    .filter(author => {
+      const max = authors[0].count;
+      return author.count === max;
+    });
+  return result;
+  // return Object.values(result);
 };
 
 const mostActiveAuthors = authors =>
@@ -49,9 +55,9 @@ export const getMostActiveDevs = ({ days, userId, repoId }) =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
     // .then(commits => getAuthorsDataByPeriod(commits, days))
-    .then(commits => countAuthorsCommits(commits, days))
-    // .then(authors => sortAuthorsByActivness(authors))
-    .then(authors => mostActiveAuthors(authors));
+    .then(commits => countAuthorsCommits(commits, days));
+// .then(authors => sortAuthorsByActivness(authors))
+// .then(authors => mostActiveAuthors(authors));
 
 // ---------------------------------------------------------
 const user1 = {
