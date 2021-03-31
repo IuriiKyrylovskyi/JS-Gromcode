@@ -18,7 +18,7 @@ const countAuthorsCommits = commits => {
     const { count = 1, name, email } = commit;
 
     if (acc[name]) {
-      acc[name].count++;//= acc[name].count + 1;
+      acc[name].count++; //= acc[name].count + 1;
       return acc;
     }
 
