@@ -1,7 +1,7 @@
 const url = 'https://api.github.com';
 
 const mostActiveAuthors = (commits, days) => {
-  const result = commits.reduce((acc, commit) => {
+  const authorsData = commits.reduce((acc, commit) => {
     if (
       new Date().getTime() - new Date(commit.commit.author.date).getTime() >
       days * 24 * 60 * 60 * 1000
@@ -20,7 +20,7 @@ const mostActiveAuthors = (commits, days) => {
     return acc;
   }, {});
 
-  return Object.values(result)
+  return Object.values(authorsData)
     .sort((authorPrev, authorNext) => authorNext.count - authorPrev.count)
     .filter((author, _, authors) => {
       const max = authors[0].count;
