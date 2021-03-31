@@ -6,10 +6,6 @@ const formElem = document.querySelector('.login-form');
 const submitBtntElem = formElem.querySelector('[type="submit"]');
 const errorTextElem = formElem.querySelector('.error-text');
 
-const clearFormsInputs = () => {
-  return document.querySelectorAll('input').forEach(input => (input.value = ''));
-};
-
 const onSubmitForm = e => {
   e.preventDefault();
 
@@ -30,7 +26,7 @@ const onSubmitForm = e => {
       return response.json();
     })
     .then(res => alert(JSON.stringify(res)))
-    .then(clearFormsInputs)
+    .then(formElem.reset())
     .catch(() => new Error((errorTextElem.innerHTML = 'Failed to create user')));
 
   submitBtntElem.setAttribute('disabled', 'disabled');
