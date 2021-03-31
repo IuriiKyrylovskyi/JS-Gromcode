@@ -1,19 +1,27 @@
 const url = 'https://api.github.com';
 
-const getAuthorsDataByPeriod = (commits, days) =>
-  commits.flatMap(commit =>
-    new Date().getTime() - new Date(commit.commit.author.date).getTime() <=
-    days * 24 * 60 * 60 * 1000
-      ? {
-          date: commit.commit.author.date,
-          name: commit.commit.author.name,
-          email: commit.commit.author.email,
-        }
-      : [],
-  );
+// const getAuthorsDataByPeriod = (commits, days) =>
+//   commits.flatMap(commit =>
+//     new Date().getTime() - new Date(commit.commit.author.date).getTime() <=
+//     days * 24 * 60 * 60 * 1000
+//       ? {
+//           date: commit.commit.author.date,
+//           name: commit.commit.author.name,
+//           email: commit.commit.author.email,
+//         }
+//       : [],
+//   );
 
-const countAuthorsCommits = commits => {
+const countAuthorsCommits = (commits, days) => {
   const result = commits.reduce((acc, commit) => {
+    console.log(commit.commit.author.date);
+    if (
+      new Date().getTime() - new Date(commit.commit.author.date).getTime() >
+      days * 24 * 60 * 60 * 1000
+    ) {
+      return acc;
+    }
+
     const { count = 1, name, email } = commit;
 
     if (acc[name]) {
@@ -40,12 +48,12 @@ const mostActiveAuthors = authors =>
 export const getMostActiveDevs = ({ days, userId, repoId }) =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
-    .then(commits => getAuthorsDataByPeriod(commits, days))
-    .then(commits => countAuthorsCommits(commits))
+    // .then(commits => getAuthorsDataByPeriod(commits, days))
+    .then(commits => countAuthorsCommits(commits, days))
     // .then(authors => sortAuthorsByActivness(authors))
     .then(authors => mostActiveAuthors(authors));
 
- // ---------------------------------------------------------
+// ---------------------------------------------------------
 const user1 = {
   days: 257,
   userId: 'andrii142',
