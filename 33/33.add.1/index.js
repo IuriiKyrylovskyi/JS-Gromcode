@@ -12,44 +12,22 @@ const getAuthorsDataByPeriod = (commits, days) =>
       : [],
   );
 
+
 const countAuthorsCommits = commits => {
-  // const author = {};
   const result = commits.reduce((acc, commit) => {
-    const { count=1, name, email } = commit;
-    // let count = 1;
+    const { count = 1, name, email } = commit;
 
     if (acc[name]) {
-      acc[name].count++;
-      return;
+      acc[name].count = acc[name].count + 1;
+      return acc;
     }
 
-
     acc[name] = { count, name, email };
-    console.log(acc);
-
     return acc;
   }, {});
 
   return Object.values(result);
 };
-
-// const countAuthorsCommits = commits => {
-//   const author = {};
-//   commits.forEach(commit => {
-//     const { name, email } = commit;
-
-//     if (author[name]) {
-//       author[name].count++;
-//       return;
-//     }
-
-//     const count = 1;
-
-//     author[name] = { count, name, email };
-//   });
-
-//   return Object.values(author);
-// };
 
 const sortAuthorsByActivness = authors =>
   authors.sort((authorPrev, authorNext) => authorNext.count - authorPrev.count);
@@ -68,18 +46,18 @@ export const getMostActiveDevs = ({ days, userId, repoId }) =>
     .then(authors => sortAuthorsByActivness(authors))
     .then(authors => mostActiveAuthors(authors));
 
-const user1 = {
-  days: 257,
-  userId: 'andrii142',
-  repoId: 'developer-roadmap',
-};
+// const user1 = {
+//   days: 257,
+//   userId: 'andrii142',
+//   repoId: 'developer-roadmap',
+// };
 
-console.log(getMostActiveDevs(user1));
+// console.log(getMostActiveDevs(user1));
 
-const user2 = {
-  days: 27,
-  userId: 'IuriiKyrylovskyi',
-  repoId: 'Calendar_project_js',
-};
+// const user2 = {
+//   days: 27,
+//   userId: 'IuriiKyrylovskyi',
+//   repoId: 'Calendar_project_js',
+// };
 
-console.log(getMostActiveDevs(user2));
+// console.log(getMostActiveDevs(user2));
