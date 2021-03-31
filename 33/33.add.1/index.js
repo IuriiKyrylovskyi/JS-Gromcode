@@ -1,18 +1,6 @@
 const url = 'https://api.github.com';
 
-// const getAuthorsDataByPeriod = (commits, days) =>
-//   commits.flatMap(commit =>
-//     new Date().getTime() - new Date(commit.commit.author.date).getTime() <=
-//     days * 24 * 60 * 60 * 1000
-//       ? {
-//           date: commit.commit.author.date,
-//           name: commit.commit.author.name,
-//           email: commit.commit.author.email,
-//         }
-//       : [],
-//   );
-
-const countAuthorsCommits = (commits, days) => {
+const mostActiveAuthors = (commits, days) => {
   const result = commits.reduce((acc, commit) => {
     if (
       new Date().getTime() - new Date(commit.commit.author.date).getTime() >
@@ -32,38 +20,18 @@ const countAuthorsCommits = (commits, days) => {
     return acc;
   }, {});
 
-  return Object.values(result).reduce((acc, obj, index) => {
-    const { count, name, email } = obj;
-    console.log({ count, name, email });
-    if (acc[index].count < acc[index + 1].count) {
-      acc[index + 1].count;
-      return acc;
-    }
-    acc.push(acc[index + 1][count]);
-    return acc;
-  }, []);
-  // .sort((authorPrev, authorNext) => authorNext.count - authorPrev.count)
-  // .filter((author, index, authors) => {
-  //   const max = authors[0].count;
-  //   return author.count === max;
-  // });
-};
-
-const mostActiveAuthors = authors =>
-  authors
+  return Object.values(result)
     .sort((authorPrev, authorNext) => authorNext.count - authorPrev.count)
-    .filter(author => {
+    .filter((author, _, authors) => {
       const max = authors[0].count;
       return author.count === max;
     });
+};
 
 export const getMostActiveDevs = ({ days, userId, repoId }) =>
   fetch(`${url}/repos/${userId}/${repoId}/commits?per_page=100`)
     .then(response => response.json())
-    // .then(commits => getAuthorsDataByPeriod(commits, days))
-    .then(commits => countAuthorsCommits(commits, days));
-// .then(authors => sortAuthorsByActivness(authors))
-// .then(authors => mostActiveAuthors(authors));
+    .then(authors => mostActiveAuthors(authors, days));
 
 // ---------------------------------------------------------
 const user1 = {
