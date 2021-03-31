@@ -33,19 +33,21 @@ export const getMostActiveDevs = ({ days, userId, repoId }) =>
     .then(response => response.json())
     .then(authors => mostActiveAuthors(authors, days));
 
-// ---------------------------------------------------------
-const user1 = {
-  days: 257,
-  userId: 'andrii142',
-  repoId: 'developer-roadmap',
-};
+// // ---------------------------------------------------------
+// const user1 = {
+//   days: 257,
+//   userId: 'andrii142',
+//   repoId: 'developer-roadmap',
+// };
 
-console.log(getMostActiveDevs(user1));
+// console.log(getMostActiveDevs(user1));
 
-const user2 = {
-  days: 27,
-  userId: 'IuriiKyrylovskyi',
-  repoId: 'Calendar_project_js',
-};
+// const user2 = {
+//   days: 27,
+//   userId: 'IuriiKyrylovskyi',
+//   repoId: 'Calendar_project_js',
+// };
 
-console.log(getMostActiveDevs(user2));
+// console.log(getMostActiveDevs(user2));
+
+

@@ -103,3 +103,16 @@ const user2 = {
 };
 
 console.log(getMostActiveDevs(user2));
+
+
+// // authors.reduce((acc, item) => {
+// //   if (!acc.length) {
+// //     return [item];
+// //   }
+// //   if (item.count > acc[0].count) {
+// //     return [item];
+// //   } else if (item.count === acc[0].count) {
+// //     acc.push(item);
+// //     return acc;
+// //   }
+// // }, []);
